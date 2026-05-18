@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+/* ─── Tailwind v4: expose K2 tokens as utility classes ──────────────────────
+   `inline` means Tailwind skips creating --color-* in :root and instead
+   inlines `var(--k2-*)` directly into generated utilities (bg-k2-canvas,
+   text-k2-ink, border-k2-border, etc.). This way the Tailwind classes
+   automatically pick up the .k2-dark overrides below. */
+@theme inline {
+  --color-k2-canvas:     var(--k2-canvas);
+  --color-k2-surface:    var(--k2-surface);
+  --color-k2-stone:      var(--k2-stone);
+  --color-k2-ink:        var(--k2-ink);
+  --color-k2-on-ink:     var(--k2-on-ink);
+  --color-k2-text-1:     var(--k2-text-1);
+  --color-k2-text-2:     var(--k2-text-2);
+  --color-k2-text-3:     var(--k2-text-3);
+  --color-k2-eyebrow:    var(--k2-eyebrow);
+  --color-k2-cta:        var(--k2-cta);
+  --color-k2-border:     var(--k2-border);
+  --color-k2-border-med: var(--k2-border-med);
+}
+
+/* ─── Base resets (verbatim from index.html) ─────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--k2-sans);
+  background: var(--k2-canvas);
+  color: var(--k2-text-1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── :root design tokens (verbatim from index.html) ────────────────────────
+   Font vars reference next/font CSS variables so the self-hosted fonts load
+   correctly. Helvetica Neue stays first (system font); Inter/JBM/Instrument
+   Serif come from next/font as fallbacks / swappable alternatives. */
+:root {
+  --k2-canvas:     #FAFAF7;
+  --k2-surface:    #FFFFFF;
+  --k2-stone:      #F1EFE8;
+  --k2-ink:        #0A1F0E;
+  --k2-on-ink:     #FAFAF7;
+  --k2-text-1:     #0A1F0E;
+  --k2-text-2:     #3A4A3D;
+  --k2-text-3:     #6B7A6E;
+  --k2-eyebrow:    #2D7A3D;
+  --k2-cta:        #E8651A;
+  --k2-border:     rgba(10,31,14,0.08);
+  --k2-border-med: rgba(10,31,14,0.15);
+  /* Helvetica Neue is the prototype default; var(--font-inter) is the
+     self-hosted next/font fallback loaded at build time. */
+  --k2-sans:  "Helvetica Neue", Helvetica, Arial, var(--font-inter), sans-serif;
+  --k2-mono:  var(--font-jbm), ui-monospace, monospace;
+  --k2-serif: var(--font-instrument-serif), Georgia, serif;
+}
+
+/* ─── Dark-mode overrides (verbatim from index.html .k2-dark) ───────────── */
+.k2-dark {
+  --k2-canvas:     #0A1F0E;
+  --k2-surface:    #14291A;
+  --k2-stone:      #102216;
+  --k2-ink:        #FAFAF7;
+  --k2-on-ink:     #0A1F0E;
+  --k2-text-1:     #FAFAF7;
+  --k2-text-2:     rgba(250,250,247,0.75);
+  --k2-text-3:     rgba(250,250,247,0.55);
+  --k2-border:     rgba(250,250,247,0.1);
+  --k2-border-med: rgba(250,250,247,0.2);
+}
+
+/* ─── Element resets (verbatim from index.html) ──────────────────────────── */
+h1, h2, h3, h4 { font-family: var(--k2-sans); margin: 0; }
+a { color: inherit; }
+button { font-family: inherit; }
+input, textarea, select { font-family: inherit; }
+
+/* ─── Route transition (verbatim from index.html) ────────────────────────── */
+.k2-route-fade { animation: k2fade .3s ease both; }
+@keyframes k2fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Smooth in-page scrolling (for legal page TOC anchors) ─────────────── */
+html { scroll-behavior: smooth; }
+
+/* ─── Product card hover — replaces JS onMouseEnter/Leave in page-home.jsx ──
+   The inline style sets `border: 1px solid var(--k2-border-med)`.
+   !important is required on border-color to win over the inline shorthand.
+   transform has no inline value so no !important needed there. */
+.k2-product-card:hover {
+  border-color: var(--k2-ink) !important;
+  transform: translateY(-2px);
+}
+
+/* ─── Footer nav links — replaces JS onMouseEnter/Leave in chrome.jsx ───────
+   The source used e.currentTarget.style.color mutations; CSS :hover is
+   functionally identical and keeps K2Footer a server component. */
+.k2-footer-link {
+  color: rgba(250,250,247,0.7);
+  transition: color .15s ease;
+  text-decoration: none;
+}
+.k2-footer-link:hover { color: var(--k2-on-ink); }
+
+/* ─── Segment card hover (clients page) ─────────────────────────────────── */
+.k2-segment-card:hover {
+  border-color: var(--k2-ink) !important;
+  transform: translateY(-2px);
+}
+
+/* ─── Job row hover (careers page) ──────────────────────────────────────── */
+.k2-job-row:hover { background: var(--k2-stone); }
+
+/* ─── Products sticky nav link hover ────────────────────────────────────── */
+.k2-products-nav-link:hover { border-bottom-color: var(--k2-cta) !important; }
+
+/* ─── Responsive (verbatim from index.html) ──────────────────────────────── */
+@media (max-width: 900px) {
+  .k2-nav-desktop { display: none !important; }
+  .k2-nav-burger  { display: inline-flex !important; }
+  .k2-footer-grid { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
+}

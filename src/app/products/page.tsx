@@ -1,0 +1,382 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { PAGE_METADATA } from '@/lib/metadata';
+import { Eyebrow } from '@/components/ui/eyebrow';
+import { Em } from '@/components/ui/em';
+import { ImgSlot } from '@/components/ui/img-slot';
+import { MonoCap } from '@/components/ui/mono-cap';
+import { Button } from '@/components/ui/btn';
+import { FAQList } from '@/components/ui/faq-list';
+import { CTAStrip } from '@/components/layout/cta-strip';
+import { PageHero } from '@/components/layout/page-hero';
+
+export const metadata: Metadata = PAGE_METADATA.products;
+
+const pelletSpecs = [
+  { p: 'Base material', t: 'Agro residue', s: 'Mustard / paddy / agro' },
+  { p: 'Shape', t: 'Cylindrical', s: 'Pressed pellet' },
+  { p: 'Diameter', t: '≤ 25 mm', s: 'Spec maximum', hi: true },
+  { p: 'Length', t: '≤ 35 mm', s: 'Spec maximum' },
+  { p: 'Fines', t: '≤ 5 %', s: 'On-dispatch' },
+  { p: 'GCV', t: '2,800 – 4,000 kcal/kg', s: 'By feedstock', hi: true },
+  { p: 'Moisture', t: '≤ 14 %', s: 'On-dispatch' },
+];
+
+const briquetteSpecs = [
+  { p: 'Base material', t: 'Agro residue', s: 'Mixed blend' },
+  { p: 'Shape', t: 'Cylindrical', s: 'High-density' },
+  { p: 'Diameter', t: '90 mm', s: 'Spec dimension' },
+  { p: 'Length', t: '100 – 300 mm', s: 'Spec range' },
+  { p: 'Fines', t: '≤ 2 %', s: 'On-dispatch' },
+  { p: 'GCV', t: '3,900 kcal/kg', s: 'Typical', hi: true },
+  { p: 'Moisture', t: '≤ 6 %', s: 'On-dispatch', hi: true },
+  { p: 'Ash content', t: '≤ 8 %', s: 'On-dispatch' },
+];
+
+const jumpLinks: [string, string][] = [
+  ['pellets', 'Pellets'],
+  ['briquettes', 'Briquettes'],
+  ['applications', 'Applications'],
+  ['dispatch', 'Dispatch & logistics'],
+  ['faq', 'FAQ'],
+];
+
+export default function ProductsPage() {
+  return (
+    <>
+      <PageHero
+        eyebrow="— Product catalogue · 2026"
+        title="Pellets and briquettes,"
+        italic="one spec sheet you can actually trust."
+        body="Every batch is lab-tested at intake and at output. We publish the spec sheet, not a marketing brochure. Send us your boiler model and we'll tell you which blend runs cleanest in your kiln."
+        kicker={['Lab report on every dispatch', 'Sample in 48 hours', 'Rolling monthly off-take']}
+      />
+
+      {/* Sticky dark index bar */}
+      <div style={{
+        position: 'sticky', top: 57, zIndex: 30,
+        background: 'var(--k2-ink)', color: 'var(--k2-on-ink)',
+        padding: '14px 32px', borderBottom: '1px solid rgba(250,250,247,0.1)',
+      }}>
+        <div style={{
+          maxWidth: 1320, margin: '0 auto',
+          display: 'flex', gap: 32, alignItems: 'center',
+          fontSize: 12,
+        }}>
+          <span style={{ opacity: 0.5, letterSpacing: 1, textTransform: 'uppercase', fontSize: 10 }}>Jump to</span>
+          {jumpLinks.map(([id, label]) => (
+            <a key={id} href={`#${id}`}
+              className="k2-products-nav-link"
+              style={{
+                color: 'rgba(250,250,247,0.85)', textDecoration: 'none', cursor: 'pointer',
+                paddingBottom: 2, borderBottom: '1px solid transparent',
+                transition: 'border-color .15s ease',
+              }}>
+              {label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      {/* ====== PRODUCT 01 — PELLETS ====== */}
+      <section id="pellets" data-screen-label="Products · Pellets" style={{ padding: '96px 32px', borderBottom: '1px solid var(--k2-border)' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 64, alignItems: 'start' }}>
+          <div>
+            <ImgSlot tone="paddy" height={380} caption="PELLET · CYLINDRICAL · MACRO 1:1 ON BLACK BACKDROP">
+              <div style={{
+                position: 'absolute', top: 14, right: 14,
+                background: 'rgba(255,255,255,0.95)', color: 'var(--k2-ink)',
+                fontSize: 10, letterSpacing: 1, textTransform: 'uppercase',
+                padding: '5px 10px', fontWeight: 500,
+              }}>
+                <span style={{ color: 'var(--k2-eyebrow)' }}>●</span> In stock
+              </div>
+              <div style={{ position: 'absolute', bottom: 18, left: 18, color: '#fff' }}>
+                <div style={{ fontFamily: 'var(--k2-mono)', fontSize: 10, letterSpacing: 1.5, opacity: 0.8 }}>
+                  ≤ 25 mm × ≤ 35 mm
+                </div>
+                <div style={{ fontSize: 22, fontWeight: 500, marginTop: 4 }}>
+                  Biomass pellet
+                </div>
+              </div>
+            </ImgSlot>
+
+            <div style={{ marginTop: 32 }}>
+              <Eyebrow style={{ marginBottom: 12 }}>Availability</Eyebrow>
+              <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--k2-text-2)', margin: 0 }}>
+                Year-round supply from our aggregator panel across Haryana, Punjab and western UP. Peak feedstock season Oct–Feb. Volume-protected contracts available up to 8,000 MT/month.
+              </p>
+            </div>
+
+            <div style={{
+              marginTop: 28, background: 'rgba(45,122,61,0.06)',
+              borderLeft: '3px solid var(--k2-eyebrow)', padding: 20,
+            }}>
+              <Eyebrow style={{ marginBottom: 6 }}>CAQM-priority feedstock</Eyebrow>
+              <p style={{ fontSize: 13, lineHeight: 1.6, color: 'var(--k2-text-2)', margin: 0 }}>
+                Our pellets meet the Commission for Air Quality Management mandate for paddy-straw co-firing at Delhi-NCR thermal plants.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <MonoCap style={{ color: 'var(--k2-text-3)', letterSpacing: 1.2 }}>— 01</MonoCap>
+            <h2 style={{ fontSize: 48, margin: '12px 0 24px', fontWeight: 500, letterSpacing: '-0.025em', lineHeight: 1.1 }}>
+              Biomass pellets
+            </h2>
+            <p style={{ fontSize: 17, lineHeight: 1.65, color: 'var(--k2-text-2)', margin: '0 0 18px' }}>
+              Pelletised from mustard waste, paddy waste and other agro residues under strict moisture and fines control. Consistent calorific value, optimised for industrial boilers, furnaces, thermal energy systems and domestic pellet stoves.
+            </p>
+            <p style={{ fontSize: 15, lineHeight: 1.7, color: 'var(--k2-text-2)', margin: '0 0 36px' }}>
+              Compact form, low moisture and a clean burn profile make pellets a direct replacement for coal and LPG in industrial heating — at typically lower long-term cost per kilocalorie.
+            </p>
+
+            {/* Spec table */}
+            <div style={{ borderTop: '2px solid var(--k2-ink)' }}>
+              <div style={{
+                display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr',
+                padding: '14px 0', borderBottom: '1px solid var(--k2-border-med)',
+                fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase',
+                color: 'var(--k2-text-2)',
+              }}>
+                <div>Parameter</div>
+                <div>Typical</div>
+                <div>Specification</div>
+              </div>
+              {pelletSpecs.map((r) => (
+                <div key={r.p} style={{
+                  display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr',
+                  padding: '14px 0', borderBottom: '1px solid var(--k2-border)',
+                  fontSize: 14,
+                }}>
+                  <div style={{ color: 'var(--k2-text-2)' }}>{r.p}</div>
+                  <div style={{ fontFamily: 'var(--k2-mono)', color: r.hi ? 'var(--k2-cta)' : 'var(--k2-ink)' }}>{r.t}</div>
+                  <div style={{ fontFamily: 'var(--k2-mono)', color: 'var(--k2-text-2)' }}>{r.s}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Packaging + benefits row */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, marginTop: 36 }}>
+              {[
+                ['Packaging', '25 – 35 kg HDPE bag · jumbo bags · custom bulk'],
+                ['Best for', 'Industrial boilers, furnaces, thermal plants, pellet stoves'],
+                ['Edge', 'Low emissions, easy storage, dependable cost-per-kcal'],
+              ].map(([h, b]) => (
+                <div key={h} style={{ padding: 20, border: '1px solid var(--k2-border-med)' }}>
+                  <Eyebrow style={{ marginBottom: 8 }}>{h}</Eyebrow>
+                  <p style={{ fontSize: 13, lineHeight: 1.6, color: 'var(--k2-text-2)', margin: 0 }}>{b}</p>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ display: 'flex', gap: 12, marginTop: 36, flexWrap: 'wrap' }}>
+              <Link href="/contact"><Button variant="primary">Request a sample · 50 kg →</Button></Link>
+              <Button variant="outline">Download lab report PDF</Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ====== PRODUCT 02 — BRIQUETTES ====== */}
+      <section id="briquettes" data-screen-label="Products · Briquettes" style={{ padding: '96px 32px', background: 'var(--k2-stone)', borderBottom: '1px solid var(--k2-border)' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 64, alignItems: 'start' }}>
+          <div>
+            <MonoCap style={{ color: 'var(--k2-text-3)', letterSpacing: 1.2 }}>— 02</MonoCap>
+            <h2 style={{ fontSize: 48, margin: '12px 0 24px', fontWeight: 500, letterSpacing: '-0.025em', lineHeight: 1.1 }}>
+              Biomass briquettes
+            </h2>
+            <p style={{ fontSize: 17, lineHeight: 1.65, color: 'var(--k2-text-2)', margin: '0 0 18px' }}>
+              High-density 90 mm cylindrical briquettes, engineered for sustained industrial steam load. Used by vegetable &amp; food processing plants, brick manufacturers, distilleries and chemical processing units.
+            </p>
+            <p style={{ fontSize: 15, lineHeight: 1.7, color: 'var(--k2-text-2)', margin: '0 0 36px' }}>
+              At 3,900 kcal/kg GCV with ash content under 8% and moisture under 6%, briquettes outperform pellets in long-burn applications — and dramatically outperform coal on emissions.
+            </p>
+
+            <div style={{ borderTop: '2px solid var(--k2-ink)' }}>
+              <div style={{
+                display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr',
+                padding: '14px 0', borderBottom: '1px solid var(--k2-border-med)',
+                fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase',
+                color: 'var(--k2-text-2)',
+              }}>
+                <div>Parameter</div>
+                <div>Typical</div>
+                <div>Specification</div>
+              </div>
+              {briquetteSpecs.map((r) => (
+                <div key={r.p} style={{
+                  display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr',
+                  padding: '14px 0', borderBottom: '1px solid var(--k2-border)',
+                  fontSize: 14,
+                }}>
+                  <div style={{ color: 'var(--k2-text-2)' }}>{r.p}</div>
+                  <div style={{ fontFamily: 'var(--k2-mono)', color: r.hi ? 'var(--k2-cta)' : 'var(--k2-ink)' }}>{r.t}</div>
+                  <div style={{ fontFamily: 'var(--k2-mono)', color: 'var(--k2-text-2)' }}>{r.s}</div>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, marginTop: 36 }}>
+              {[
+                ['Packaging', '40 – 60 kg bag · custom bulk supply'],
+                ['Best for', 'Brick kilns, food processing, chemical plants, steam generation'],
+                ['Edge', 'High density, clean ash, reduced fuel cost vs. coal/diesel'],
+              ].map(([h, b]) => (
+                <div key={h} style={{ padding: 20, border: '1px solid var(--k2-border-med)', background: 'var(--k2-surface)' }}>
+                  <Eyebrow style={{ marginBottom: 8 }}>{h}</Eyebrow>
+                  <p style={{ fontSize: 13, lineHeight: 1.6, color: 'var(--k2-text-2)', margin: 0 }}>{b}</p>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ display: 'flex', gap: 12, marginTop: 36, flexWrap: 'wrap' }}>
+              <Link href="/contact"><Button variant="primary">Request a sample · 50 kg →</Button></Link>
+              <Button variant="outline">Download lab report PDF</Button>
+            </div>
+          </div>
+
+          <div>
+            <ImgSlot tone="mustard" height={380} caption="BRIQUETTE · 90mm DIA · STACKED, SIDE-LIT">
+              <div style={{
+                position: 'absolute', top: 14, right: 14,
+                background: 'rgba(255,255,255,0.95)', color: 'var(--k2-ink)',
+                fontSize: 10, letterSpacing: 1, textTransform: 'uppercase',
+                padding: '5px 10px', fontWeight: 500,
+              }}>
+                <span style={{ color: 'var(--k2-cta)' }}>★</span> Premium
+              </div>
+              <div style={{ position: 'absolute', bottom: 18, left: 18, color: '#fff' }}>
+                <div style={{ fontFamily: 'var(--k2-mono)', fontSize: 10, letterSpacing: 1.5, opacity: 0.8 }}>
+                  90 mm × 100–300 mm
+                </div>
+                <div style={{ fontSize: 22, fontWeight: 500, marginTop: 4 }}>Biomass briquette</div>
+              </div>
+            </ImgSlot>
+
+            <div style={{ marginTop: 32, background: 'var(--k2-surface)', padding: 20, border: '1px solid var(--k2-border-med)' }}>
+              <Eyebrow style={{ marginBottom: 8 }}>Closest coal substitute</Eyebrow>
+              <p style={{ fontSize: 13, lineHeight: 1.6, color: 'var(--k2-text-2)', margin: 0 }}>
+                At 3,900 kcal/kg, our briquettes deliver thermal output within range of typical Indian coal — at materially lower emissions and ash-handling cost.
+              </p>
+            </div>
+
+            <div style={{ marginTop: 20 }}>
+              <Eyebrow style={{ marginBottom: 12 }}>Why briquettes</Eyebrow>
+              <ul style={{ paddingLeft: 18, fontSize: 14, lineHeight: 1.75, color: 'var(--k2-text-2)', margin: 0 }}>
+                <li>Long, steady burn for continuous steam load</li>
+                <li>Lower fuel cost than coal or diesel over rolling contracts</li>
+                <li>Ash byproduct can be redeployed in agriculture</li>
+                <li>Prevents open-field crop residue burning</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ====== APPLICATIONS MATRIX ====== */}
+      <section id="applications" data-screen-label="Products · Applications" style={{ padding: '96px 32px', borderBottom: '1px solid var(--k2-border)' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 48 }}>
+            <div>
+              <Eyebrow style={{ marginBottom: 12 }}>— 03 / Applications</Eyebrow>
+              <h2 style={{ fontSize: 42, margin: 0, lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
+                Which fuel fits<br />
+                <Em>your application?</Em>
+              </h2>
+            </div>
+            <div style={{ fontSize: 14, color: 'var(--k2-text-2)', maxWidth: 320, textAlign: 'right', lineHeight: 1.6 }}>
+              A quick reference matrix. Not sure? Send us your boiler model and we&apos;ll recommend the blend.
+            </div>
+          </div>
+
+          {/* Matrix */}
+          <div style={{ borderTop: '2px solid var(--k2-ink)' }}>
+            <div style={{
+              display: 'grid', gridTemplateColumns: '1.6fr 1fr 1fr 1.5fr',
+              padding: '14px 4px', borderBottom: '1px solid var(--k2-border-med)',
+              fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase',
+              color: 'var(--k2-text-2)',
+            }}>
+              <div>Application</div>
+              <div>Pellets</div>
+              <div>Briquettes</div>
+              <div>Notes</div>
+            </div>
+            {([
+              ['Thermal power co-firing',         'best', 'compat', 'CAQM mandate · NCR plants'],
+              ['Industrial boilers (FBC)',         'best', 'best',   'High flexibility on blend'],
+              ['Furnaces / process heating',       'compat','best',  'Long-burn applications'],
+              ['Sugar mill cogen',                 'best', 'compat', 'Off-season biomass fuel'],
+              ['Paper & pulp',                     'compat','best',  'Steady steam load'],
+              ['Brick kilns',                      'compat','best',  'Highest density wins'],
+              ['Food / vegetable processing',      'compat','best',  'Briquettes preferred'],
+              ['Distilleries',                     'compat','best',  'Continuous-load burners'],
+              ['Domestic pellet stoves',           'best', '—',      'Small-format only'],
+            ] as [string, string, string, string][]).map(([app, pel, briq, note], i) => {
+              const icon = (s: string) => {
+                if (s === 'best')   return <span><span style={{ color: 'var(--k2-eyebrow)' }}>●</span> Best fit</span>;
+                if (s === 'compat') return <span style={{ color: 'var(--k2-text-2)' }}>○ Compatible</span>;
+                return <span style={{ color: 'var(--k2-text-3)' }}>—</span>;
+              };
+              return (
+                <div key={i} style={{
+                  display: 'grid', gridTemplateColumns: '1.6fr 1fr 1fr 1.5fr',
+                  padding: '16px 4px', borderBottom: '1px solid var(--k2-border)',
+                  fontSize: 14, alignItems: 'center',
+                }}>
+                  <div style={{ fontWeight: 500 }}>{app}</div>
+                  <div style={{ fontSize: 13 }}>{icon(pel)}</div>
+                  <div style={{ fontSize: 13 }}>{icon(briq)}</div>
+                  <div style={{ fontFamily: 'var(--k2-mono)', fontSize: 11, color: 'var(--k2-text-2)' }}>{note}</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ====== DISPATCH ====== */}
+      <section id="dispatch" data-screen-label="Products · Dispatch" style={{ background: 'var(--k2-ink)', color: 'var(--k2-on-ink)', padding: '80px 32px' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto' }}>
+          <Eyebrow accent="var(--k2-cta)" style={{ marginBottom: 24 }}>— 04 / Dispatch &amp; logistics</Eyebrow>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 48 }}>
+            {[
+              ['Packaging', 'Bulk-bag, jumbo-bag, loose tipper', '25–35 kg HDPE bags, 40–60 kg briquette bags, 1 MT jumbo bags or direct loose tipper dispatch up to 28 MT per truck. Loaded under cover.'],
+              ['Geography', 'Delivered across north India', 'Direct truck dispatch within 400 km. Rake-load capability for distant deliveries. Sealed load-cell weighbridge at our Rewari plant.'],
+              ['Lead time', '7–14 days for first order', 'Sample dispatched in 48 hours. Trial loads typically 2 weeks. Long-term contracts on rolling monthly off-take.'],
+            ].map(([eb, h, body], i) => (
+              <div key={i}>
+                <Eyebrow accent="var(--k2-cta)" style={{ marginBottom: 14 }}>— 0{i + 1} / {eb}</Eyebrow>
+                <h3 style={{ fontSize: 22, margin: '0 0 14px', fontWeight: 500, letterSpacing: '-0.015em' }}>{h}</h3>
+                <p style={{ fontSize: 14, lineHeight: 1.7, color: 'rgba(250,250,247,0.72)', margin: 0 }}>{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ====== FAQ ====== */}
+      <section id="faq" data-screen-label="Products · FAQ" style={{ padding: '96px 32px' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: 80 }}>
+          <div>
+            <Eyebrow style={{ marginBottom: 14 }}>— 05 / FAQ</Eyebrow>
+            <h2 style={{ fontSize: 42, margin: 0, lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
+              Questions <Em>procurement<br />heads ask us.</Em>
+            </h2>
+          </div>
+          <FAQList />
+        </div>
+      </section>
+
+      <CTAStrip
+        eyebrow="— Request product information"
+        title="Send us your boiler."
+        italic="We'll send you a sample."
+        body="50 kg trial in 48 hours. Indicative quote within 24. Rolling monthly off-take from there."
+        primary="Request a sample →"
+        secondary="Download brochure"
+      />
+    </>
+  );
+}
