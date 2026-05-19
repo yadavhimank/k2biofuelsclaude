@@ -44,6 +44,7 @@ export default function InfrastructurePage() {
               ].map(([k, v]) => (
                 <div key={k} style={{
                   display: 'flex', justifyContent: 'space-between',
+                  flexWrap: 'wrap', gap: '2px 12px',
                   padding: '14px 0', borderBottom: '1px solid var(--k2-border)',
                   fontSize: 14,
                 }}>
@@ -59,7 +60,7 @@ export default function InfrastructurePage() {
       {/* Pellet mill cards */}
       <section style={{ padding: '96px 32px', background: 'var(--k2-stone)' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 48 }}>
+          <div className="k2-section-header" style={{ marginBottom: 48 }}>
             <div>
               <Eyebrow style={{ marginBottom: 14 }}>— 02 / Pellet mills</Eyebrow>
               <h2 style={{ fontSize: 38, margin: 0, lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>

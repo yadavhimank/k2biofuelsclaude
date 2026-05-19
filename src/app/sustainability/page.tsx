@@ -72,7 +72,7 @@ export default function SustainabilityPage() {
       {/* Environmental benefits — pillar grid */}
       <section style={{ padding: '96px 32px' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 48 }}>
+          <div className="k2-section-header" style={{ marginBottom: 48 }}>
             <div>
               <Eyebrow style={{ marginBottom: 14 }}>— 03 / Environmental benefits</Eyebrow>
               <h2 style={{ fontSize: 38, margin: 0, lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
@@ -120,8 +120,8 @@ export default function SustainabilityPage() {
             </p>
           </div>
 
-          <div style={{ background: 'var(--k2-surface)', border: '1px solid var(--k2-border-med)', padding: 32 }}>
-            <div style={{ borderTop: '2px solid var(--k2-ink)' }}>
+          <div className="k2-cert-box" style={{ background: 'var(--k2-surface)', border: '1px solid var(--k2-border-med)', padding: 32 }}>
+            <div className="k2-cert-table-scroll" style={{ borderTop: '2px solid var(--k2-ink)' }}>
               <div style={{
                 display: 'grid', gridTemplateColumns: '1.6fr 1fr',
                 padding: '14px 0', borderBottom: '1px solid var(--k2-border-med)',

@@ -22,7 +22,7 @@ export default function ClientsPage() {
       {/* Segments */}
       <section style={{ padding: '96px 32px' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 56 }}>
+          <div className="k2-section-header" style={{ marginBottom: 56 }}>
             <div>
               <Eyebrow style={{ marginBottom: 14 }}>— 01 / Industry segments</Eyebrow>
               <h2 style={{ fontSize: 42, margin: 0, lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
@@ -76,7 +76,7 @@ export default function ClientsPage() {
       {/* How we work */}
       <section style={{ padding: '96px 32px', background: 'var(--k2-stone)' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 56 }}>
+          <div className="k2-section-header" style={{ marginBottom: 56 }}>
             <div>
               <Eyebrow style={{ marginBottom: 14 }}>— 02 / How we work</Eyebrow>
               <h2 style={{ fontSize: 42, margin: 0, lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>

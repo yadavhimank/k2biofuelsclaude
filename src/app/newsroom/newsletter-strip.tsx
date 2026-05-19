@@ -6,13 +6,31 @@ import { Eyebrow } from '@/components/ui/eyebrow';
 
 export function NewsroomNewsletterStrip() {
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'done'>('idle');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'done' | 'error'>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) return;
     setStatus('submitting');
-    setTimeout(() => setStatus('done'), 900);
+    setErrorMsg('');
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source: 'newsroom', website: '' }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setErrorMsg(data.error ?? 'Something went wrong. Please try again.');
+        setStatus('error');
+      } else {
+        setStatus('done');
+      }
+    } catch {
+      setErrorMsg('Network error. Please check your connection and try again.');
+      setStatus('error');
+    }
   };
 
   return (
@@ -110,6 +128,11 @@ export function NewsroomNewsletterStrip() {
                   {status === 'submitting' ? 'Sending…' : 'Subscribe →'}
                 </button>
               </div>
+              {errorMsg && (
+                <div style={{ marginTop: 10, fontSize: 12, color: 'var(--k2-cta)', fontFamily: 'var(--k2-mono)' }}>
+                  ● {errorMsg}
+                </div>
+              )}
               <div style={{
                 marginTop: 12,
                 display: 'flex',

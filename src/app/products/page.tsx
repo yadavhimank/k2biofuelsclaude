@@ -277,7 +277,7 @@ export default function ProductsPage() {
       {/* ====== APPLICATIONS MATRIX ====== */}
       <section id="applications" data-screen-label="Products · Applications" style={{ padding: '96px 32px', borderBottom: '1px solid var(--k2-border)' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 48 }}>
+          <div className="k2-section-header" style={{ marginBottom: 48 }}>
             <div>
               <Eyebrow style={{ marginBottom: 12 }}>— 03 / Applications</Eyebrow>
               <h2 style={{ fontSize: 42, margin: 0, lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>

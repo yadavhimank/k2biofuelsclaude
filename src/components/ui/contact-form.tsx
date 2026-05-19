@@ -15,7 +15,7 @@ type FormState = {
 };
 
 type FormErrors = Partial<Record<keyof FormState, string | null>>;
-type Status = 'idle' | 'submitting' | 'success';
+type Status = 'idle' | 'submitting' | 'success' | 'error';
 
 interface FieldOpts {
   required?: boolean;
@@ -31,6 +31,7 @@ export function ContactForm() {
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<Status>('idle');
+  const [serverError, setServerError] = useState<string | null>(null);
 
   const update = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [k]: e.target.value });
@@ -47,11 +48,28 @@ export function ContactForm() {
     return Object.keys(errs).length === 0;
   };
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
     setStatus('submitting');
-    setTimeout(() => setStatus('success'), 900);
+    setServerError(null);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, website: '' }), // website = honeypot, always blank
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setServerError(data.error ?? 'Something went wrong. Please try again.');
+        setStatus('error');
+      } else {
+        setStatus('success');
+      }
+    } catch {
+      setServerError('Network error. Please check your connection and try again.');
+      setStatus('error');
+    }
   };
 
   if (status === 'success') {
@@ -77,6 +95,7 @@ export function ContactForm() {
         <button
           onClick={() => {
             setStatus('idle');
+            setServerError(null);
             setForm({ name: '', company: '', email: '', phone: '', volume: '', application: '', message: '' });
           }}
           style={{
@@ -156,6 +175,12 @@ export function ContactForm() {
         {field('message', 'Message', { required: true, textarea: true, placeholder: 'Boiler model, fuel handling system, anything we should know to recommend the right blend.' })}
       </div>
 
+      {serverError && (
+        <div style={{ marginBottom: 20, padding: '12px 16px', background: 'var(--k2-stone)', border: '1px solid var(--k2-cta)', fontSize: 14, color: 'var(--k2-cta)', fontFamily: 'var(--k2-mono)' }}>
+          ● {serverError}
+        </div>
+      )}
+
       <div className="k2-form-submit-row" style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
         <button
           type="submit" disabled={status === 'submitting'}
@@ -168,7 +193,7 @@ export function ContactForm() {
             transition: 'opacity .2s ease',
           }}
         >
-          {status === 'submitting' ? 'Sending…' : 'Send enquiry →'}
+          {status === 'submitting' ? 'Sending…' : status === 'error' ? 'Try again →' : 'Send enquiry →'}
         </button>
         <MonoCap style={{ color: 'var(--k2-text-3)' }}>Or email info@k2biofuels.com</MonoCap>
       </div>

@@ -101,7 +101,7 @@ export default function AboutPage() {
       {/* Leadership */}
       <section style={{ padding: '112px 32px' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 56 }}>
+          <div className="k2-section-header" style={{ marginBottom: 56 }}>
             <div>
               <Eyebrow style={{ marginBottom: 14 }}>— 04 / Leadership</Eyebrow>
               <h2 style={{ fontSize: 44, margin: 0, lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>

@@ -77,7 +77,7 @@ export default function HomePage() {
   return (
     <>
       {/* =========== HERO — image-led =========== */}
-      <section data-screen-label="01 Home — Hero" style={{
+      <section data-screen-label="01 Home — Hero" className="k2-home-hero-section" style={{
         position: 'relative',
         height: 'clamp(360px, 50vw, 620px)',
         overflow: 'hidden',
@@ -188,7 +188,7 @@ export default function HomePage() {
       {/* =========== PRODUCT MATRIX =========== */}
       <section style={{ padding: '80px 32px', background: 'var(--k2-stone)' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 56 }}>
+          <div className="k2-section-header" style={{ marginBottom: 56 }}>
             <div>
               <Eyebrow style={{ marginBottom: 12 }}>— 02 / Products</Eyebrow>
               <h2 style={{ fontSize: 42, margin: 0, maxWidth: 720, lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
@@ -281,6 +281,7 @@ export default function HomePage() {
               {sustainabilityRows.map(([k, v]) => (
                 <div key={k} style={{
                   display: 'flex', justifyContent: 'space-between',
+                  flexWrap: 'wrap', gap: '4px 12px',
                   padding: '14px 0', borderBottom: '1px solid var(--k2-border-med)',
                   fontSize: 15,
                 }}>
@@ -299,7 +300,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div style={{ background: 'var(--k2-surface)', border: '1px solid var(--k2-border-med)', padding: 40 }}>
+          <div className="k2-coal-diagram" style={{ background: 'var(--k2-surface)', border: '1px solid var(--k2-border-med)', padding: 40 }}>
             <Eyebrow style={{ marginBottom: 28 }}>Stubble → Pellet → Power</Eyebrow>
             <svg viewBox="0 0 600 340" style={{ width: '100%', height: 'auto', display: 'block' }}>
               <g>

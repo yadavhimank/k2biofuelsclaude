@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { K2_ROUTES } from '@/lib/navigation';
 import { K2Logo } from './logo';
 
@@ -18,6 +18,11 @@ export function K2Header({ dark = false }: K2HeaderProps) {
 
   const linkColor      = onDark ? 'rgba(250,250,247,0.72)' : 'var(--k2-text-2)';
   const linkActiveColor = onDark ? 'var(--k2-on-ink)' : 'var(--k2-ink)';
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileOpen]);
 
   return (
     <header style={{
@@ -80,37 +85,71 @@ export function K2Header({ dark = false }: K2HeaderProps) {
           <button
             className="k2-nav-burger"
             onClick={() => setMobileOpen((o) => !o)}
-            aria-label="Menu"
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             style={{
               display: 'none', background: 'transparent', border: 'none', padding: 8,
               cursor: 'pointer', color: 'inherit', minHeight: 44, minWidth: 44,
+              fontSize: 20, lineHeight: 1,
             }}
           >
-            ☰
+            {mobileOpen ? '✕' : '☰'}
           </button>
         </div>
       </div>
 
-      {mobileOpen && (
+      {/* Backdrop overlay */}
+      <div
+        className={`k2-mobile-overlay${mobileOpen ? ' k2-mobile-overlay-open' : ''}`}
+        onClick={() => setMobileOpen(false)}
+        aria-hidden="true"
+      />
+
+      {/* Slide-in panel from right */}
+      <div className={`k2-mobile-panel${mobileOpen ? ' k2-mobile-panel-open' : ''}`}>
         <div style={{
-          background: onDark ? 'var(--k2-ink)' : 'var(--k2-canvas)',
-          borderTop: '1px solid var(--k2-border)',
-        }} className="k2-nav-mobile k2-mobile-menu">
-          {items.map((r) => (
-            <Link key={r.path} href={r.path}
-              onClick={() => setMobileOpen(false)}
-              className="k2-mobile-nav-link"
-              style={{
-                fontSize: 15, fontWeight: 500,
-                borderBottom: '1px solid var(--k2-border)',
-                color: pathname === r.path ? linkActiveColor : linkColor,
-                textDecoration: 'none',
-              }}>
-              {r.label}
-            </Link>
-          ))}
+          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+          marginBottom: 8, paddingBottom: 20,
+          borderBottom: '1px solid var(--k2-border)',
+        }}>
+          <K2Logo size={32} />
+          <button
+            onClick={() => setMobileOpen(false)}
+            aria-label="Close menu"
+            style={{
+              background: 'transparent', border: 'none', cursor: 'pointer',
+              padding: 8, color: 'var(--k2-ink)', fontSize: 20, lineHeight: 1,
+              minHeight: 44, minWidth: 44, display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}
+          >
+            ✕
+          </button>
         </div>
-      )}
+        {items.map((r) => (
+          <Link key={r.path} href={r.path}
+            onClick={() => setMobileOpen(false)}
+            className="k2-mobile-nav-link"
+            style={{
+              fontSize: 15, fontWeight: 500,
+              borderBottom: '1px solid var(--k2-border)',
+              color: pathname === r.path ? 'var(--k2-ink)' : 'var(--k2-text-2)',
+              textDecoration: 'none',
+            }}>
+            {r.label}
+          </Link>
+        ))}
+        <Link
+          href="/contact"
+          onClick={() => setMobileOpen(false)}
+          style={{
+            display: 'block', marginTop: 24,
+            background: 'var(--k2-ink)', color: 'var(--k2-on-ink)',
+            textAlign: 'center', padding: '12px 20px',
+            fontSize: 14, letterSpacing: 0.2, textDecoration: 'none',
+          }}
+        >
+          Request quote →
+        </Link>
+      </div>
     </header>
   );
 }

@@ -32,7 +32,7 @@ export default function CareersPage() {
       {/* Open roles */}
       <section style={{ padding: '80px 32px' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 40 }}>
+          <div className="k2-section-header" style={{ marginBottom: 40 }}>
             <div>
               <Eyebrow style={{ marginBottom: 14 }}>— 01 / Open positions</Eyebrow>
               <h2 style={{ fontSize: 38, margin: 0, lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
@@ -72,7 +72,7 @@ export default function CareersPage() {
           <h2 style={{ fontSize: 38, margin: '0 0 48px', lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
             Three rules.
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+          <div className="k2-grid-3" style={{ gap: 24 }}>
             {[
               ['01', 'On-site beats remote.', 'For an industrial business this is non-negotiable. Plant roles are at the plant, six days a week.'],
               ['02', 'Numbers, not narratives.', 'Every claim — capacity, GCV, lead time, emissions — is backed by data. Our work is to measure, not to spin.'],

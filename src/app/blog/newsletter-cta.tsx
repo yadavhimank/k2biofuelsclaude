@@ -6,13 +6,31 @@ import { Eyebrow } from '@/components/ui/eyebrow';
 
 export function BlogNewsletterCTA() {
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'done'>('idle');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'done' | 'error'>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) return;
     setStatus('submitting');
-    setTimeout(() => setStatus('done'), 900);
+    setErrorMsg('');
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source: 'blog', website: '' }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setErrorMsg(data.error ?? 'Something went wrong. Please try again.');
+        setStatus('error');
+      } else {
+        setStatus('done');
+      }
+    } catch {
+      setErrorMsg('Network error. Please check your connection and try again.');
+      setStatus('error');
+    }
   };
 
   return (
@@ -113,6 +131,11 @@ export function BlogNewsletterCTA() {
                   {status === 'submitting' ? 'Sending…' : 'Subscribe →'}
                 </button>
               </div>
+              {errorMsg && (
+                <p style={{ margin: '8px 0 0', fontSize: 11, color: 'var(--k2-cta)', fontFamily: 'var(--k2-mono)' }}>
+                  ● {errorMsg}
+                </p>
+              )}
               <p style={{
                 margin: '10px 0 0',
                 fontSize: 11,

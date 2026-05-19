@@ -17,7 +17,7 @@ export function K2Footer() {
         }} className="k2-footer-grid">
 
           {/* Brand */}
-          <div>
+          <div className="k2-footer-brand">
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 18 }}>
               <K2Logo size={26} />
               <span style={{ fontWeight: 500, fontSize: 15 }}>K2 Biofuels</span>
@@ -60,7 +60,7 @@ export function K2Footer() {
           </div>
 
           {/* Contact */}
-          <div>
+          <div className="k2-footer-contact">
             <Eyebrow accent="var(--k2-cta)" style={{ marginBottom: 16 }}>Reach us</Eyebrow>
             <div style={{ fontSize: 14, lineHeight: 1.7, color: 'rgba(250,250,247,0.7)' }}>
               <div style={{ marginBottom: 18 }}>
