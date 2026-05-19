@@ -81,7 +81,7 @@ export function ContactForm() {
           }}
           style={{
             background: 'transparent', border: 'none', cursor: 'pointer', padding: 0,
-            fontFamily: 'inherit', fontSize: 13, fontWeight: 500,
+            fontFamily: 'inherit', fontSize: 15, fontWeight: 500,
             color: 'var(--k2-ink)', borderBottom: '1px solid var(--k2-ink)', paddingBottom: 2,
           }}
         >
@@ -93,7 +93,7 @@ export function ContactForm() {
 
   const field = (k: keyof FormState, label: string, opts: FieldOpts = {}) => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <label style={{ fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--k2-text-2)', fontWeight: 500 }}>
+      <label style={{ fontSize: 13, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--k2-text-2)', fontWeight: 500 }}>
         {label}{opts.required && <span style={{ color: 'var(--k2-cta)' }}> *</span>}
       </label>
       {opts.textarea ? (
@@ -126,7 +126,7 @@ export function ContactForm() {
         />
       )}
       {errors[k] && (
-        <span style={{ fontSize: 11, color: 'var(--k2-cta)', fontFamily: 'var(--k2-mono)' }}>
+        <span style={{ fontSize: 13, color: 'var(--k2-cta)', fontFamily: 'var(--k2-mono)' }}>
           ● {errors[k]}
         </span>
       )}
@@ -135,7 +135,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={submit}>
-      <div style={{ fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 500, color: 'var(--k2-eyebrow)', marginBottom: 14 }}>
+      <div style={{ fontSize: 13, letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 500, color: 'var(--k2-eyebrow)', marginBottom: 14 }}>
         — Enquiry form
       </div>
       <h2 style={{ fontSize: 32, margin: '0 0 36px', fontWeight: 500, letterSpacing: '-0.02em', lineHeight: 1.15 }}>
@@ -143,7 +143,7 @@ export function ContactForm() {
         <Em>needs to burn.</Em>
       </h2>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 24 }}>
+      <div className="k2-form-grid" style={{ marginBottom: 24 }}>
         {field('name', 'Name', { required: true, placeholder: 'Your full name' })}
         {field('company', 'Company', { placeholder: 'Optional' })}
         {field('email', 'Email', { required: true, type: 'email', placeholder: 'name@company.com' })}
@@ -156,12 +156,12 @@ export function ContactForm() {
         {field('message', 'Message', { required: true, textarea: true, placeholder: 'Boiler model, fuel handling system, anything we should know to recommend the right blend.' })}
       </div>
 
-      <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
+      <div className="k2-form-submit-row" style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
         <button
           type="submit" disabled={status === 'submitting'}
           style={{
             background: 'var(--k2-ink)', color: 'var(--k2-on-ink)',
-            border: 'none', padding: '14px 28px', fontSize: 13, fontWeight: 500,
+            border: 'none', padding: '14px 28px', fontSize: 15, fontWeight: 500,
             letterSpacing: 0.2, cursor: status === 'submitting' ? 'wait' : 'pointer',
             fontFamily: 'inherit', borderRadius: 2,
             opacity: status === 'submitting' ? 0.6 : 1,

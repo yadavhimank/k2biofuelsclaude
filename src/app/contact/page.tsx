@@ -20,7 +20,7 @@ export default function ContactPage() {
 
       {/* Split form + sidebar */}
       <section style={{ padding: '80px 32px' }}>
-        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 80, alignItems: 'start' }}>
+        <div className="k2-grid-split" style={{ maxWidth: 1320, margin: '0 auto', gap: 80, alignItems: 'start' }}>
           <ContactForm />
 
           {/* Right column — addresses + contact lines */}
@@ -55,7 +55,7 @@ export default function ContactPage() {
 
             <div style={{ padding: 24, background: 'var(--k2-stone)', borderLeft: '3px solid var(--k2-cta)' }}>
               <Eyebrow accent="var(--k2-cta)" style={{ marginBottom: 10 }}>Response SLA</Eyebrow>
-              <p style={{ fontSize: 13, lineHeight: 1.65, color: 'var(--k2-text-2)', margin: 0 }}>
+              <p style={{ fontSize: 15, lineHeight: 1.65, color: 'var(--k2-text-2)', margin: 0 }}>
                 <strong style={{ color: 'var(--k2-ink)' }}>Within 24 hours, Mon–Sat.</strong> For sample requests with full boiler specs, we typically reply same day with an indicative quote.
               </p>
             </div>
@@ -67,7 +67,16 @@ export default function ContactPage() {
       <section style={{ padding: '32px 32px 96px' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
           <Eyebrow style={{ marginBottom: 14 }}>— Find us</Eyebrow>
-          <ImgSlot tone="olive" height={360} caption="EMBED — GOOGLE MAPS · K2 BIOFUELS PLANT, KHURSHED NAGAR, REWARI · ROAD-LEVEL ZOOM" />
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.1153303610813!2d76.36082057570407!3d28.44593957576716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39129974f52c2419%3A0xec866e577d57c3d3!2sK2%20Biofuels%20Pvt.%20Ltd.!5e0!3m2!1sen!2sin!4v1779174242956!5m2!1sen!2sin"
+            width="100%"
+            height="450"
+            style={{ border: 0, display: 'block' }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="K2 Biofuels Pvt. Ltd. — Rewari plant location"
+          />
         </div>
       </section>
     </>

@@ -42,7 +42,7 @@ export default function CareersPage() {
             <MonoCap style={{ color: 'var(--k2-text-3)' }}>Updated weekly · 6 open</MonoCap>
           </div>
 
-          <div style={{ borderTop: '2px solid var(--k2-ink)' }}>
+          <div className="k2-table-scroll-mobile" style={{ borderTop: '2px solid var(--k2-ink)' }}>
             {openRoles.map(([role, dept, type, exp, link]) => (
               <Link key={role} href={link}
                 className="k2-job-row"
@@ -56,9 +56,9 @@ export default function CareersPage() {
               >
                 <div style={{ fontWeight: 500, fontSize: 17, letterSpacing: '-0.01em' }}>{role}</div>
                 <div style={{ color: 'var(--k2-text-2)' }}>{dept}</div>
-                <div style={{ fontFamily: 'var(--k2-mono)', fontSize: 11, color: 'var(--k2-text-2)' }}>{type}</div>
-                <div style={{ color: 'var(--k2-text-2)', fontSize: 13 }}>{exp}</div>
-                <div style={{ textAlign: 'right', fontWeight: 500, fontSize: 13 }}>Apply →</div>
+                <div style={{ fontFamily: 'var(--k2-mono)', fontSize: 13, color: 'var(--k2-text-2)' }}>{type}</div>
+                <div style={{ color: 'var(--k2-text-2)', fontSize: 15 }}>{exp}</div>
+                <div style={{ textAlign: 'right', fontWeight: 500, fontSize: 15 }}>Apply →</div>
               </Link>
             ))}
           </div>

@@ -10,7 +10,7 @@ interface EyebrowProps {
 export function Eyebrow({ children, bullet, accent, style }: EyebrowProps) {
   return (
     <div style={{
-      fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase',
+      fontSize: 13, letterSpacing: '0.08em', textTransform: 'uppercase',
       fontWeight: 500, color: accent || 'var(--k2-eyebrow)',
       ...style,
     }}>

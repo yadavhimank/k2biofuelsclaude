@@ -29,7 +29,7 @@ export function CTAStrip({
     }}>
       <div style={{
         position: 'absolute', right: -20, bottom: -60,
-        fontSize: 320, fontWeight: 300, letterSpacing: '-0.05em',
+        fontSize: 'clamp(160px, 40vw, 320px)', fontWeight: 300, letterSpacing: '-0.05em',
         color: 'rgba(232,101,26,0.07)', pointerEvents: 'none', lineHeight: 1,
       }}>
         K2
@@ -37,7 +37,7 @@ export function CTAStrip({
       <div style={{ maxWidth: 1320, margin: '0 auto', position: 'relative' }}>
         <Eyebrow accent="var(--k2-cta)" style={{ marginBottom: 18 }}>{eyebrow}</Eyebrow>
         <h2 style={{
-          fontSize: 56, margin: '0 0 24px', maxWidth: 720,
+          fontSize: 'clamp(32px, 5vw, 56px)', margin: '0 0 24px', maxWidth: 720,
           lineHeight: 1.05, letterSpacing: '-0.03em', fontWeight: 500,
         }}>
           {title}<br />

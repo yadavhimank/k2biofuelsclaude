@@ -35,7 +35,7 @@ export default function ClientsPage() {
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
+          <div className="k2-grid-3" style={{ gap: 16 }}>
             {[
               { tag: 'Energy', name: 'Thermal power utilities', desc: 'Paddy-blend pellets for co-firing under the CAQM mandate. Direct dispatch to NCR plants.', spec: 'Loose tipper · 28 MT/load' },
               { tag: 'Sugar', name: 'Sugar mill cogen', desc: 'Off-season biomass fuel for cogen units. Mixed blend, weekly rolling dispatch.', spec: 'Jumbo bag · 1 MT' },
@@ -56,14 +56,14 @@ export default function ClientsPage() {
                 <div style={{
                   display: 'inline-block', padding: '4px 10px',
                   background: 'var(--k2-ink)', color: 'var(--k2-on-ink)',
-                  fontSize: 10, letterSpacing: 1, textTransform: 'uppercase',
+                  fontSize: 12, letterSpacing: 1, textTransform: 'uppercase',
                   marginBottom: 24,
                 }}>{c.tag}</div>
                 <h3 style={{ fontSize: 22, margin: '0 0 14px', fontWeight: 500, letterSpacing: '-0.015em' }}>{c.name}</h3>
                 <p style={{ fontSize: 14, lineHeight: 1.65, color: 'var(--k2-text-2)', margin: '0 0 22px' }}>{c.desc}</p>
                 <div style={{
                   paddingTop: 16, borderTop: '1px solid var(--k2-border)',
-                  fontFamily: 'var(--k2-mono)', fontSize: 11, color: 'var(--k2-text-3)',
+                  fontFamily: 'var(--k2-mono)', fontSize: 13, color: 'var(--k2-text-3)',
                 }}>
                   {c.spec}
                 </div>
@@ -89,13 +89,13 @@ export default function ClientsPage() {
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0, borderTop: '2px solid var(--k2-ink)' }}>
+          <div className="k2-grid-3" style={{ gap: 0, borderTop: '2px solid var(--k2-ink)' }}>
             {[
               { n: '01', h: 'You share your boiler.', b: 'Boiler model, monthly volume requirement, ash and chlorine tolerances, location. Anything we should know about your fuel handling system.' },
               { n: '02', h: 'We send sample + quote.', b: '50 kg sample of recommended blend dispatched within 48 hours, with full lab report. Indicative quote within 24 hours of brief.' },
               { n: '03', h: 'Trial load, then contract.', b: 'A 25–28 MT trial load to verify in-boiler performance. Rolling monthly off-take contract from there, with volume protection.' },
             ].map((s, i) => (
-              <div key={s.n} style={{
+              <div key={s.n} className={i < 2 ? 'k2-step-card-border-r' : undefined} style={{
                 padding: '40px 32px 40px',
                 borderRight: i < 2 ? '1px solid var(--k2-border-med)' : 'none',
               }}>

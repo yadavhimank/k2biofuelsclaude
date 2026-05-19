@@ -11,11 +11,9 @@ interface PageHeroProps {
   dark?: boolean;
 }
 
-export function PageHero({ eyebrow, title, italic, body, kicker, dense, dark }: PageHeroProps) {
-  const padY = dense ? 64 : 96;
+export function PageHero({ eyebrow, title, italic, body, kicker, dense: _dense, dark }: PageHeroProps) {
   return (
-    <section data-screen-label={`HERO · ${eyebrow}`} style={{
-      padding: `${padY}px 32px ${padY - 16}px`,
+    <section data-screen-label={`HERO · ${eyebrow}`} className="k2-section-pad" style={{
       background: dark ? 'var(--k2-ink)' : 'var(--k2-canvas)',
       color: dark ? 'var(--k2-on-ink)' : 'var(--k2-ink)',
       borderBottom: dark ? 'none' : '1px solid var(--k2-border)',
@@ -24,15 +22,15 @@ export function PageHero({ eyebrow, title, italic, body, kicker, dense, dark }: 
         <Eyebrow accent={dark ? '#FFB37A' : undefined} style={{ marginBottom: 22 }}>
           {eyebrow}
         </Eyebrow>
-        <h1 style={{
-          fontSize: 64, lineHeight: 1.04, letterSpacing: '-0.03em',
+        <h1 className="k2-h1" style={{
+          lineHeight: 1.04, letterSpacing: '-0.03em',
           fontWeight: 500, margin: '0 0 28px', maxWidth: 980,
         }}>
           {title}{italic && <>{' '}<Em color={dark ? '#FFB37A' : undefined}>{italic}</Em></>}
         </h1>
         {body && (
-          <p style={{
-            fontSize: 18, lineHeight: 1.6, maxWidth: 720,
+          <p className="k2-body-lg" style={{
+            lineHeight: 1.6, maxWidth: 720,
             color: dark ? 'rgba(250,250,247,0.78)' : 'var(--k2-text-2)',
             margin: 0,
           }}>
@@ -40,11 +38,9 @@ export function PageHero({ eyebrow, title, italic, body, kicker, dense, dark }: 
           </p>
         )}
         {kicker && (
-          <div style={{
+          <div className="k2-hero-kicker" style={{
             marginTop: 36, paddingTop: 24,
             borderTop: dark ? '1px solid rgba(250,250,247,0.15)' : '1px solid var(--k2-border)',
-            display: 'flex', gap: 32, flexWrap: 'wrap',
-            fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase',
             color: dark ? 'rgba(250,250,247,0.6)' : 'var(--k2-text-3)',
           }}>
             {kicker.map((k, i) => <span key={i}>● {k}</span>)}

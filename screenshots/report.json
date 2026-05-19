@@ -1,0 +1,90 @@
+{
+  "timestamp": "2026-05-18T15:57:35.571Z",
+  "issues": [
+    {
+      "page": "/",
+      "view": "375",
+      "msg": "Small tap targets (<40px): \"K2 Biofuels\" h=28px | \"Read about the company →\" h=19px | \"Read our sustainability commitments →\" h=23px | \"Tour the facility →\" h=18px | \"Privacy\" h=17px | \"Terms\" h=17px | \"Sitemap\" h=17px"
+    },
+    {
+      "page": "/",
+      "view": "375",
+      "msg": "Text below 11px: \"HERO 1920×1080 — RECEIVING YARD, STRAW B\" 10px | \"PRODUCT · BIOMASS PELLETS — CLOSE-UP MAC\" 10px | \"In stock\" 10px | \"Pellets\" 10px | \"PRODUCT · BIOMASS BRIQUETTES — CLOSE-UP \" 10px | \"Premium\" 10px | \"Briquettes\" 10px | \"Agro residue collection\" 10px"
+    },
+    {
+      "page": "/",
+      "view": "768",
+      "msg": "Small tap targets (<40px): \"K2 Biofuels\" h=28px | \"Read about the company →\" h=19px | \"Read our sustainability commitments →\" h=23px | \"Tour the facility →\" h=18px | \"About\" h=20px | \"Products\" h=20px | \"Sustainability\" h=20px | \"Infrastructure\" h=20px | \"Clients\" h=20px | \"Careers\" h=20px"
+    },
+    {
+      "page": "/",
+      "view": "768",
+      "msg": "Text below 11px: \"HERO 1920×1080 — RECEIVING YARD, STRAW B\" 10px | \"PRODUCT · BIOMASS PELLETS — CLOSE-UP MAC\" 10px | \"In stock\" 10px | \"Pellets\" 10px | \"PRODUCT · BIOMASS BRIQUETTES — CLOSE-UP \" 10px | \"Premium\" 10px | \"Briquettes\" 10px | \"Agro residue collection\" 10px"
+    },
+    {
+      "page": "/",
+      "view": "1280",
+      "msg": "Text below 11px: \"HERO 1920×1080 — RECEIVING YARD, STRAW B\" 10px | \"PRODUCT · BIOMASS PELLETS — CLOSE-UP MAC\" 10px | \"In stock\" 10px | \"Pellets\" 10px | \"PRODUCT · BIOMASS BRIQUETTES — CLOSE-UP \" 10px | \"Premium\" 10px | \"Briquettes\" 10px | \"Agro residue collection\" 10px"
+    },
+    {
+      "page": "/products",
+      "view": "375",
+      "msg": "Small tap targets (<40px): \"K2 Biofuels\" h=28px | \"Pellets\" h=21px | \"Briquettes\" h=21px | \"Applications\" h=21px | \"Dispatch & logistics\" h=21px | \"FAQ\" h=21px | \"Privacy\" h=17px | \"Terms\" h=17px | \"Sitemap\" h=17px"
+    },
+    {
+      "page": "/products",
+      "view": "375",
+      "msg": "Text below 11px: \"Lab report on every dispatch\" 9px | \"Sample in 48 hours\" 9px | \"Rolling monthly off-take\" 9px | \"Jump to\" 10px | \"PELLET · CYLINDRICAL · MACRO 1:1 ON BLAC\" 10px | \"In stock\" 10px | \"≤ 25 mm × ≤ 35 mm\" 10px | \"Parameter\" 10px"
+    },
+    {
+      "page": "/products",
+      "view": "768",
+      "msg": "Small tap targets (<40px): \"K2 Biofuels\" h=28px | \"Pellets\" h=21px | \"Briquettes\" h=21px | \"Applications\" h=21px | \"Dispatch & logistics\" h=21px | \"FAQ\" h=21px | \"About\" h=20px | \"Products\" h=20px | \"Sustainability\" h=20px | \"Infrastructure\" h=20px"
+    },
+    {
+      "page": "/products",
+      "view": "768",
+      "msg": "Text below 11px: \"Jump to\" 10px | \"PELLET · CYLINDRICAL · MACRO 1:1 ON BLAC\" 10px | \"In stock\" 10px | \"≤ 25 mm × ≤ 35 mm\" 10px | \"Parameter\" 10px | \"Typical\" 10px | \"Specification\" 10px | \"BRIQUETTE · 90mm DIA · STACKED, SIDE-LIT\" 10px"
+    },
+    {
+      "page": "/products",
+      "view": "1280",
+      "msg": "Text below 11px: \"Jump to\" 10px | \"PELLET · CYLINDRICAL · MACRO 1:1 ON BLAC\" 10px | \"In stock\" 10px | \"≤ 25 mm × ≤ 35 mm\" 10px | \"Parameter\" 10px | \"Typical\" 10px | \"Specification\" 10px | \"BRIQUETTE · 90mm DIA · STACKED, SIDE-LIT\" 10px"
+    },
+    {
+      "page": "/about",
+      "view": "375",
+      "msg": "Small tap targets (<40px): \"K2 Biofuels\" h=28px | \"Privacy\" h=17px | \"Terms\" h=17px | \"Sitemap\" h=17px"
+    },
+    {
+      "page": "/about",
+      "view": "768",
+      "msg": "Small tap targets (<40px): \"K2 Biofuels\" h=28px | \"About\" h=20px | \"Products\" h=20px | \"Sustainability\" h=20px | \"Infrastructure\" h=20px | \"Clients\" h=20px | \"Careers\" h=20px | \"Contact\" h=20px | \"Biomass pellets\" h=20px | \"Biomass briquettes\" h=20px"
+    },
+    {
+      "page": "/contact",
+      "view": "375",
+      "msg": "Small tap targets (<40px): \"K2 Biofuels\" h=28px | \"Privacy\" h=17px | \"Terms\" h=17px | \"Sitemap\" h=17px"
+    },
+    {
+      "page": "/contact",
+      "view": "375",
+      "msg": "Text below 11px: \"Response within 24 hours\" 9px | \"Mon–Sat business hours\" 9px | \"English · Hindi · Punjabi\" 9px | \"EMBED — GOOGLE MAPS · K2 BIOFUELS PLANT,\" 10px"
+    },
+    {
+      "page": "/contact",
+      "view": "768",
+      "msg": "Small tap targets (<40px): \"K2 Biofuels\" h=28px | \"About\" h=20px | \"Products\" h=20px | \"Sustainability\" h=20px | \"Infrastructure\" h=20px | \"Clients\" h=20px | \"Careers\" h=20px | \"Contact\" h=20px | \"Biomass pellets\" h=20px | \"Biomass briquettes\" h=20px"
+    },
+    {
+      "page": "/contact",
+      "view": "768",
+      "msg": "Text below 11px: \"EMBED — GOOGLE MAPS · K2 BIOFUELS PLANT,\" 10px"
+    },
+    {
+      "page": "/contact",
+      "view": "1280",
+      "msg": "Text below 11px: \"EMBED — GOOGLE MAPS · K2 BIOFUELS PLANT,\" 10px"
+    }
+  ]
+}

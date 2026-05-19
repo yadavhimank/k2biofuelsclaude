@@ -53,17 +53,13 @@ export default function ProductsPage() {
       />
 
       {/* Sticky dark index bar */}
-      <div style={{
-        position: 'sticky', top: 57, zIndex: 30,
+      <div className="k2-products-nav-bar" style={{
+        position: 'sticky', zIndex: 30,
         background: 'var(--k2-ink)', color: 'var(--k2-on-ink)',
-        padding: '14px 32px', borderBottom: '1px solid rgba(250,250,247,0.1)',
+        borderBottom: '1px solid rgba(250,250,247,0.1)',
       }}>
-        <div style={{
-          maxWidth: 1320, margin: '0 auto',
-          display: 'flex', gap: 32, alignItems: 'center',
-          fontSize: 12,
-        }}>
-          <span style={{ opacity: 0.5, letterSpacing: 1, textTransform: 'uppercase', fontSize: 10 }}>Jump to</span>
+        <div className="k2-products-nav-scroll" style={{ maxWidth: 1320, margin: '0 auto' }}>
+          <span style={{ opacity: 0.5, letterSpacing: 1, textTransform: 'uppercase', fontSize: 12 }}>Jump to</span>
           {jumpLinks.map(([id, label]) => (
             <a key={id} href={`#${id}`}
               className="k2-products-nav-link"
@@ -80,26 +76,28 @@ export default function ProductsPage() {
 
       {/* ====== PRODUCT 01 — PELLETS ====== */}
       <section id="pellets" data-screen-label="Products · Pellets" style={{ padding: '96px 32px', borderBottom: '1px solid var(--k2-border)' }}>
-        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 64, alignItems: 'start' }}>
+        <div className="k2-grid-stack-mobile" style={{ maxWidth: 1320, margin: '0 auto', gridTemplateColumns: '1fr 1.4fr', gap: 64, alignItems: 'start' }}>
           <div>
-            <ImgSlot tone="paddy" height={380} caption="PELLET · CYLINDRICAL · MACRO 1:1 ON BLACK BACKDROP">
+            <div style={{ position: 'relative', height: 380, overflow: 'hidden' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/productpellet1.png" alt="Biomass pellets" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               <div style={{
                 position: 'absolute', top: 14, right: 14,
                 background: 'rgba(255,255,255,0.95)', color: 'var(--k2-ink)',
-                fontSize: 10, letterSpacing: 1, textTransform: 'uppercase',
+                fontSize: 12, letterSpacing: 1, textTransform: 'uppercase',
                 padding: '5px 10px', fontWeight: 500,
               }}>
                 <span style={{ color: 'var(--k2-eyebrow)' }}>●</span> In stock
               </div>
               <div style={{ position: 'absolute', bottom: 18, left: 18, color: '#fff' }}>
-                <div style={{ fontFamily: 'var(--k2-mono)', fontSize: 10, letterSpacing: 1.5, opacity: 0.8 }}>
+                <div style={{ fontFamily: 'var(--k2-mono)', fontSize: 12, letterSpacing: 1.5, opacity: 0.8, textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}>
                   ≤ 25 mm × ≤ 35 mm
                 </div>
-                <div style={{ fontSize: 22, fontWeight: 500, marginTop: 4 }}>
+                <div style={{ fontSize: 22, fontWeight: 500, marginTop: 4, textShadow: '0 1px 8px rgba(0,0,0,0.6)' }}>
                   Biomass pellet
                 </div>
               </div>
-            </ImgSlot>
+            </div>
 
             <div style={{ marginTop: 32 }}>
               <Eyebrow style={{ marginBottom: 12 }}>Availability</Eyebrow>
@@ -113,7 +111,7 @@ export default function ProductsPage() {
               borderLeft: '3px solid var(--k2-eyebrow)', padding: 20,
             }}>
               <Eyebrow style={{ marginBottom: 6 }}>CAQM-priority feedstock</Eyebrow>
-              <p style={{ fontSize: 13, lineHeight: 1.6, color: 'var(--k2-text-2)', margin: 0 }}>
+              <p style={{ fontSize: 15, lineHeight: 1.6, color: 'var(--k2-text-2)', margin: 0 }}>
                 Our pellets meet the Commission for Air Quality Management mandate for paddy-straw co-firing at Delhi-NCR thermal plants.
               </p>
             </div>
@@ -132,11 +130,11 @@ export default function ProductsPage() {
             </p>
 
             {/* Spec table */}
-            <div style={{ borderTop: '2px solid var(--k2-ink)' }}>
-              <div style={{
+            <div className="k2-table-scroll-mobile" style={{ borderTop: '2px solid var(--k2-ink)' }}>
+              <div className="k2-spec-header-3" style={{
                 display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr',
                 padding: '14px 0', borderBottom: '1px solid var(--k2-border-med)',
-                fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase',
+                fontSize: 12, letterSpacing: '0.06em', textTransform: 'uppercase',
                 color: 'var(--k2-text-2)',
               }}>
                 <div>Parameter</div>
@@ -144,7 +142,7 @@ export default function ProductsPage() {
                 <div>Specification</div>
               </div>
               {pelletSpecs.map((r) => (
-                <div key={r.p} style={{
+                <div key={r.p} className="k2-spec-row-3" style={{
                   display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr',
                   padding: '14px 0', borderBottom: '1px solid var(--k2-border)',
                   fontSize: 14,
@@ -157,7 +155,7 @@ export default function ProductsPage() {
             </div>
 
             {/* Packaging + benefits row */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, marginTop: 36 }}>
+            <div className="k2-grid-3" style={{ gap: 16, marginTop: 36 }}>
               {[
                 ['Packaging', '25 – 35 kg HDPE bag · jumbo bags · custom bulk'],
                 ['Best for', 'Industrial boilers, furnaces, thermal plants, pellet stoves'],
@@ -165,7 +163,7 @@ export default function ProductsPage() {
               ].map(([h, b]) => (
                 <div key={h} style={{ padding: 20, border: '1px solid var(--k2-border-med)' }}>
                   <Eyebrow style={{ marginBottom: 8 }}>{h}</Eyebrow>
-                  <p style={{ fontSize: 13, lineHeight: 1.6, color: 'var(--k2-text-2)', margin: 0 }}>{b}</p>
+                  <p style={{ fontSize: 15, lineHeight: 1.6, color: 'var(--k2-text-2)', margin: 0 }}>{b}</p>
                 </div>
               ))}
             </div>
@@ -180,7 +178,7 @@ export default function ProductsPage() {
 
       {/* ====== PRODUCT 02 — BRIQUETTES ====== */}
       <section id="briquettes" data-screen-label="Products · Briquettes" style={{ padding: '96px 32px', background: 'var(--k2-stone)', borderBottom: '1px solid var(--k2-border)' }}>
-        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 64, alignItems: 'start' }}>
+        <div className="k2-grid-stack-mobile" style={{ maxWidth: 1320, margin: '0 auto', gridTemplateColumns: '1.4fr 1fr', gap: 64, alignItems: 'start' }}>
           <div>
             <MonoCap style={{ color: 'var(--k2-text-3)', letterSpacing: 1.2 }}>— 02</MonoCap>
             <h2 style={{ fontSize: 48, margin: '12px 0 24px', fontWeight: 500, letterSpacing: '-0.025em', lineHeight: 1.1 }}>
@@ -193,11 +191,11 @@ export default function ProductsPage() {
               At 3,900 kcal/kg GCV with ash content under 8% and moisture under 6%, briquettes outperform pellets in long-burn applications — and dramatically outperform coal on emissions.
             </p>
 
-            <div style={{ borderTop: '2px solid var(--k2-ink)' }}>
-              <div style={{
+            <div className="k2-table-scroll-mobile" style={{ borderTop: '2px solid var(--k2-ink)' }}>
+              <div className="k2-spec-header-3" style={{
                 display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr',
                 padding: '14px 0', borderBottom: '1px solid var(--k2-border-med)',
-                fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase',
+                fontSize: 12, letterSpacing: '0.06em', textTransform: 'uppercase',
                 color: 'var(--k2-text-2)',
               }}>
                 <div>Parameter</div>
@@ -205,7 +203,7 @@ export default function ProductsPage() {
                 <div>Specification</div>
               </div>
               {briquetteSpecs.map((r) => (
-                <div key={r.p} style={{
+                <div key={r.p} className="k2-spec-row-3" style={{
                   display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr',
                   padding: '14px 0', borderBottom: '1px solid var(--k2-border)',
                   fontSize: 14,
@@ -217,7 +215,7 @@ export default function ProductsPage() {
               ))}
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, marginTop: 36 }}>
+            <div className="k2-grid-3" style={{ gap: 16, marginTop: 36 }}>
               {[
                 ['Packaging', '40 – 60 kg bag · custom bulk supply'],
                 ['Best for', 'Brick kilns, food processing, chemical plants, steam generation'],
@@ -225,7 +223,7 @@ export default function ProductsPage() {
               ].map(([h, b]) => (
                 <div key={h} style={{ padding: 20, border: '1px solid var(--k2-border-med)', background: 'var(--k2-surface)' }}>
                   <Eyebrow style={{ marginBottom: 8 }}>{h}</Eyebrow>
-                  <p style={{ fontSize: 13, lineHeight: 1.6, color: 'var(--k2-text-2)', margin: 0 }}>{b}</p>
+                  <p style={{ fontSize: 15, lineHeight: 1.6, color: 'var(--k2-text-2)', margin: 0 }}>{b}</p>
                 </div>
               ))}
             </div>
@@ -236,27 +234,29 @@ export default function ProductsPage() {
             </div>
           </div>
 
-          <div>
-            <ImgSlot tone="mustard" height={380} caption="BRIQUETTE · 90mm DIA · STACKED, SIDE-LIT">
+          <div className="k2-product-img-right">
+            <div style={{ position: 'relative', height: 380, overflow: 'hidden' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/Briquetteheroproduct02.png" alt="Biomass briquettes" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               <div style={{
                 position: 'absolute', top: 14, right: 14,
                 background: 'rgba(255,255,255,0.95)', color: 'var(--k2-ink)',
-                fontSize: 10, letterSpacing: 1, textTransform: 'uppercase',
+                fontSize: 12, letterSpacing: 1, textTransform: 'uppercase',
                 padding: '5px 10px', fontWeight: 500,
               }}>
                 <span style={{ color: 'var(--k2-cta)' }}>★</span> Premium
               </div>
               <div style={{ position: 'absolute', bottom: 18, left: 18, color: '#fff' }}>
-                <div style={{ fontFamily: 'var(--k2-mono)', fontSize: 10, letterSpacing: 1.5, opacity: 0.8 }}>
+                <div style={{ fontFamily: 'var(--k2-mono)', fontSize: 12, letterSpacing: 1.5, opacity: 0.8, textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}>
                   90 mm × 100–300 mm
                 </div>
-                <div style={{ fontSize: 22, fontWeight: 500, marginTop: 4 }}>Biomass briquette</div>
+                <div style={{ fontSize: 22, fontWeight: 500, marginTop: 4, textShadow: '0 1px 8px rgba(0,0,0,0.6)' }}>Biomass briquette</div>
               </div>
-            </ImgSlot>
+            </div>
 
             <div style={{ marginTop: 32, background: 'var(--k2-surface)', padding: 20, border: '1px solid var(--k2-border-med)' }}>
               <Eyebrow style={{ marginBottom: 8 }}>Closest coal substitute</Eyebrow>
-              <p style={{ fontSize: 13, lineHeight: 1.6, color: 'var(--k2-text-2)', margin: 0 }}>
+              <p style={{ fontSize: 15, lineHeight: 1.6, color: 'var(--k2-text-2)', margin: 0 }}>
                 At 3,900 kcal/kg, our briquettes deliver thermal output within range of typical Indian coal — at materially lower emissions and ash-handling cost.
               </p>
             </div>
@@ -291,11 +291,11 @@ export default function ProductsPage() {
           </div>
 
           {/* Matrix */}
-          <div style={{ borderTop: '2px solid var(--k2-ink)' }}>
-            <div style={{
+          <div className="k2-table-scroll-mobile" style={{ borderTop: '2px solid var(--k2-ink)' }}>
+            <div className="k2-apps-matrix-header" style={{
               display: 'grid', gridTemplateColumns: '1.6fr 1fr 1fr 1.5fr',
               padding: '14px 4px', borderBottom: '1px solid var(--k2-border-med)',
-              fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase',
+              fontSize: 12, letterSpacing: '0.06em', textTransform: 'uppercase',
               color: 'var(--k2-text-2)',
             }}>
               <div>Application</div>
@@ -320,15 +320,15 @@ export default function ProductsPage() {
                 return <span style={{ color: 'var(--k2-text-3)' }}>—</span>;
               };
               return (
-                <div key={i} style={{
+                <div key={i} className="k2-apps-matrix-row" style={{
                   display: 'grid', gridTemplateColumns: '1.6fr 1fr 1fr 1.5fr',
                   padding: '16px 4px', borderBottom: '1px solid var(--k2-border)',
                   fontSize: 14, alignItems: 'center',
                 }}>
                   <div style={{ fontWeight: 500 }}>{app}</div>
-                  <div style={{ fontSize: 13 }}>{icon(pel)}</div>
-                  <div style={{ fontSize: 13 }}>{icon(briq)}</div>
-                  <div style={{ fontFamily: 'var(--k2-mono)', fontSize: 11, color: 'var(--k2-text-2)' }}>{note}</div>
+                  <div style={{ fontSize: 15 }}>{icon(pel)}</div>
+                  <div style={{ fontSize: 15 }}>{icon(briq)}</div>
+                  <div style={{ fontFamily: 'var(--k2-mono)', fontSize: 13, color: 'var(--k2-text-2)' }}>{note}</div>
                 </div>
               );
             })}
@@ -340,7 +340,7 @@ export default function ProductsPage() {
       <section id="dispatch" data-screen-label="Products · Dispatch" style={{ background: 'var(--k2-ink)', color: 'var(--k2-on-ink)', padding: '80px 32px' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
           <Eyebrow accent="var(--k2-cta)" style={{ marginBottom: 24 }}>— 04 / Dispatch &amp; logistics</Eyebrow>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 48 }}>
+          <div className="k2-grid-3" style={{ gap: 48 }}>
             {[
               ['Packaging', 'Bulk-bag, jumbo-bag, loose tipper', '25–35 kg HDPE bags, 40–60 kg briquette bags, 1 MT jumbo bags or direct loose tipper dispatch up to 28 MT per truck. Loaded under cover.'],
               ['Geography', 'Delivered across north India', 'Direct truck dispatch within 400 km. Rake-load capability for distant deliveries. Sealed load-cell weighbridge at our Rewari plant.'],
@@ -358,7 +358,7 @@ export default function ProductsPage() {
 
       {/* ====== FAQ ====== */}
       <section id="faq" data-screen-label="Products · FAQ" style={{ padding: '96px 32px' }}>
-        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: 80 }}>
+        <div className="k2-grid-stack-mobile" style={{ maxWidth: 1320, margin: '0 auto', gridTemplateColumns: '1fr 1.6fr', gap: 80 }}>
           <div>
             <Eyebrow style={{ marginBottom: 14 }}>— 05 / FAQ</Eyebrow>
             <h2 style={{ fontSize: 42, margin: 0, lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
@@ -366,6 +366,19 @@ export default function ProductsPage() {
             </h2>
           </div>
           <FAQList />
+        </div>
+        <div style={{ maxWidth: 1320, margin: '32px auto 0', textAlign: 'right' }}>
+          <Link href="/faq" style={{
+            fontFamily: 'var(--k2-mono)',
+            fontSize: 14,
+            letterSpacing: '0.05em',
+            color: 'var(--k2-eyebrow)',
+            textDecoration: 'none',
+            borderBottom: '1px solid var(--k2-eyebrow)',
+            paddingBottom: 2,
+          }}>
+            Browse all 30+ questions →
+          </Link>
         </div>
       </section>
 

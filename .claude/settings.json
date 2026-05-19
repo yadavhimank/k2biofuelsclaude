@@ -6,10 +6,26 @@
       "Bash(mkdir -p /Users/himankyadav/Desktop/k2BiofuelsClaude/src/components/ui \\\\ *)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
       "Bash(pkill -f \"next dev\")",
-      "Bash(python3 -)"
+      "Bash(python3 -)",
+      "Read(//Users/himankyadyan/Desktop/k2BiofuelsClaude/src/components/layout/**)",
+      "Bash(node -e \"require\\('playwright'\\)\")",
+      "Bash(node -e \"require\\('puppeteer'\\)\")",
+      "Bash(which chromium *)",
+      "Read(//Applications/**)",
+      "Bash(npm list *)",
+      "Bash(npx playwright *)",
+      "Bash(mkdir -p /Users/himankyadav/Desktop/k2BiofuelsClaude/screenshots)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3099/)",
+      "Bash(node screenshots/audit.mjs)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3099/contact)",
+      "Bash(node -e ' *)",
+      "Bash(mkdir -p /Users/himankyadav/Desktop/k2BiofuelsClaude/src/app/faq /Users/himankyadav/Desktop/k2BiofuelsClaude/src/app/blog/\\\\[slug\\\\] /Users/himankyadav/Desktop/k2BiofuelsClaude/src/app/newsroom)"
     ],
     "additionalDirectories": [
-      "/Users/himankyadav/Desktop/k2BiofuelsClaude/src/components"
+      "/Users/himankyadav/Desktop/k2BiofuelsClaude/src/components",
+      "/Users/himankyadav/Desktop/k2BiofuelsClaude",
+      "/Users/himankyadav/Desktop/k2BiofuelsClaude/src/app/blog"
     ]
   }
 }

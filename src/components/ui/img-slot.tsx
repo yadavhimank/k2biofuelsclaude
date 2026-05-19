@@ -45,7 +45,7 @@ export function ImgSlot({ ratio = '16/9', caption, tone = 'field', tall, height,
       {caption && (
         <div style={{
           position: 'absolute', left: 14, bottom: 12,
-          fontFamily: 'var(--k2-mono)', fontSize: 10, letterSpacing: 0.5,
+          fontFamily: 'var(--k2-mono)', fontSize: 12, letterSpacing: 0.5,
           textTransform: 'uppercase', opacity: 0.75,
           background: 'rgba(0,0,0,0.25)', padding: '4px 8px',
           borderRadius: 2,

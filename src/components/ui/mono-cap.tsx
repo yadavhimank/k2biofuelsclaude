@@ -7,7 +7,7 @@ interface MonoCapProps {
 
 export function MonoCap({ children, style }: MonoCapProps) {
   return (
-    <span style={{ fontFamily: 'var(--k2-mono)', fontSize: 11, opacity: 0.7, ...style }}>
+    <span style={{ fontFamily: 'var(--k2-mono)', fontSize: 13, opacity: 0.7, ...style }}>
       {children}
     </span>
   );

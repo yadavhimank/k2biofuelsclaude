@@ -116,9 +116,522 @@ html { scroll-behavior: smooth; }
 /* ─── Products sticky nav link hover ────────────────────────────────────── */
 .k2-products-nav-link:hover { border-bottom-color: var(--k2-cta) !important; }
 
+/* ─── Header responsive utilities ───────────────────────────────────────────
+   Padding is moved out of the inline style so media queries can override it.
+   The quote button and wordmark use !important-free display:none because no
+   competing inline display is set on them. */
+
+.k2-header-inner { padding: 4px 32px; }
+
+/* Logo responsive sizing: 120px desktop → 64px mobile */
+.k2-logo-wrap { width: 120px; }
+@media (max-width: 900px) {
+  .k2-logo-wrap { width: 64px; }
+}
+
+/* Hide "Request quote →" on mobile — /contact is in the hamburger menu */
+.k2-header-quote { display: inline-block; }
+@media (max-width: 900px) {
+  .k2-header-inner  { padding: 8px 20px; }
+  .k2-header-quote  { display: none; }
+}
+
+/* Hide the "K2 Biofuels" wordmark on very small phones; logo mark stays */
+@media (max-width: 399px) {
+  .k2-header-wordmark { display: none; }
+}
+
+/* Mobile menu drop-down — padding scales with viewport */
+.k2-mobile-menu { padding: 12px 32px 20px; }
+@media (max-width: 639px) {
+  .k2-mobile-menu { padding: 12px 20px 20px; }
+}
+
+/* Mobile nav links — 44px minimum tap target (WCAG 2.5.5) */
+.k2-mobile-nav-link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* ─── Footer responsive utilities ───────────────────────────────────────────
+   Outer padding moved to a class so the mobile breakpoint can reduce it.
+   The grid column override is merged with the existing 900px rule below. */
+
+.k2-footer-outer { padding: 64px 32px 28px; }
+@media (max-width: 639px) {
+  .k2-footer-outer { padding: 48px 20px 24px; }
+}
+
+/* ─── Responsive utilities ───────────────────────────────────────────────────
+   Three breakpoints matching Tailwind defaults:
+     mobile  : < 640px
+     tablet  : 640px – 1023px
+     desktop : 1024px+
+
+   Grid helpers default to their desktop layout (mobile-last approach mirrors
+   the existing prototype which was built desktop-first). Each class only
+   controls `display` and `grid-template-columns`; gap and alignment stay as
+   inline styles on the element so individual sections can override freely. */
+
+/* 2 cols desktop → 1 col mobile */
+.k2-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (max-width: 639px) {
+  .k2-grid-2 { grid-template-columns: 1fr; }
+}
+
+/* 3 cols desktop → 2 cols tablet → 1 col mobile */
+.k2-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 1023px) {
+  .k2-grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 639px) {
+  .k2-grid-3 { grid-template-columns: 1fr; }
+}
+
+/* 4 cols desktop → 2 cols tablet → 1 col mobile */
+.k2-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 1023px) {
+  .k2-grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 639px) {
+  .k2-grid-4 { grid-template-columns: 1fr; }
+}
+
+/* 1.4fr / 1fr asymmetric split → stack on mobile */
+.k2-grid-split {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+}
+@media (max-width: 639px) {
+  .k2-grid-split { grid-template-columns: 1fr; }
+}
+
+/* 1fr / 1.4fr asymmetric split (image-left variant) → stack on mobile */
+.k2-grid-split-narrow {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+}
+@media (max-width: 639px) {
+  .k2-grid-split-narrow { grid-template-columns: 1fr; }
+}
+
+/* Section vertical padding: 96/32px desktop → 64/24px tablet → 48/20px mobile */
+.k2-section-pad { padding: 96px 32px; }
+@media (max-width: 1023px) {
+  .k2-section-pad { padding: 64px 24px; }
+}
+@media (max-width: 639px) {
+  .k2-section-pad { padding: 48px 20px; }
+}
+
+/* ─── Fluid typography ───────────────────────────────────────────────────────
+   clamp(min, preferred-vw, max) keeps sizes readable at every width without
+   hard breakpoint jumps. The preferred value uses vw so it scales smoothly
+   between the min and max endpoints. */
+
+/* H1 — hero headlines: 36px mobile → scales to 72px at ~1200px */
+.k2-h1 { font-size: clamp(36px, 6vw, 72px); }
+
+/* H2 — section headlines: 28px mobile → scales to 44px at ~978px */
+.k2-h2 { font-size: clamp(28px, 4.5vw, 44px); }
+
+/* H3 — card / sub-section headlines: 20px mobile → scales to 26px at ~1040px */
+.k2-h3 { font-size: clamp(20px, 2.5vw, 26px); }
+
+/* Body large — lead paragraphs and hero body copy: 15px mobile → 18px at ~1286px */
+.k2-body-lg { font-size: clamp(15px, 1.4vw, 18px); }
+
 /* ─── Responsive (verbatim from index.html) ──────────────────────────────── */
 @media (max-width: 900px) {
   .k2-nav-desktop { display: none !important; }
   .k2-nav-burger  { display: inline-flex !important; }
   .k2-footer-grid { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
+}
+@media (max-width: 599px) {
+  .k2-footer-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ─── Products sticky nav: responsive top offset + padding ──────────────────
+   Header is 57px on desktop, ~53px on mobile (less padding).
+   Padding reduced on small screens to give the scroll track more room. */
+.k2-products-nav-bar { top: 57px; padding: 14px 32px; }
+@media (max-width: 639px) {
+  .k2-products-nav-bar { top: 53px; padding: 12px 20px; }
+}
+
+/* ─── Horizontal scroll for table-style grids ────────────────────────────────
+   Applied to containers wrapping spec tables, app matrix, careers rows.
+   Kicks in below 768px — above that the grids collapse to cards. */
+@media (max-width: 767px) {
+  .k2-table-scroll-mobile {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .k2-table-scroll-mobile::-webkit-scrollbar { display: none; }
+}
+
+/* ─── Tap targets: footer links ──────────────────────────────────────────────
+   Footer link text is ~13px with no padding — well below 44px. Fix on mobile. */
+@media (max-width: 639px) {
+  .k2-footer-link { min-height: 44px; display: flex !important; align-items: center; }
+  .k2-footer-col-links a { min-height: 44px; display: flex; align-items: center; }
+}
+
+/* ─── Grid responsive helpers ────────────────────────────────────────────────
+   .k2-grid-stack-mobile keeps any desktop inline gridTemplateColumns intact
+   and forces single-column only at the mobile breakpoint. Use it alongside
+   an inline gridTemplateColumns for asymmetric splits that don't map to a
+   standard utility class (e.g. 1fr / 1.6fr, 1.1fr / 1fr, 1fr / 1.3fr). */
+.k2-grid-stack-mobile { display: grid; }
+@media (max-width: 639px) {
+  .k2-grid-stack-mobile { grid-template-columns: 1fr !important; }
+}
+
+/* About fact strip: 5 cols → 3 cols tablet → 2 cols mobile.
+   Uses !important to reset inline borderLeft on first-in-row items. */
+.k2-about-facts {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+@media (max-width: 1023px) {
+  .k2-about-facts { grid-template-columns: repeat(3, 1fr); }
+  .k2-about-facts > div:nth-child(3n-2) { border-left: none !important; padding-left: 0 !important; }
+}
+@media (max-width: 639px) {
+  .k2-about-facts { grid-template-columns: repeat(2, 1fr); }
+  .k2-about-facts > div:nth-child(2n-1) { border-left: none !important; padding-left: 0 !important; }
+}
+
+/* Metrics / numbers strip: remove border-left on first-in-row when reflows. */
+@media (max-width: 1023px) {
+  .k2-numbers-strip > div:nth-child(odd) { border-left: none !important; padding-left: 0 !important; }
+}
+@media (max-width: 639px) {
+  .k2-numbers-strip > div { border-left: none !important; padding-left: 0 !important; }
+}
+
+/* 4-col pillar grid with right-border per index: clean up on reflow. */
+@media (max-width: 1023px) {
+  .k2-benefits-grid > div:nth-child(even) { border-right: none !important; }
+}
+@media (max-width: 639px) {
+  .k2-benefits-grid > div { border-right: none !important; }
+}
+
+/* Leadership card: avatar above text on mobile */
+@media (max-width: 639px) {
+  .k2-leader-card { flex-direction: column !important; }
+}
+
+/* About body sticky heading: remove sticky when grid collapses to 1-col */
+@media (max-width: 639px) {
+  .k2-about-body-sticky { position: static !important; }
+}
+
+/* Process flow: 8 → 4 → 2 cols */
+.k2-grid-8 {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+@media (max-width: 1023px) {
+  .k2-grid-8 { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 639px) {
+  .k2-grid-8 { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Lab equipment 2×n grid: remove right border when stacked */
+@media (max-width: 639px) {
+  .k2-lab-grid > div { border-right: none !important; }
+}
+
+/* Products sticky nav: horizontal scroll on small screens */
+.k2-products-nav-scroll {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  font-size: 14px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  white-space: nowrap;
+}
+.k2-products-nav-scroll::-webkit-scrollbar { display: none; }
+
+/* Briquettes: image is 2nd column on desktop → move first on mobile */
+@media (max-width: 639px) {
+  .k2-product-img-right { order: -1 !important; }
+}
+
+/* Spec table 3-col → 2-col at 768px (hide Spec column) → stack at 480px */
+@media (max-width: 767px) {
+  .k2-spec-header-3,
+  .k2-spec-row-3 { grid-template-columns: 1.4fr 1fr !important; }
+  .k2-spec-header-3 > *:last-child,
+  .k2-spec-row-3 > *:last-child { display: none !important; }
+}
+@media (max-width: 479px) {
+  .k2-spec-header-3 { display: none !important; }
+  .k2-spec-row-3 {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 12px 0 !important;
+    gap: 2px;
+  }
+  .k2-spec-row-3 > *:last-child { display: block !important; }
+}
+
+/* Applications matrix: 4-col table → one card per row at 768px */
+@media (max-width: 767px) {
+  .k2-apps-matrix-header { display: none !important; }
+  .k2-apps-matrix-row {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 20px 16px !important;
+    margin-bottom: 8px !important;
+    background: var(--k2-surface);
+    border: 1px solid var(--k2-border-med) !important;
+    border-top: none !important;
+    gap: 4px;
+  }
+  .k2-apps-matrix-row > div:first-child {
+    font-size: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--k2-border);
+    margin-bottom: 4px;
+  }
+  .k2-apps-matrix-row > div:nth-child(2)::before {
+    content: "Pellets — ";
+    font-family: var(--k2-mono);
+    font-size: 12px;
+    color: var(--k2-text-3);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .k2-apps-matrix-row > div:nth-child(3)::before {
+    content: "Briquettes — ";
+    font-family: var(--k2-mono);
+    font-size: 12px;
+    color: var(--k2-text-3);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+}
+
+/* 3-step "how we work": vertical dividers → horizontal on mobile */
+@media (max-width: 639px) {
+  .k2-step-card-border-r {
+    border-right: none !important;
+    border-bottom: 1px solid var(--k2-border-med) !important;
+  }
+}
+
+/* Careers job rows: stacked cards on mobile */
+@media (max-width: 767px) {
+  .k2-job-row {
+    display: block !important;
+    padding: 20px 16px !important;
+    background: var(--k2-surface) !important;
+  }
+  .k2-job-row > div:nth-child(1) { display: block; margin-bottom: 8px; }
+  .k2-job-row > div:nth-child(2),
+  .k2-job-row > div:nth-child(3),
+  .k2-job-row > div:nth-child(4) {
+    display: inline !important;
+    font-family: var(--k2-mono) !important;
+    font-size: 13px !important;
+    color: var(--k2-text-3) !important;
+  }
+  .k2-job-row > div:nth-child(3)::before,
+  .k2-job-row > div:nth-child(4)::before { content: " · "; }
+  .k2-job-row > div:nth-child(5) {
+    display: block !important;
+    text-align: left !important;
+    margin-top: 14px;
+    padding: 8px 14px;
+    border: 1px solid var(--k2-border-med);
+    font-size: 15px;
+    width: fit-content;
+  }
+}
+
+/* Contact form: 2-col field grid → 1-col on mobile */
+.k2-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+@media (max-width: 639px) {
+  .k2-form-grid { grid-template-columns: 1fr; }
+  .k2-form-submit-row { flex-direction: column !important; align-items: stretch !important; }
+  .k2-form-submit-row button[type="submit"] { width: 100%; }
+}
+
+/* Blog: card hover effects */
+.k2-blog-card {
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.k2-blog-card:hover {
+  border-color: var(--k2-ink) !important;
+  transform: translateY(-2px);
+}
+.k2-blog-featured {
+  transition: border-color 0.15s ease;
+}
+.k2-blog-featured:hover {
+  border-color: var(--k2-ink) !important;
+}
+/* Blog: body text size — 18px desktop / 16px mobile */
+.k2-blog-body-text {
+  font-size: 18px;
+}
+@media (max-width: 639px) {
+  .k2-blog-body-text { font-size: 16px; }
+  /* Featured card stacks on mobile */
+  .k2-blog-featured > div:last-child { border-left: none !important; border-top: 1px solid var(--k2-border-med); }
+}
+
+/* FAQ page: sticky filter bar */
+.k2-faq-filter-bar {
+  position: sticky;
+  top: 57px;
+  z-index: 30;
+  background: var(--k2-canvas);
+  border-bottom: 1px solid var(--k2-border);
+  padding: 14px 32px;
+}
+@media (max-width: 639px) {
+  .k2-faq-filter-bar { top: 53px; padding: 12px 20px; }
+}
+.k2-faq-filter-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+@media (max-width: 767px) {
+  .k2-faq-filter-inner { flex-direction: column; align-items: stretch; gap: 10px; }
+}
+.k2-faq-pills {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 1px;
+}
+.k2-faq-pills::-webkit-scrollbar { display: none; }
+
+/* Clients bar middot separators: hide on small screens */
+@media (max-width: 639px) {
+  .k2-clients-sep { display: none !important; }
+}
+
+/* ─── Hero kicker strip — stack vertically on mobile ─────────────────────── */
+.k2-hero-kicker {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+@media (max-width: 639px) {
+  .k2-hero-kicker {
+    flex-direction: column;
+    gap: 8px;
+    font-size: 9px;
+  }
+}
+
+/* ─── Home hero overlay — bottom padding scales on mobile ────────────────── */
+.k2-home-hero-overlay { padding: 64px 32px 80px; }
+@media (max-width: 639px) {
+  .k2-home-hero-overlay { padding: 40px 20px; }
+}
+
+/* ─── Newsroom: sticky tab bar ───────────────────────────────────────────── */
+.k2-newsroom-tab-bar {
+  position: sticky;
+  top: 57px;
+  z-index: 30;
+  background: var(--k2-canvas);
+  border-bottom: 1px solid var(--k2-border);
+}
+@media (max-width: 639px) {
+  .k2-newsroom-tab-bar { top: 53px; }
+}
+.k2-newsroom-tabs {
+  display: flex;
+  gap: 28px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.k2-newsroom-tabs::-webkit-scrollbar { display: none; }
+
+/* ─── Newsroom: card hover ───────────────────────────────────────────────── */
+.k2-newsroom-card { transition: opacity 0.15s ease; }
+.k2-newsroom-card:hover { opacity: 0.88; }
+
+/* ─── Newsroom: 12-col mosaic (Featured tab) ─────────────────────────────── */
+.k2-newsroom-mosaic {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1px;
+  background: var(--k2-border-med);
+  border: 1px solid var(--k2-border-med);
+}
+.k2-newsroom-mosaic > * {
+  background: var(--k2-canvas);
+  min-height: 0;
+}
+
+/* Desktop grid positions */
+.k2-nm-hero { grid-column: 1 / 8; grid-row: 1 / 3; }
+.k2-nm-vid  { grid-column: 8 / 13; grid-row: 1 / 3; }
+.k2-nm-tw1  { grid-column: 1 / 5; }
+.k2-nm-tw2  { grid-column: 5 / 9; }
+.k2-nm-tw3  { grid-column: 9 / 13; }
+.k2-nm-pr1  { grid-column: 1 / 5; }
+.k2-nm-pr2  { grid-column: 5 / 9; }
+.k2-nm-pr3  { grid-column: 9 / 13; }
+
+/* Tablet: 6-col */
+@media (max-width: 1023px) {
+  .k2-newsroom-mosaic { grid-template-columns: repeat(6, 1fr); }
+  .k2-nm-hero { grid-column: 1 / 7; grid-row: 1 / 2; }
+  .k2-nm-vid  { grid-column: 1 / 7; grid-row: 2 / 3; }
+  .k2-nm-tw1  { grid-column: 1 / 4; grid-row: auto; }
+  .k2-nm-tw2  { grid-column: 4 / 7; grid-row: auto; }
+  .k2-nm-tw3  { grid-column: 1 / 4; grid-row: auto; }
+  .k2-nm-pr1  { grid-column: 1 / 4; }
+  .k2-nm-pr2  { grid-column: 4 / 7; }
+  .k2-nm-pr3  { grid-column: 1 / 7; }
+}
+
+/* Mobile: single column */
+@media (max-width: 639px) {
+  .k2-newsroom-mosaic { grid-template-columns: 1fr; }
+  .k2-nm-hero,
+  .k2-nm-vid,
+  .k2-nm-tw1,
+  .k2-nm-tw2,
+  .k2-nm-tw3,
+  .k2-nm-pr1,
+  .k2-nm-pr2,
+  .k2-nm-pr3 { grid-column: 1 !important; grid-row: auto !important; }
+  .k2-newsroom-tabs { gap: 16px; padding: 0 20px; }
 }

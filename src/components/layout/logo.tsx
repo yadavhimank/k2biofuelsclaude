@@ -1,15 +1,20 @@
+import Image from "next/image";
+
 interface K2LogoProps {
   size?: number;
 }
 
-export function K2Logo({ size = 28 }: K2LogoProps) {
+export function K2Logo({ size = 120 }: K2LogoProps) {
   return (
-    <div style={{
-      width: size, height: size, display: 'flex',
-      overflow: 'hidden', borderRadius: 3,
-    }}>
-      <div style={{ flex: 1, background: 'var(--k2-eyebrow)' }} />
-      <div style={{ flex: 1, background: 'var(--k2-cta)' }} />
+    <div className="k2-logo-wrap" style={{ width: size, flexShrink: 0 }}>
+      <Image
+        src="/k2biofuelslogo.png"
+        alt="K2 Biofuels"
+        width={size}
+        height={size}
+        style={{ display: 'block', objectFit: 'contain', width: '100%', height: 'auto' }}
+        priority
+      />
     </div>
   );
 }

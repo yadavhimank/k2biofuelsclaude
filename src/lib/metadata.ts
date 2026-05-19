@@ -66,6 +66,21 @@ export const PAGE_METADATA = {
     'Contact K2BioFuels Pvt. Ltd. | Biofuel Supplier India',
     'Get in touch for quotes, samples or partnership inquiries. Corporate: Sector 86, Gurgaon. Plant: Rewari, Haryana – 123303. Call +91 88750 07733 or email info@k2biofuels.com.',
   ),
+  faq: page(
+    '/faq',
+    'Frequently Asked Questions | K2BioFuels Pvt. Ltd.',
+    'Answers to common questions about K2 Biofuels biomass pellets and briquettes — GCV specs, lead times, CAQM compliance, custom blends and quality assurance.',
+  ),
+  blog: page(
+    '/blog',
+    'Blog | K2BioFuels Pvt. Ltd.',
+    'Insights on biomass energy, agricultural residue management, CAQM regulations, and the economics of switching from coal to biomass fuel in industrial applications.',
+  ),
+  newsroom: page(
+    '/newsroom',
+    'Newsroom | K2BioFuels Pvt. Ltd.',
+    'Latest news, press releases and media coverage for K2 Biofuels Pvt. Ltd. — India\'s biomass pellet and briquette manufacturer based in Rewari, Haryana.',
+  ),
   privacy: page(
     '/privacy',
     'Privacy Policy | K2BioFuels Pvt. Ltd.',

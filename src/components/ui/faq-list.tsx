@@ -48,7 +48,7 @@ export function FAQList() {
               }}
             >
               <span style={{ fontSize: 18, fontWeight: 500, color: 'var(--k2-ink)', letterSpacing: '-0.01em' }}>
-                <span style={{ fontFamily: 'var(--k2-mono)', fontSize: 12, color: 'var(--k2-text-3)', marginRight: 14 }}>0{i + 1}</span>
+                <span style={{ fontFamily: 'var(--k2-mono)', fontSize: 14, color: 'var(--k2-text-3)', marginRight: 14 }}>0{i + 1}</span>
                 {q}
               </span>
               <span style={{ fontSize: 22, color: 'var(--k2-text-2)', transition: 'transform .2s', transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)' }}>+</span>

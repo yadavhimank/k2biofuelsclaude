@@ -21,8 +21,9 @@ export default function InfrastructurePage() {
 
       {/* Plant overview spec card */}
       <section style={{ padding: '80px 32px', borderBottom: '1px solid var(--k2-border)' }}>
-        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: 64, alignItems: 'start' }}>
-          <ImgSlot tone="plant" height={520} caption="PLANT — AERIAL OR ELEVATED VIEW, RECEIVING YARD + MILL HALL + SILOS + DISPATCH WEIGHBRIDGE" />
+        <div className="k2-grid-stack-mobile" style={{ maxWidth: 1320, margin: '0 auto', gridTemplateColumns: '1.1fr 1fr', gap: 64, alignItems: 'start' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/Plantaerialoverview.png" alt="K2 Biofuels Rewari plant aerial overview" style={{ width: '100%', height: 520, objectFit: 'cover', display: 'block' }} />
           <div>
             <Eyebrow style={{ marginBottom: 14 }}>— 01 / Plant overview</Eyebrow>
             <h2 style={{ fontSize: 32, margin: '0 0 28px', lineHeight: 1.15, letterSpacing: '-0.02em', fontWeight: 500 }}>
@@ -71,19 +72,23 @@ export default function InfrastructurePage() {
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
+          <div className="k2-grid-3" style={{ gap: 16 }}>
             {[
-              { name: 'Mill A — Paddy line', tone: 'paddy' as const, cap: '90 TPD', desc: 'Dedicated paddy straw line. Highest throughput, optimised for CAQM-priority feedstock.' },
-              { name: 'Mill B — Mustard line', tone: 'mustard' as const, cap: '90 TPD', desc: 'Mustard husk dedicated line. Highest GCV output, low ash, premium-grade pellets.' },
-              { name: 'Mill C — Mixed line', tone: 'rice' as const, cap: '72 TPD', desc: 'Rice husk and mixed agro-blend line. Volume buffer and briquette feed.' },
+              { name: 'Mill A — Paddy line', tone: 'paddy' as const, cap: '90 TPD', desc: 'Dedicated paddy straw line. Highest throughput, optimised for CAQM-priority feedstock.', image: '/MillAPaddyline.png' },
+              { name: 'Mill B — Mustard line', tone: 'mustard' as const, cap: '90 TPD', desc: 'Mustard husk dedicated line. Highest GCV output, low ash, premium-grade pellets.', image: '/MillBMustardline.png' },
+              { name: 'Mill C — Mixed line', tone: 'rice' as const, cap: '72 TPD', desc: 'Rice husk and mixed agro-blend line. Volume buffer and briquette feed.', image: '/MillCMixedline.png' },
             ].map((m) => (
               <div key={m.name} style={{ background: 'var(--k2-surface)', border: '1px solid var(--k2-border-med)' }}>
-                <ImgSlot tone={m.tone} height={180} caption={`MILL · ${m.name.toUpperCase()} — DIE FACE, OPERATING`} />
+                {'image' in m && m.image
+                  ? /* eslint-disable-next-line @next/next/no-img-element */
+                    <img src={m.image} alt={m.name} style={{ width: '100%', height: 180, objectFit: 'cover', display: 'block' }} />
+                  : <ImgSlot tone={m.tone} height={180} caption={`MILL · ${m.name.toUpperCase()} — DIE FACE, OPERATING`} />
+                }
                 <div style={{ padding: 24 }}>
                   <Eyebrow style={{ marginBottom: 10 }}>{m.cap}</Eyebrow>
                   <h3 style={{ fontSize: 20, margin: '0 0 12px', fontWeight: 500, letterSpacing: '-0.015em' }}>{m.name}</h3>
-                  <p style={{ fontSize: 13, lineHeight: 1.65, color: 'var(--k2-text-2)', margin: '0 0 20px' }}>{m.desc}</p>
-                  <div style={{ fontFamily: 'var(--k2-mono)', fontSize: 11, lineHeight: 1.95, color: 'var(--k2-text-2)' }}>
+                  <p style={{ fontSize: 15, lineHeight: 1.65, color: 'var(--k2-text-2)', margin: '0 0 20px' }}>{m.desc}</p>
+                  <div style={{ fontFamily: 'var(--k2-mono)', fontSize: 13, lineHeight: 1.95, color: 'var(--k2-text-2)' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Die diameter</span><span style={{ color: 'var(--k2-ink)' }}>8 mm</span></div>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Power</span><span style={{ color: 'var(--k2-ink)' }}>250 kW</span></div>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Avg uptime</span><span style={{ color: 'var(--k2-ink)' }}>92%</span></div>
@@ -104,7 +109,7 @@ export default function InfrastructurePage() {
             <Em>field to firebox.</Em>
           </h2>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(8, 1fr)', gap: 4, position: 'relative' }}>
+          <div className="k2-grid-8" style={{ gap: 4, position: 'relative' }}>
             {[
               ['01', 'Intake', 'Trucked agro residue weighed at gate.'],
               ['02', 'Moisture test', 'Lot rejected above 20% moisture.'],
@@ -121,11 +126,11 @@ export default function InfrastructurePage() {
                 padding: 20, minHeight: 160,
                 display: 'flex', flexDirection: 'column',
               }}>
-                <div style={{ fontFamily: 'var(--k2-mono)', fontSize: 11, color: 'var(--k2-cta)', letterSpacing: 1.5, marginBottom: 12 }}>
+                <div style={{ fontFamily: 'var(--k2-mono)', fontSize: 13, color: 'var(--k2-cta)', letterSpacing: 1.5, marginBottom: 12 }}>
                   {n}
                 </div>
                 <h4 style={{ fontSize: 15, margin: '0 0 8px', fontWeight: 500, letterSpacing: '-0.01em' }}>{h}</h4>
-                <p style={{ fontSize: 11, lineHeight: 1.6, color: 'var(--k2-text-2)', margin: 0 }}>{b}</p>
+                <p style={{ fontSize: 13, lineHeight: 1.6, color: 'var(--k2-text-2)', margin: 0 }}>{b}</p>
               </div>
             ))}
           </div>
@@ -134,19 +139,21 @@ export default function InfrastructurePage() {
 
       {/* Quality lab */}
       <section style={{ padding: '96px 32px', background: 'var(--k2-ink)', color: 'var(--k2-on-ink)' }}>
-        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 80 }}>
+        <div className="k2-grid-stack-mobile" style={{ maxWidth: 1320, margin: '0 auto', gridTemplateColumns: '1fr 1.4fr', gap: 80 }}>
           <div>
             <Eyebrow accent="var(--k2-cta)" style={{ marginBottom: 14 }}>— 04 / On-site quality lab</Eyebrow>
             <h2 style={{ fontSize: 38, margin: '0 0 24px', lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
               Every batch,<br />
               <Em color="#FFB37A">tested before it ships.</Em>
             </h2>
-            <p style={{ fontSize: 15, lineHeight: 1.7, color: 'rgba(250,250,247,0.78)', margin: 0 }}>
+            <p style={{ fontSize: 15, lineHeight: 1.7, color: 'rgba(250,250,247,0.78)', margin: '0 0 28px' }}>
               We run a fully-equipped fuel-analysis lab on-site at Rewari. Lab reports are dispatched with every truck. Buyers can request retained samples for independent re-test.
             </p>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/Qualitylab.png" alt="On-site quality lab, Rewari" style={{ width: '100%', height: 220, objectFit: 'cover', display: 'block' }} />
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 0, borderTop: '1px solid rgba(250,250,247,0.15)' }}>
+          <div className="k2-grid-2 k2-lab-grid" style={{ gap: 0, borderTop: '1px solid rgba(250,250,247,0.15)' }}>
             {[
               ['Bomb calorimeter', 'GCV / NCV measurement, IS:1350 compliant.'],
               ['Moisture analyser', 'Hot-air loss-on-drying, per batch.'],
@@ -163,7 +170,7 @@ export default function InfrastructurePage() {
                 borderRight: i % 2 === 0 ? '1px solid rgba(250,250,247,0.15)' : 'none',
               }}>
                 <h4 style={{ fontSize: 14, margin: '0 0 6px', fontWeight: 500, color: '#fff' }}>{h}</h4>
-                <p style={{ fontSize: 12, lineHeight: 1.6, color: 'rgba(250,250,247,0.65)', margin: 0 }}>{b}</p>
+                <p style={{ fontSize: 14, lineHeight: 1.6, color: 'rgba(250,250,247,0.65)', margin: 0 }}>{b}</p>
               </div>
             ))}
           </div>

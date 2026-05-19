@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Eyebrow } from '@/components/ui/eyebrow';
 import { Button } from '@/components/ui/btn';
@@ -7,6 +8,8 @@ import { MonoCap } from '@/components/ui/mono-cap';
 import { Em } from '@/components/ui/em';
 import { CTAStrip } from '@/components/layout/cta-strip';
 import { PAGE_METADATA } from '@/lib/metadata';
+import { BLOG_POSTS } from '@/lib/blog-posts';
+import { PRESS_ARTICLES, NEWS_VIDEOS } from '@/lib/newsroom';
 
 export const metadata: Metadata = PAGE_METADATA.home;
 
@@ -53,50 +56,77 @@ const infraSpecs: [string, string][] = [
   ['Workforce',          '800+ across the K2 Group'],
 ];
 
+function formatDate(iso: string): string {
+  const [year, month, day] = iso.split('-').map(Number);
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  return `${day} ${months[month - 1]} ${year}`;
+}
+
 export default function HomePage() {
+  const recentPress = [...PRESS_ARTICLES]
+    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+    .slice(0, 2);
+
+  const recentVideo = [...NEWS_VIDEOS]
+    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())[0];
+
+  const recentBlog = [...BLOG_POSTS]
+    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())[0];
+
   return (
     <>
       {/* =========== HERO — image-led =========== */}
-      <section data-screen-label="01 Home — Hero" style={{ position: 'relative' }}>
-        <ImgSlot tone="field" height={620} caption="HERO 1920×1080 — RECEIVING YARD, STRAW BALES + ANDRITZ MILLS IN BACKGROUND, GOLDEN HOUR">
-          <div style={{
-            position: 'absolute', inset: 0,
-            background: 'linear-gradient(90deg, rgba(10,31,14,0.78) 0%, rgba(10,31,14,0.45) 50%, rgba(10,31,14,0.15) 100%)',
-          }} />
-          <div style={{
-            position: 'absolute', inset: 0, padding: '64px 32px 80px',
-            display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
-            color: '#FAFAF7',
-          }}>
-            <div style={{ maxWidth: 1320, margin: '0 auto', width: '100%' }}>
-              <Eyebrow bullet accent="#FFB37A" style={{ marginBottom: 22 }}>
-                Biomass pellet manufacturing · Rewari, Haryana
-              </Eyebrow>
-              <h1 style={{
-                fontSize: 72, lineHeight: 1.03, letterSpacing: '-0.035em',
-                fontWeight: 500, margin: '0 0 28px', maxWidth: 980,
-                textShadow: '0 1px 24px rgba(0,0,0,0.2)',
-              }}>
-                Industrial-grade biomass fuel,<br />
-                <Em color="#FFB37A">engineered for thermal plants.</Em>
-              </h1>
-              <p style={{
-                fontSize: 18, lineHeight: 1.55, color: 'rgba(250,250,247,0.85)',
-                maxWidth: 580, margin: '0 0 36px',
-              }}>
-                Pellets and briquettes from agricultural residue, supplied to NCR thermal plants, sugar mills, paper plants and brick kilns across north India.
-              </p>
-              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-                <Link href="/products" style={{ textDecoration: 'none' }}>
-                  <Button variant="accent">View product catalogue →</Button>
-                </Link>
-                <Link href="/contact" style={{ textDecoration: 'none' }}>
-                  <Button variant="outline" light={false}>Talk to sales</Button>
-                </Link>
-              </div>
+      <section data-screen-label="01 Home — Hero" style={{
+        position: 'relative',
+        height: 'clamp(360px, 50vw, 620px)',
+        overflow: 'hidden',
+      }}>
+        <Image
+          src="/heroimage.png"
+          alt="K2 Biofuels pellet plant, Rewari, Haryana"
+          fill
+          priority
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
+          sizes="100vw"
+        />
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(90deg, rgba(10,31,14,0.78) 0%, rgba(10,31,14,0.45) 50%, rgba(10,31,14,0.15) 100%)',
+        }} />
+        <div className="k2-home-hero-overlay" style={{
+          position: 'absolute', inset: 0,
+          display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
+          color: '#FAFAF7',
+        }}>
+          <div className="k2-hero-content" style={{ maxWidth: 1320, margin: '0 auto', width: '100%' }}>
+            <Eyebrow bullet accent="#FFB37A" style={{ marginBottom: 22 }}>
+              Biomass pellet manufacturing · Rewari, Haryana
+            </Eyebrow>
+            <h1 className="k2-h1" style={{
+              lineHeight: 1.03, letterSpacing: '-0.035em',
+              fontWeight: 500, margin: '0 0 28px', maxWidth: 980,
+              textShadow: '0 1px 24px rgba(0,0,0,0.2)',
+            }}>
+              Industrial-grade biomass fuel,<br />
+              <Em color="#FFB37A">engineered for thermal plants.</Em>
+            </h1>
+            <p className="k2-body-lg" style={{
+              lineHeight: 1.55, color: 'rgba(250,250,247,0.85)',
+              maxWidth: 580, margin: '0 0 36px',
+            }}>
+              Pellets and briquettes from agricultural residue, supplied to NCR thermal plants, sugar mills, paper plants and brick kilns across north India.
+            </p>
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+              <Link href="/products" style={{ textDecoration: 'none' }}>
+                <Button variant="accent">View product catalogue →</Button>
+              </Link>
+              <Link href="/contact" style={{ textDecoration: 'none' }}>
+                <Button variant="outline" light={false}>Talk to sales</Button>
+              </Link>
             </div>
           </div>
-        </ImgSlot>
+        </div>
       </section>
 
       {/* =========== METRICS STRIP =========== */}
@@ -104,7 +134,7 @@ export default function HomePage() {
         background: 'var(--k2-ink)', color: 'var(--k2-on-ink)',
         padding: '48px 32px',
       }}>
-        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 32 }}>
+        <div className="k2-grid-4 k2-numbers-strip" style={{ maxWidth: 1320, margin: '0 auto', gap: 32 }}>
           {metrics.map(([num, unit, label], i) => (
             <div key={i} style={{
               paddingLeft: i === 0 ? 0 : 24,
@@ -116,7 +146,7 @@ export default function HomePage() {
                   {unit}
                 </span>
               </div>
-              <div style={{ fontSize: 12, color: 'rgba(250,250,247,0.65)', marginTop: 10 }}>
+              <div style={{ fontSize: 14, color: 'rgba(250,250,247,0.65)', marginTop: 10 }}>
                 {label}
               </div>
             </div>
@@ -126,7 +156,7 @@ export default function HomePage() {
 
       {/* =========== INTRO PARAGRAPH (under metrics, anchors home story) =========== */}
       <section style={{ padding: '112px 32px 80px' }}>
-        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 80 }}>
+        <div className="k2-grid-split-narrow" style={{ maxWidth: 1320, margin: '0 auto', gap: 80 }}>
           <div>
             <Eyebrow style={{ marginBottom: 14 }}>— 01 / Who we are</Eyebrow>
             <h2 style={{
@@ -146,7 +176,7 @@ export default function HomePage() {
             </p>
             <Link href="/about" style={{
               color: 'inherit', textDecoration: 'none',
-              fontSize: 13, fontWeight: 500, letterSpacing: 0.2,
+              fontSize: 15, fontWeight: 500, letterSpacing: 0.2,
               borderBottom: '1px solid var(--k2-ink)', paddingBottom: 2,
             }}>
               Read about the company →
@@ -171,7 +201,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20 }}>
+          <div className="k2-grid-2" style={{ gap: 20 }}>
             {products.map((p) => (
               <Link key={p.name} href={`/products${p.anchor}`} style={{ display: 'block', color: 'inherit', textDecoration: 'none' }}>
                 <div
@@ -183,28 +213,37 @@ export default function HomePage() {
                     transition: 'transform .25s ease, border-color .2s ease, box-shadow .2s ease',
                   }}
                 >
-                  <ImgSlot tone={p.tone} height={220} caption={`PRODUCT · ${p.name.toUpperCase()} — CLOSE-UP MACRO`}>
+                  <div style={{ position: 'relative', height: 220, overflow: 'hidden' }}>
+                    {p.tag === 'Pellets' ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src="/pelletsimage.png" alt="Biomass pellets" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                    ) : p.tag === 'Briquettes' ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src="/briquettes.png" alt="Biomass briquettes" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                    ) : (
+                      <ImgSlot tone={p.tone} height={220} />
+                    )}
                     <div style={{
                       position: 'absolute', top: 14, right: 14,
                       background: 'rgba(255,255,255,0.95)', color: 'var(--k2-ink)',
-                      fontSize: 10, letterSpacing: 1, textTransform: 'uppercase',
+                      fontSize: 12, letterSpacing: 1, textTransform: 'uppercase',
                       padding: '5px 10px', fontWeight: 500,
                     }}>
                       <span style={{ color: p.stock.includes('★') ? 'var(--k2-cta)' : 'var(--k2-eyebrow)' }}>{p.stock.slice(0, 1)}</span>{p.stock.slice(1)}
                     </div>
                     <div style={{
                       position: 'absolute', bottom: 14, left: 14,
-                      fontFamily: 'var(--k2-mono)', fontSize: 10, letterSpacing: 1.5,
+                      fontFamily: 'var(--k2-mono)', fontSize: 12, letterSpacing: 1.5,
                       color: 'rgba(255,255,255,0.85)', textTransform: 'uppercase',
                     }}>
                       / {p.tag}
                     </div>
-                  </ImgSlot>
+                  </div>
                   <div style={{ padding: 32 }}>
                     <Eyebrow style={{ marginBottom: 12 }}>{p.eb}</Eyebrow>
                     <h3 style={{ fontSize: 26, margin: '0 0 12px', fontWeight: 500, letterSpacing: '-0.015em' }}>{p.name}</h3>
                     <p style={{ fontSize: 14, lineHeight: 1.65, color: 'var(--k2-text-2)', margin: '0 0 24px' }}>{p.desc}</p>
-                    <div style={{ fontFamily: 'var(--k2-mono)', fontSize: 11, color: 'var(--k2-text-2)', lineHeight: 1.95, marginBottom: 22 }}>
+                    <div style={{ fontFamily: 'var(--k2-mono)', fontSize: 13, color: 'var(--k2-text-2)', lineHeight: 1.95, marginBottom: 22 }}>
                       {p.specs.map(([k, v]) => (
                         <div key={k} style={{ display: 'flex', justifyContent: 'space-between' }}>
                           <span>{k}</span><span style={{ color: 'var(--k2-ink)' }}>{v}</span>
@@ -213,7 +252,7 @@ export default function HomePage() {
                     </div>
                     <div style={{
                       paddingTop: 16, borderTop: '1px solid var(--k2-border)',
-                      fontSize: 13, display: 'flex', justifyContent: 'space-between',
+                      fontSize: 15, display: 'flex', justifyContent: 'space-between',
                     }}>
                       <MonoCap style={{ color: 'var(--k2-text-3)' }}>From agro residue</MonoCap>
                       <span style={{ fontWeight: 500 }}>View full spec →</span>
@@ -228,7 +267,7 @@ export default function HomePage() {
 
       {/* =========== SUSTAINABILITY =========== */}
       <section style={{ padding: '112px 32px' }}>
-        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: 80, alignItems: 'start' }}>
+        <div className="k2-grid-stack-mobile" style={{ maxWidth: 1320, margin: '0 auto', gridTemplateColumns: '1fr 1.3fr', gap: 80, alignItems: 'start' }}>
           <div>
             <Eyebrow style={{ marginBottom: 14 }}>— 03 / Sustainability</Eyebrow>
             <h2 style={{ fontSize: 42, margin: '0 0 24px', lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
@@ -243,7 +282,7 @@ export default function HomePage() {
                 <div key={k} style={{
                   display: 'flex', justifyContent: 'space-between',
                   padding: '14px 0', borderBottom: '1px solid var(--k2-border-med)',
-                  fontSize: 13,
+                  fontSize: 15,
                 }}>
                   <span style={{ color: 'var(--k2-text-2)' }}>{k}</span>
                   <span style={{ fontFamily: 'var(--k2-mono)' }}>{v}</span>
@@ -253,7 +292,7 @@ export default function HomePage() {
             <Link href="/sustainability" style={{
               color: 'inherit', textDecoration: 'none',
               display: 'inline-block', marginTop: 28,
-              fontSize: 13, fontWeight: 500, letterSpacing: 0.2,
+              fontSize: 15, fontWeight: 500, letterSpacing: 0.2,
               borderBottom: '1px solid var(--k2-ink)', paddingBottom: 2,
             }}>
               Read our sustainability commitments →
@@ -294,7 +333,7 @@ export default function HomePage() {
               </g>
             </svg>
             <p style={{
-              fontSize: 12, fontStyle: 'italic', color: 'var(--k2-text-3)',
+              fontSize: 14, fontStyle: 'italic', color: 'var(--k2-text-3)',
               fontFamily: 'var(--k2-serif)', marginTop: 16, textAlign: 'center',
             }}>
               Fig. 01 — Coal displacement chain, field to firebox.
@@ -305,8 +344,9 @@ export default function HomePage() {
 
       {/* =========== INFRASTRUCTURE TEASER =========== */}
       <section style={{ padding: '80px 32px', background: 'var(--k2-stone)' }}>
-        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 64, alignItems: 'center' }}>
-          <ImgSlot tone="plant" height={420} caption="PLANT — RECEIVING YARD, PELLET MILLS IN OPERATION, OVERVIEW SHOT" />
+        <div className="k2-grid-stack-mobile" style={{ maxWidth: 1320, margin: '0 auto', gridTemplateColumns: '1.3fr 1fr', gap: 64, alignItems: 'center' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/infrastructure.png" alt="K2 Biofuels Rewari plant" style={{ width: '100%', height: 420, objectFit: 'cover', display: 'block' }} />
           <div>
             <Eyebrow style={{ marginBottom: 14 }}>— 04 / Infrastructure</Eyebrow>
             <h2 style={{ fontSize: 38, margin: '0 0 22px', lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
@@ -318,7 +358,7 @@ export default function HomePage() {
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 28 }}>
               {infraSpecs.map(([k, v]) => (
-                <div key={k} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, paddingBottom: 10, borderBottom: '1px solid var(--k2-border)' }}>
+                <div key={k} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 15, paddingBottom: 10, borderBottom: '1px solid var(--k2-border)' }}>
                   <span style={{ color: 'var(--k2-text-2)' }}>{k}</span>
                   <span style={{ fontFamily: 'var(--k2-mono)' }}>{v}</span>
                 </div>
@@ -345,16 +385,190 @@ export default function HomePage() {
             display: 'flex', justifyContent: 'center', gap: 0, flexWrap: 'wrap',
           }}>
             <span>Thermal power</span>
-            <span style={{ margin: '0 22px', opacity: 0.4 }}>·</span>
+            <span className="k2-clients-sep" style={{ margin: '0 22px', opacity: 0.4 }}>·</span>
             <span>Sugar mills</span>
-            <span style={{ margin: '0 22px', opacity: 0.4 }}>·</span>
+            <span className="k2-clients-sep" style={{ margin: '0 22px', opacity: 0.4 }}>·</span>
             <span>Paper &amp; pulp</span>
-            <span style={{ margin: '0 22px', opacity: 0.4 }}>·</span>
+            <span className="k2-clients-sep" style={{ margin: '0 22px', opacity: 0.4 }}>·</span>
             <span>Captive cogen</span>
-            <span style={{ margin: '0 22px', opacity: 0.4 }}>·</span>
+            <span className="k2-clients-sep" style={{ margin: '0 22px', opacity: 0.4 }}>·</span>
             <span>Brick kilns</span>
-            <span style={{ margin: '0 22px', opacity: 0.4 }}>·</span>
+            <span className="k2-clients-sep" style={{ margin: '0 22px', opacity: 0.4 }}>·</span>
             <span>Distilleries</span>
+          </div>
+        </div>
+      </section>
+
+      {/* =========== LATEST FROM NEWSROOM + BLOG =========== */}
+      <section style={{ padding: '80px 32px', background: 'var(--k2-stone)' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto' }}>
+          <div style={{
+            display: 'flex', justifyContent: 'space-between',
+            alignItems: 'flex-end', marginBottom: 40,
+            flexWrap: 'wrap', gap: 16,
+          }}>
+            <div>
+              <Eyebrow style={{ marginBottom: 12 }}>— 06 / Latest</Eyebrow>
+              <h2 style={{
+                fontSize: 'clamp(28px, 3.5vw, 42px)',
+                margin: 0, lineHeight: 1.1,
+                letterSpacing: '-0.025em', fontWeight: 500,
+              }}>
+                From the newsroom<br /><Em>and the blog.</Em>
+              </h2>
+            </div>
+            <div style={{
+              display: 'flex', gap: 24, alignItems: 'center',
+              fontFamily: 'var(--k2-mono)', fontSize: 13, letterSpacing: '0.05em',
+            }}>
+              <Link href="/newsroom" style={{ color: 'var(--k2-ink)', textDecoration: 'none', borderBottom: '1px solid var(--k2-ink)', paddingBottom: 2 }}>
+                Newsroom →
+              </Link>
+              <Link href="/blog" style={{ color: 'var(--k2-ink)', textDecoration: 'none', borderBottom: '1px solid var(--k2-ink)', paddingBottom: 2 }}>
+                Blog →
+              </Link>
+            </div>
+          </div>
+
+          <div className="k2-grid-4" style={{ gap: 16 }}>
+            {/* 2 most recent press articles */}
+            {recentPress.map((article) => (
+              <a
+                key={article.id}
+                href={article.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="k2-blog-card"
+                style={{
+                  background: 'var(--k2-canvas)',
+                  border: '1px solid var(--k2-border-med)',
+                  textDecoration: 'none', color: 'inherit',
+                  display: 'flex', flexDirection: 'column',
+                  padding: '22px 22px 20px',
+                  minHeight: 180,
+                }}
+              >
+                <span style={{
+                  fontFamily: 'var(--k2-mono)', fontSize: 9,
+                  letterSpacing: '0.08em', textTransform: 'uppercase',
+                  color: 'var(--k2-eyebrow)', display: 'block', marginBottom: 10,
+                }}>
+                  Press · {article.outlet}
+                </span>
+                <h3 style={{
+                  fontSize: 15, fontWeight: 500, lineHeight: 1.35,
+                  letterSpacing: '-0.01em', color: 'var(--k2-ink)',
+                  margin: '0 0 auto', flex: 1,
+                  display: '-webkit-box', WebkitLineClamp: 3,
+                  WebkitBoxOrient: 'vertical', overflow: 'hidden',
+                }}>
+                  {article.headline}
+                </h3>
+                <div style={{
+                  marginTop: 16, display: 'flex',
+                  justifyContent: 'space-between',
+                  fontFamily: 'var(--k2-mono)', fontSize: 12,
+                  color: 'var(--k2-text-3)', letterSpacing: '0.04em',
+                }}>
+                  <span>{formatDate(article.publishedAt)}</span>
+                  <span style={{ color: 'var(--k2-eyebrow)' }}>↗</span>
+                </div>
+              </a>
+            ))}
+
+            {/* Most recent video */}
+            <Link
+              href="/newsroom"
+              className="k2-blog-card"
+              style={{
+                background: 'var(--k2-canvas)',
+                border: '1px solid var(--k2-border-med)',
+                textDecoration: 'none', color: 'inherit',
+                display: 'flex', flexDirection: 'column',
+              }}
+            >
+              <div style={{ position: 'relative', flexShrink: 0 }}>
+                <ImgSlot tone={recentVideo.thumbnailTone} height={110} />
+                <div style={{
+                  position: 'absolute', top: '50%', left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  width: 38, height: 38,
+                  background: 'rgba(255,255,255,0.9)', borderRadius: '50%',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}>
+                  <div style={{ width: 0, height: 0, borderTop: '6px solid transparent', borderBottom: '6px solid transparent', borderLeft: '10px solid #0A1F0E', marginLeft: 2 }} />
+                </div>
+                <div style={{
+                  position: 'absolute', top: 8, left: 8,
+                  background: 'rgba(204,34,0,0.9)', color: '#fff',
+                  fontFamily: 'var(--k2-mono)', fontSize: 8,
+                  letterSpacing: '0.06em', textTransform: 'uppercase',
+                  padding: '2px 5px',
+                }}>
+                  {recentVideo.source}
+                </div>
+              </div>
+              <div style={{ padding: '14px 18px 16px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                <span style={{
+                  fontFamily: 'var(--k2-mono)', fontSize: 9,
+                  letterSpacing: '0.08em', textTransform: 'uppercase',
+                  color: 'var(--k2-eyebrow)', display: 'block', marginBottom: 8,
+                }}>Video</span>
+                <h3 style={{
+                  fontSize: 13, fontWeight: 500, lineHeight: 1.35,
+                  letterSpacing: '-0.01em', color: 'var(--k2-ink)',
+                  margin: '0 0 auto', flex: 1,
+                  display: '-webkit-box', WebkitLineClamp: 3,
+                  WebkitBoxOrient: 'vertical', overflow: 'hidden',
+                }}>
+                  {recentVideo.title}
+                </h3>
+                <span style={{
+                  fontFamily: 'var(--k2-mono)', fontSize: 12,
+                  color: 'var(--k2-text-3)', letterSpacing: '0.04em', marginTop: 10,
+                }}>
+                  {formatDate(recentVideo.publishedAt)}
+                </span>
+              </div>
+            </Link>
+
+            {/* Most recent blog post */}
+            <Link
+              href={`/blog/${recentBlog.slug}`}
+              className="k2-blog-card"
+              style={{
+                background: 'var(--k2-canvas)',
+                border: '1px solid var(--k2-border-med)',
+                textDecoration: 'none', color: 'inherit',
+                display: 'flex', flexDirection: 'column',
+              }}
+            >
+              <ImgSlot tone={recentBlog.coverTone} height={110} />
+              <div style={{ padding: '14px 18px 16px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                <span style={{
+                  fontFamily: 'var(--k2-mono)', fontSize: 9,
+                  letterSpacing: '0.08em', textTransform: 'uppercase',
+                  color: 'var(--k2-eyebrow)', display: 'block', marginBottom: 8,
+                }}>
+                  Blog · {recentBlog.category}
+                </span>
+                <h3 style={{
+                  fontSize: 13, fontWeight: 500, lineHeight: 1.35,
+                  letterSpacing: '-0.01em', color: 'var(--k2-ink)',
+                  margin: '0 0 auto', flex: 1,
+                  display: '-webkit-box', WebkitLineClamp: 3,
+                  WebkitBoxOrient: 'vertical', overflow: 'hidden',
+                }}>
+                  {recentBlog.title}
+                </h3>
+                <span style={{
+                  fontFamily: 'var(--k2-mono)', fontSize: 12,
+                  color: 'var(--k2-text-3)', letterSpacing: '0.04em', marginTop: 10,
+                }}>
+                  {formatDate(recentBlog.publishedAt)} · {recentBlog.readingMinutes} min
+                </span>
+              </div>
+            </Link>
           </div>
         </div>
       </section>

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, JetBrains_Mono, Instrument_Serif } from 'next/font/google';
 import { SITE_URL } from '@/lib/metadata';
 import { K2Header } from '@/components/layout/header';
@@ -30,6 +30,11 @@ const instrumentSerif = Instrument_Serif({
   style: ['normal', 'italic'],
   display: 'swap',
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
 
 // Fallback metadata — individual pages override title and description.
 export const metadata: Metadata = {
@@ -100,7 +105,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${jetbrainsMono.variable} ${instrumentSerif.variable}`}
     >
-      <body>
+      <body suppressHydrationWarning>
         <K2Header />
         {children}
         <K2Footer />

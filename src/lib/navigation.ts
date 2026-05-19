@@ -9,6 +9,9 @@ export const K2_ROUTES = [
   { path: '/infrastructure',  label: 'Infrastructure' },
   { path: '/clients',        label: 'Clients' },
   { path: '/careers',        label: 'Careers' },
+  { path: '/faq',            label: 'FAQ' },
+  { path: '/blog',           label: 'Blog' },
+  { path: '/newsroom',       label: 'Newsroom' },
   { path: '/contact',        label: 'Contact' },
 ] as const;
 

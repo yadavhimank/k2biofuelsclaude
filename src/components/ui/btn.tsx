@@ -23,8 +23,8 @@ export function Button({
 }: ButtonProps) {
   const base: React.CSSProperties = {
     display: 'inline-flex', alignItems: 'center', gap: 8,
-    padding: '12px 22px', fontSize: 13, fontWeight: 500,
-    letterSpacing: 0.1, lineHeight: 1, cursor: 'pointer',
+    padding: '12px 22px', fontSize: 15, fontWeight: 500, minHeight: 44,
+    letterSpacing: 0.06, lineHeight: 1, cursor: 'pointer',
     transition: 'all .18s ease', textDecoration: 'none', border: 'none',
     fontFamily: 'inherit', borderRadius: 2, whiteSpace: 'nowrap',
   };

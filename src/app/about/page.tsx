@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { PAGE_METADATA } from '@/lib/metadata';
 import { Eyebrow } from '@/components/ui/eyebrow';
 import { Em } from '@/components/ui/em';
@@ -10,7 +11,7 @@ export default function AboutPage() {
   return (
     <>
       <section data-screen-label="About · Hero" style={{ padding: '96px 32px 80px', borderBottom: '1px solid var(--k2-border)' }}>
-        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }}>
+        <div className="k2-grid-2" style={{ maxWidth: 1320, margin: '0 auto', gap: 80, alignItems: 'start' }}>
           <div>
             <Eyebrow style={{ marginBottom: 22 }}>— A subsidiary of K2 Group of Industries</Eyebrow>
             <h1 style={{ fontSize: 64, lineHeight: 1.04, letterSpacing: '-0.03em', fontWeight: 500, margin: 0 }}>
@@ -31,7 +32,7 @@ export default function AboutPage() {
 
       {/* Fact strip */}
       <section style={{ padding: '32px 32px', borderBottom: '1px solid var(--k2-border)' }}>
-        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 0 }}>
+        <div className="k2-about-facts" style={{ maxWidth: 1320, margin: '0 auto', gap: 0 }}>
           {[
             ['Founded', '2021'],
             ['HQ', 'Gurgaon, IN'],
@@ -52,8 +53,8 @@ export default function AboutPage() {
 
       {/* About body */}
       <section style={{ padding: '112px 32px' }}>
-        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: 96 }}>
-          <div style={{ position: 'sticky', top: 100, alignSelf: 'start' }}>
+        <div className="k2-grid-stack-mobile" style={{ maxWidth: 1320, margin: '0 auto', gridTemplateColumns: '1fr 1.5fr', gap: 96 }}>
+          <div className="k2-about-body-sticky" style={{ position: 'sticky', top: 100, alignSelf: 'start' }}>
             <Eyebrow style={{ marginBottom: 14 }}>— 01 / About us</Eyebrow>
             <h2 style={{ fontSize: 38, margin: 0, lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
               The company,<br />
@@ -79,7 +80,7 @@ export default function AboutPage() {
 
       {/* Mission + Vision */}
       <section style={{ padding: '80px 32px', background: 'var(--k2-stone)' }}>
-        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64 }}>
+        <div className="k2-grid-2" style={{ maxWidth: 1320, margin: '0 auto', gap: 64 }}>
           <div>
             <Eyebrow style={{ marginBottom: 14 }}>— 02 / Mission</Eyebrow>
             <h3 style={{ fontSize: 26, margin: '0 0 16px', fontWeight: 500, letterSpacing: '-0.015em' }}>What we are trying to do</h3>
@@ -113,7 +114,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+          <div className="k2-grid-2" style={{ gap: 24 }}>
             {[
               {
                 name: 'Mr. Rajpal Yadav',
@@ -121,6 +122,7 @@ export default function AboutPage() {
                 bio: 'Drives the group strategy and operational excellence at the Rewari plant. Three decades of experience across renewable energy, agro processing and industrial operations.',
                 mono: 'RY',
                 grad: 'linear-gradient(135deg, #2D7A3D, #0A1F0E)',
+                image: '/Mr.RajpalYadav.png',
               },
               {
                 name: 'Mrs. Archana Yadav',
@@ -128,14 +130,22 @@ export default function AboutPage() {
                 bio: 'Oversees finance, governance, and stakeholder relationships across the K2 Group. Long-term focus on operational discipline and sustainability.',
                 mono: 'AY',
                 grad: 'linear-gradient(135deg, #E8651A, #6B2C0A)',
+                image: '/MrsArchanaYadav.png',
               },
             ].map((l) => (
-              <div key={l.name} style={{
+              <div key={l.name} className="k2-leader-card" style={{
                 background: 'var(--k2-surface)',
                 border: '1px solid var(--k2-border-med)',
                 padding: 36,
                 display: 'flex', gap: 28,
               }}>
+                {'image' in l && l.image ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={l.image} alt={l.name} style={{
+                    width: 96, height: 96, flex: '0 0 96px',
+                    objectFit: 'cover', objectPosition: 'top', display: 'block',
+                  }} />
+                ) : (
                 <div style={{
                   width: 96, height: 96, flex: '0 0 96px',
                   background: l.grad, color: '#FAFAF7',
@@ -145,6 +155,7 @@ export default function AboutPage() {
                 }}>
                   {l.mono}
                 </div>
+                )}
                 <div>
                   <Eyebrow style={{ marginBottom: 8 }}>{l.role}</Eyebrow>
                   <h3 style={{ fontSize: 24, margin: '0 0 12px', fontWeight: 500, letterSpacing: '-0.015em' }}>{l.name}</h3>
@@ -158,7 +169,7 @@ export default function AboutPage() {
 
       {/* Director's message */}
       <section style={{ padding: '96px 32px', background: 'var(--k2-ink)', color: 'var(--k2-on-ink)' }}>
-        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: 80, alignItems: 'start' }}>
+        <div className="k2-grid-stack-mobile" style={{ maxWidth: 1320, margin: '0 auto', gridTemplateColumns: '1fr 1.6fr', gap: 80, alignItems: 'start' }}>
           <div>
             <Eyebrow accent="var(--k2-cta)" style={{ marginBottom: 14 }}>— 05 / Director&apos;s message</Eyebrow>
             <h2 style={{ fontSize: 40, margin: 0, lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
@@ -178,7 +189,7 @@ export default function AboutPage() {
             </p>
             <div style={{ paddingTop: 24, borderTop: '1px solid rgba(250,250,247,0.15)' }}>
               <div style={{ fontSize: 16, fontWeight: 500, color: '#fff' }}>— Mr. Rajpal Yadav &amp; Mrs. Archana Yadav</div>
-              <div style={{ fontSize: 13, color: 'rgba(250,250,247,0.6)', marginTop: 4 }}>Directors, K2 Biofuels Pvt. Ltd.</div>
+              <div style={{ fontSize: 15, color: 'rgba(250,250,247,0.6)', marginTop: 4 }}>Directors, K2 Biofuels Pvt. Ltd.</div>
             </div>
           </div>
         </div>
@@ -194,7 +205,7 @@ export default function AboutPage() {
             </h2>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+          <div className="k2-grid-3" style={{ gap: 24 }}>
             {[
               { name: 'K2 Power Renewable', status: 'Operational', desc: '2 MW biomass gasifier and briquette manufacturing on the same Rewari complex.', cap: 'Capacity · 2 MW + 60 TPD briquettes', live: 'Live', bar: 'var(--k2-eyebrow)', highlight: false },
               { name: 'K2 Biofuels', status: 'You are here', desc: 'Pellet manufacturing from agro residues — paddy, mustard, rice — for industrial off-take.', cap: 'Capacity · 252 TPD pellets', live: 'Live', bar: 'var(--k2-cta)', highlight: true },
@@ -209,7 +220,7 @@ export default function AboutPage() {
                 <Eyebrow accent={c.highlight ? 'var(--k2-cta)' : undefined} style={{ marginBottom: 12 }}>{c.status}</Eyebrow>
                 <h3 style={{ fontSize: 24, margin: '0 0 14px', fontWeight: 500, letterSpacing: '-0.015em' }}>{c.name}</h3>
                 <p style={{ fontSize: 14, lineHeight: 1.65, color: 'var(--k2-text-2)', margin: '0 0 28px' }}>{c.desc}</p>
-                <div style={{ fontFamily: 'var(--k2-mono)', fontSize: 11, color: 'var(--k2-text-2)', lineHeight: 1.95 }}>
+                <div style={{ fontFamily: 'var(--k2-mono)', fontSize: 13, color: 'var(--k2-text-2)', lineHeight: 1.95 }}>
                   <div>{c.cap}</div>
                   <div>Status · <span style={{ color: c.live === 'Live' ? 'var(--k2-eyebrow)' : 'var(--k2-cta)' }}>{c.live}</span></div>
                 </div>
@@ -228,7 +239,7 @@ export default function AboutPage() {
               What sets us apart.
             </h2>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
+          <div className="k2-grid-4" style={{ gap: 16 }}>
             {[
               ['Sustainable focus', 'Environmentally responsible production from agricultural waste streams.'],
               ['Quality assurance', 'In-house lab. Every batch tested for GCV, moisture, ash, fines.'],
@@ -238,10 +249,34 @@ export default function AboutPage() {
               <div key={h} style={{ background: 'var(--k2-surface)', border: '1px solid var(--k2-border-med)', padding: 28 }}>
                 <Eyebrow style={{ marginBottom: 10 }}>0{idx + 1}</Eyebrow>
                 <h3 style={{ fontSize: 17, margin: '0 0 10px', fontWeight: 500 }}>{h}</h3>
-                <p style={{ fontSize: 13, lineHeight: 1.65, color: 'var(--k2-text-2)', margin: 0 }}>{b}</p>
+                <p style={{ fontSize: 15, lineHeight: 1.65, color: 'var(--k2-text-2)', margin: 0 }}>{b}</p>
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Blog callout */}
+      <section style={{ padding: '48px 32px', borderTop: '1px solid var(--k2-border)' }}>
+        <div style={{
+          maxWidth: 1320, margin: '0 auto',
+          display: 'flex', alignItems: 'center',
+          justifyContent: 'space-between', gap: 24, flexWrap: 'wrap',
+        }}>
+          <div>
+            <Eyebrow style={{ marginBottom: 10 }}>— From the company blog</Eyebrow>
+            <p style={{ fontSize: 16, color: 'var(--k2-text-2)', margin: 0, lineHeight: 1.6 }}>
+              How we built the plant, the supply chain, and the quality systems behind it.
+            </p>
+          </div>
+          <Link href="/blog?category=Company" style={{
+            textDecoration: 'none', color: 'var(--k2-ink)',
+            fontWeight: 500, fontSize: 14,
+            borderBottom: '1px solid var(--k2-ink)', paddingBottom: 2,
+            whiteSpace: 'nowrap', flexShrink: 0,
+          }}>
+            Read our story →
+          </Link>
         </div>
       </section>
 

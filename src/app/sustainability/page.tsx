@@ -6,6 +6,7 @@ import { ImgSlot } from '@/components/ui/img-slot';
 import { MonoCap } from '@/components/ui/mono-cap';
 import { CTAStrip } from '@/components/layout/cta-strip';
 import { PageHero } from '@/components/layout/page-hero';
+import { ImageRotator } from '@/components/ui/image-rotator';
 
 export const metadata: Metadata = PAGE_METADATA.sustainability;
 
@@ -22,8 +23,14 @@ export default function SustainabilityPage() {
 
       {/* Field image + impact statement */}
       <section style={{ padding: '96px 32px' }}>
-        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 64, alignItems: 'center' }}>
-          <ImgSlot tone="field" height={460} caption="WIDE — UNBURNT PADDY FIELD AT GOLDEN HOUR, BALES IN MIDDLE DISTANCE" />
+        <div className="k2-grid-stack-mobile" style={{ maxWidth: 1320, margin: '0 auto', gridTemplateColumns: '1fr 1.2fr', gap: 64, alignItems: 'center' }}>
+          <ImageRotator
+            height={460}
+            images={[
+              { src: '/Unburntpaddyfield.png', alt: 'Unburnt paddy field' },
+              { src: '/feedstockchain.png',    alt: 'Feedstock chain' },
+            ]}
+          />
           <div>
             <Eyebrow style={{ marginBottom: 14 }}>— 01 / Our commitment</Eyebrow>
             <h2 style={{ fontSize: 38, margin: '0 0 22px', lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
@@ -44,7 +51,7 @@ export default function SustainabilityPage() {
       <section style={{ padding: '64px 32px', background: 'var(--k2-ink)', color: 'var(--k2-on-ink)' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
           <Eyebrow accent="var(--k2-cta)" style={{ marginBottom: 24 }}>— 02 / By the numbers</Eyebrow>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24 }}>
+          <div className="k2-grid-4 k2-numbers-strip" style={{ gap: 24 }}>
             {[
               ['~80K', 'MT/yr', 'Pellets produced annually'],
               ['~80K', 'MT/yr', 'Agro residue diverted from burning'],
@@ -55,7 +62,7 @@ export default function SustainabilityPage() {
                 <div style={{ fontSize: 56, fontWeight: 300, letterSpacing: '-0.035em', lineHeight: 1 }}>
                   {n}<span style={{ fontSize: 14, color: 'rgba(250,250,247,0.55)', marginLeft: 6 }}>{u}</span>
                 </div>
-                <div style={{ fontSize: 12, color: 'rgba(250,250,247,0.65)', marginTop: 12 }}>{l}</div>
+                <div style={{ fontSize: 14, color: 'rgba(250,250,247,0.65)', marginTop: 12 }}>{l}</div>
               </div>
             ))}
           </div>
@@ -76,7 +83,7 @@ export default function SustainabilityPage() {
               Four interlinked outcomes. Each one feeds the next.
             </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0, borderTop: '2px solid var(--k2-ink)', borderBottom: '1px solid var(--k2-border-med)' }}>
+          <div className="k2-grid-4 k2-benefits-grid" style={{ gap: 0, borderTop: '2px solid var(--k2-ink)', borderBottom: '1px solid var(--k2-border-med)' }}>
             {[
               ['Reduced GHG emissions', 'Biomass combustion is broadly carbon-neutral over its lifecycle when sourced from agricultural residue. We measure and report displacement.'],
               ['Lower carbon footprint', 'Industries co-firing our pellets reduce Scope 1 emissions and de-risk against carbon-pricing exposure.'],
@@ -89,7 +96,7 @@ export default function SustainabilityPage() {
               }}>
                 <MonoCap style={{ color: 'var(--k2-text-3)', letterSpacing: 1.2 }}>— 0{i + 1}</MonoCap>
                 <h3 style={{ fontSize: 18, margin: '14px 0 12px', fontWeight: 500, letterSpacing: '-0.015em' }}>{h}</h3>
-                <p style={{ fontSize: 13, lineHeight: 1.65, color: 'var(--k2-text-2)', margin: 0 }}>{b}</p>
+                <p style={{ fontSize: 15, lineHeight: 1.65, color: 'var(--k2-text-2)', margin: 0 }}>{b}</p>
               </div>
             ))}
           </div>
@@ -98,7 +105,7 @@ export default function SustainabilityPage() {
 
       {/* Carbon credit / certification block */}
       <section style={{ padding: '96px 32px', background: 'var(--k2-stone)' }}>
-        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 80 }}>
+        <div className="k2-grid-stack-mobile" style={{ maxWidth: 1320, margin: '0 auto', gridTemplateColumns: '1fr 1.2fr', gap: 80 }}>
           <div>
             <Eyebrow style={{ marginBottom: 14 }}>— 04 / Carbon credits &amp; certifications</Eyebrow>
             <h2 style={{ fontSize: 38, margin: '0 0 22px', lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
@@ -118,7 +125,7 @@ export default function SustainabilityPage() {
               <div style={{
                 display: 'grid', gridTemplateColumns: '1.6fr 1fr',
                 padding: '14px 0', borderBottom: '1px solid var(--k2-border-med)',
-                fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase',
+                fontSize: 12, letterSpacing: '0.06em', textTransform: 'uppercase',
                 color: 'var(--k2-text-2)',
               }}>
                 <div>Category</div>
@@ -141,7 +148,7 @@ export default function SustainabilityPage() {
                     fontSize: 14, alignItems: 'center',
                   }}>
                     <div style={{ color: 'var(--k2-text-2)' }}>{k}</div>
-                    <div style={{ fontFamily: 'var(--k2-mono)', fontSize: 12, color: live ? 'var(--k2-eyebrow)' : 'var(--k2-cta)' }}>
+                    <div style={{ fontFamily: 'var(--k2-mono)', fontSize: 14, color: live ? 'var(--k2-eyebrow)' : 'var(--k2-cta)' }}>
                       <span style={{ marginRight: 6 }}>{live ? '●' : '○'}</span>{v}
                     </div>
                   </div>
