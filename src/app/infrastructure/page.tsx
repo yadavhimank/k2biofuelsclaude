@@ -116,7 +116,7 @@ export default function InfrastructurePage() {
               ['02', 'Moisture test', 'Lot rejected above 20% moisture.'],
               ['03', 'Drying', 'Rotary dryer brings down to ≤14%.'],
               ['04', 'Grinding', 'Sized to feed pellet die.'],
-              ['05', 'Conditioning', 'Steam + binder for lignin activation.'],
+              ['05', 'Conditioning', 'High pressure, elevated temperature and steam conditioning activate natural lignin and silica in the biomass — no synthetic binders or additives used.'],
               ['06', 'Pelletising', 'Pressed at 250 kW per mill.'],
               ['07', 'Cooling & screening', 'Fines recirculated. Output graded.'],
               ['08', 'Bagging & dispatch', 'HDPE bag, jumbo, or loose tipper.'],

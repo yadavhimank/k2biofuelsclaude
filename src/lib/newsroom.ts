@@ -78,6 +78,7 @@ export const PRESS_ARTICLES: PressArticle[] = [
     url: 'https://economictimes.indiatimes.com/placeholder',
     publishedAt: '2026-04-10',
     category: 'Policy',
+    coverImage: '/news/caqm-thermal-plant.jpg',
   },
   {
     id: 'pa-3',
@@ -194,6 +195,7 @@ export const OFFICIAL_TWEETS: OfficialTweet[] = [
     publishedAt: '2026-04-18',
     likes: 3240,
     retweets: 1180,
+    coverImage: '/news/nitin-gadkari-speech.jpg',
   },
   {
     id: 'ot-2',

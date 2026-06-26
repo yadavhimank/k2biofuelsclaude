@@ -23,10 +23,10 @@ const metrics: [string, string, string][] = [
 const products = [
   {
     tone:   'paddy' as const,
-    eb:     'Premium · 25 mm dia',
+    eb:     'Non-Torrefied · 6–8 mm dia',
     name:   'Biomass pellets',
-    desc:   'Cylindrical 8–25 mm pellets pressed from agro residue. Consistent moisture, low fines, suited to industrial boilers, furnaces and power-plant co-firing.',
-    specs:  [['GCV', '2,800 – 4,000 kcal/kg'], ['Moisture', '≤ 14 %'], ['Length', '≤ 35 mm'], ['Fines', '≤ 5 %']],
+    desc:   'Cylindrical 6–8 mm pellets pressed from paddy straw & mustard straw. Consistent moisture, low fines, suited to industrial boilers, furnaces and power-plant co-firing.',
+    specs:  [['GCV', '3,400 – 3,850 kcal/kg'], ['Moisture', '< 14 %'], ['Diameter', '6–8 mm'], ['Fines', '≤ 4 %']],
     anchor: '#pellets',
     stock:  '● In stock',
     tag:    'Pellets',
@@ -36,7 +36,7 @@ const products = [
     eb:     'Industrial grade · 90 mm dia',
     name:   'Biomass briquettes',
     desc:   'High-density 90 mm cylindrical briquettes for brick kilns, vegetable & food processing, distilleries and steam-generation plants.',
-    specs:  [['GCV', '3,900 kcal/kg'], ['Moisture', '≤ 6 %'], ['Ash', '≤ 8 %'], ['Fines', '≤ 2 %']],
+    specs:  [['GCV', '3,800–3,900 kcal/kg'], ['Moisture', '6–8 %'], ['Ash', '< 10 %'], ['Fines', '< 2 %']],
     anchor: '#briquettes',
     stock:  '★ Premium',
     tag:    'Briquettes',

@@ -5,11 +5,11 @@ import { useState } from 'react';
 const faqs: [string, string][] = [
   [
     'What is the GCV of K2 biomass pellets?',
-    'Our pellets deliver 2,800–4,000 kcal/kg GCV depending on the feedstock blend. Mustard-blend pellets sit at the higher end (~3,900), paddy-blend at the mid-range (~3,400), rice husk blend at the lower end. Moisture is held at 14% or below on every dispatch.',
+    'Our non-torrefied pellets deliver 3,400–3,850 kcal/kg GCV (ARB), made from paddy straw and mustard straw. Moisture is held at below 14% on every dispatch. Lab reports accompany each load.',
   ],
   [
     'Are biomass pellets a drop-in replacement for coal?',
-    'Our briquettes at 3,900 kcal/kg land within range of typical Indian coal GCV, and serve as a drop-in for thermal applications below 850°C. Co-firing trials of up to 10% biomass blend are widely supported across Indian thermal plants.',
+    'Our briquettes at 3,800–3,900 kcal/kg land within range of typical Indian coal GCV, and serve as a drop-in for thermal applications below 850°C. Co-firing trials of up to 10% biomass blend are widely supported across Indian thermal plants.',
   ],
   [
     'What is the CAQM pellet mandate?',

@@ -194,27 +194,35 @@ function VideoCard({ video }: { video: NewsVideo }) {
         height: '100%',
       }}
     >
+      {/* Thumbnail */}
       <div style={{ position: 'relative', flexShrink: 0 }}>
         {video.thumbnailImage
           ? /* eslint-disable-next-line @next/next/no-img-element */
-            <img src={video.thumbnailImage} alt={video.title} style={{ width: '100%', height: 180, objectFit: 'cover', display: 'block' }} />
-          : <ImgSlot tone={video.thumbnailTone} height={180} />
+            <img src={video.thumbnailImage} alt={video.title} style={{ width: '100%', height: 210, objectFit: 'cover', display: 'block' }} />
+          : <ImgSlot tone={video.thumbnailTone} height={210} />
         }
+        {/* Gradient overlay for bottom legibility */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 55%)',
+          pointerEvents: 'none',
+        }} />
         {/* Play button */}
         <div style={{
           position: 'absolute', top: '50%', left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: 56, height: 56,
-          background: 'rgba(255,255,255,0.92)',
+          width: 52, height: 52,
+          background: 'rgba(255,255,255,0.95)',
           borderRadius: '50%',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxShadow: '0 2px 12px rgba(0,0,0,0.25)',
         }}>
           <div style={{
             width: 0, height: 0,
-            borderTop: '9px solid transparent',
-            borderBottom: '9px solid transparent',
-            borderLeft: '15px solid #0A1F0E',
-            marginLeft: 4,
+            borderTop: '8px solid transparent',
+            borderBottom: '8px solid transparent',
+            borderLeft: '14px solid #0A1F0E',
+            marginLeft: 3,
           }} />
         </div>
         {/* Source badge */}
@@ -234,48 +242,68 @@ function VideoCard({ video }: { video: NewsVideo }) {
         </div>
         {/* Duration pill */}
         <div style={{
-          position: 'absolute', bottom: 8, right: 8,
-          background: 'rgba(0,0,0,0.72)',
+          position: 'absolute', bottom: 10, right: 10,
+          background: 'rgba(0,0,0,0.75)',
           color: '#fff',
           fontFamily: 'var(--k2-mono)',
           fontSize: 12,
-          padding: '2px 7px',
+          padding: '2px 8px',
           letterSpacing: '0.04em',
         }}>
           {formatDuration(video.durationSeconds)}
         </div>
       </div>
-      <div style={{ padding: '16px 18px 20px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+
+      {/* Content */}
+      <div style={{ padding: '18px 20px 20px', flex: 1, display: 'flex', flexDirection: 'column', gap: 0 }}>
+        <div style={{
+          fontFamily: 'var(--k2-mono)',
+          fontSize: 11,
+          letterSpacing: '0.05em',
+          textTransform: 'uppercase',
+          color: 'var(--k2-eyebrow)',
+          marginBottom: 10,
+        }}>
+          {video.source} · {formatDate(video.publishedAt)}
+        </div>
         <h3 style={{
-          fontSize: 14,
+          fontSize: 15,
           fontWeight: 500,
           lineHeight: 1.4,
           letterSpacing: '-0.01em',
           color: 'var(--k2-ink)',
-          margin: '0 0 8px',
-          flex: 1,
+          margin: '0 0 10px',
           display: '-webkit-box',
-          WebkitLineClamp: 2,
+          WebkitLineClamp: 3,
           WebkitBoxOrient: 'vertical',
           overflow: 'hidden',
         }}>
           {video.title}
         </h3>
         <p style={{
-          fontSize: 14,
-          lineHeight: 1.55,
+          fontSize: 13,
+          lineHeight: 1.6,
           color: 'var(--k2-text-2)',
-          margin: '0 0 12px',
+          margin: 0,
           display: '-webkit-box',
           WebkitLineClamp: 2,
           WebkitBoxOrient: 'vertical',
           overflow: 'hidden',
+          flex: 1,
         }}>
           {video.description}
         </p>
-        <span style={{ fontFamily: 'var(--k2-mono)', fontSize: 12, color: 'var(--k2-text-3)', letterSpacing: '0.04em' }}>
-          {formatDate(video.publishedAt)}
-        </span>
+        <div style={{
+          marginTop: 16,
+          paddingTop: 12,
+          borderTop: '1px solid var(--k2-border)',
+          display: 'flex',
+          justifyContent: 'flex-end',
+        }}>
+          <span style={{ fontFamily: 'var(--k2-mono)', fontSize: 12, color: 'var(--k2-eyebrow)', letterSpacing: '0.04em' }}>
+            Watch video ↗
+          </span>
+        </div>
       </div>
     </a>
   );

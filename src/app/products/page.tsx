@@ -13,24 +13,24 @@ import { PageHero } from '@/components/layout/page-hero';
 export const metadata: Metadata = PAGE_METADATA.products;
 
 const pelletSpecs = [
-  { p: 'Base material', t: 'Agro residue', s: 'Mustard / paddy / agro' },
+  { p: 'Base material', t: 'Agro residue', s: 'Paddy straw & Mustard straw' },
   { p: 'Shape', t: 'Cylindrical', s: 'Pressed pellet' },
-  { p: 'Diameter', t: '≤ 25 mm', s: 'Spec maximum', hi: true },
-  { p: 'Length', t: '≤ 35 mm', s: 'Spec maximum' },
-  { p: 'Fines', t: '≤ 5 %', s: 'On-dispatch' },
-  { p: 'GCV', t: '2,800 – 4,000 kcal/kg', s: 'By feedstock', hi: true },
-  { p: 'Moisture', t: '≤ 14 %', s: 'On-dispatch' },
+  { p: 'Diameter', t: '6 – 8 mm', s: 'Non-Torrefied', hi: true },
+  { p: 'Fines (length < 3 mm)', t: '≤ 4 %', s: 'ARB · on-dispatch' },
+  { p: 'Moisture', t: '< 14 %', s: 'ARB · on-dispatch' },
+  { p: 'GCV', t: '3,400 – 3,850 kcal/kg', s: 'Non-Torrefied ARB', hi: true },
+  { p: 'Sulphur content', t: '0 %', s: 'ARB · on-dispatch' },
 ];
 
 const briquetteSpecs = [
-  { p: 'Base material', t: 'Agro residue', s: 'Mixed blend' },
+  { p: 'Base material', t: 'Agro residue', s: 'Paddy Straw & Mustard Straw' },
   { p: 'Shape', t: 'Cylindrical', s: 'High-density' },
   { p: 'Diameter', t: '90 mm', s: 'Spec dimension' },
-  { p: 'Length', t: '100 – 300 mm', s: 'Spec range' },
-  { p: 'Fines', t: '≤ 2 %', s: 'On-dispatch' },
-  { p: 'GCV', t: '3,900 kcal/kg', s: 'Typical', hi: true },
-  { p: 'Moisture', t: '≤ 6 %', s: 'On-dispatch', hi: true },
-  { p: 'Ash content', t: '≤ 8 %', s: 'On-dispatch' },
+  { p: 'Moisture', t: '6 – 8 %', s: 'On-dispatch', hi: true },
+  { p: 'GCV', t: '3,800 – 3,900 kcal/kg', s: 'Typical', hi: true },
+  { p: 'Sulphur content', t: '0 %', s: 'On-dispatch' },
+  { p: 'Fines', t: '< 2 %', s: 'On-dispatch' },
+  { p: 'Ash content', t: '< 10 %', s: 'On-dispatch' },
 ];
 
 const jumpLinks: [string, string][] = [
@@ -91,7 +91,7 @@ export default function ProductsPage() {
               </div>
               <div style={{ position: 'absolute', bottom: 18, left: 18, color: '#fff' }}>
                 <div style={{ fontFamily: 'var(--k2-mono)', fontSize: 12, letterSpacing: 1.5, opacity: 0.8, textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}>
-                  ≤ 25 mm × ≤ 35 mm
+                  6 – 8 mm · Non-Torrefied
                 </div>
                 <div style={{ fontSize: 22, fontWeight: 500, marginTop: 4, textShadow: '0 1px 8px rgba(0,0,0,0.6)' }}>
                   Biomass pellet
@@ -113,6 +113,16 @@ export default function ProductsPage() {
               <Eyebrow style={{ marginBottom: 6 }}>CAQM-priority feedstock</Eyebrow>
               <p style={{ fontSize: 15, lineHeight: 1.6, color: 'var(--k2-text-2)', margin: 0 }}>
                 Our pellets meet the Commission for Air Quality Management mandate for paddy-straw co-firing at Delhi-NCR thermal plants.
+              </p>
+            </div>
+
+            <div style={{
+              marginTop: 16, background: 'rgba(45,122,61,0.06)',
+              borderLeft: '3px solid var(--k2-eyebrow)', padding: 20,
+            }}>
+              <Eyebrow style={{ marginBottom: 6 }}>No synthetic binders</Eyebrow>
+              <p style={{ fontSize: 15, lineHeight: 1.6, color: 'var(--k2-text-2)', margin: 0 }}>
+                No external additives or chemical binders are used. Bonding occurs naturally through the lignin and silica present in the biomass, activated by high pressure, elevated temperature, steam conditioning and cooling during production.
               </p>
             </div>
           </div>
@@ -188,7 +198,7 @@ export default function ProductsPage() {
               High-density 90 mm cylindrical briquettes, engineered for sustained industrial steam load. Used by vegetable &amp; food processing plants, brick manufacturers, distilleries and chemical processing units.
             </p>
             <p style={{ fontSize: 15, lineHeight: 1.7, color: 'var(--k2-text-2)', margin: '0 0 36px' }}>
-              At 3,900 kcal/kg GCV with ash content under 8% and moisture under 6%, briquettes outperform pellets in long-burn applications — and dramatically outperform coal on emissions.
+              At 3,800–3,900 kcal/kg GCV with ash content under 10% and moisture at 6–8%, briquettes outperform pellets in long-burn applications — and dramatically outperform coal on emissions.
             </p>
 
             <div className="k2-table-scroll-mobile" style={{ borderTop: '2px solid var(--k2-ink)' }}>
@@ -257,7 +267,14 @@ export default function ProductsPage() {
             <div style={{ marginTop: 32, background: 'var(--k2-surface)', padding: 20, border: '1px solid var(--k2-border-med)' }}>
               <Eyebrow style={{ marginBottom: 8 }}>Closest coal substitute</Eyebrow>
               <p style={{ fontSize: 15, lineHeight: 1.6, color: 'var(--k2-text-2)', margin: 0 }}>
-                At 3,900 kcal/kg, our briquettes deliver thermal output within range of typical Indian coal — at materially lower emissions and ash-handling cost.
+                At 3,800–3,900 kcal/kg, our briquettes deliver thermal output within range of typical Indian coal — at materially lower emissions and ash-handling cost.
+              </p>
+            </div>
+
+            <div style={{ marginTop: 16, background: 'var(--k2-surface)', padding: 20, border: '1px solid var(--k2-border-med)' }}>
+              <Eyebrow style={{ marginBottom: 8 }}>No synthetic binders</Eyebrow>
+              <p style={{ fontSize: 15, lineHeight: 1.6, color: 'var(--k2-text-2)', margin: 0 }}>
+                No external additives or chemical binders are used. Natural bonding is achieved through the lignin and silica in the biomass feedstock, activated under high pressure, elevated temperature, steam conditioning and cooling — making our briquettes a fully natural, environmentally friendly fuel.
               </p>
             </div>
 
