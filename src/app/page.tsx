@@ -36,7 +36,7 @@ const products = [
     eb:     'Industrial grade · 90 mm dia',
     name:   'Biomass briquettes',
     desc:   'High-density 90 mm cylindrical briquettes for brick kilns, vegetable & food processing, distilleries and steam-generation plants.',
-    specs:  [['GCV', '3,800–3,900 kcal/kg'], ['Moisture', '6–8 %'], ['Ash', '< 10 %'], ['Fines', '< 2 %']],
+    specs:  [['GCV', '3,200–3,600 kcal/kg'], ['Moisture', '6–8 %'], ['Ash', '< 10 %'], ['Fines', '< 2 %']],
     anchor: '#briquettes',
     stock:  '★ Premium',
     tag:    'Briquettes',

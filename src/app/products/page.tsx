@@ -27,7 +27,7 @@ const briquetteSpecs = [
   { p: 'Shape', t: 'Cylindrical', s: 'High-density' },
   { p: 'Diameter', t: '90 mm', s: 'Spec dimension' },
   { p: 'Moisture', t: '6 – 8 %', s: 'On-dispatch', hi: true },
-  { p: 'GCV', t: '3,800 – 3,900 kcal/kg', s: 'Typical', hi: true },
+  { p: 'GCV', t: '3,200 – 3,600 kcal/kg', s: 'Typical', hi: true },
   { p: 'Sulphur content', t: '0 %', s: 'On-dispatch' },
   { p: 'Fines', t: '< 2 %', s: 'On-dispatch' },
   { p: 'Ash content', t: '< 10 %', s: 'On-dispatch' },
@@ -45,7 +45,7 @@ export default function ProductsPage() {
   return (
     <>
       {/* Hero — full-bleed products banner */}
-      <section style={{ position: 'relative', height: 'calc(100vh - 144px)', minHeight: 420, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', overflow: 'hidden' }}>
+      <section style={{ position: 'relative', height: 'calc(100vh - 96px)', minHeight: 520, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', overflow: 'hidden' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/productsbanner.png"
@@ -224,7 +224,7 @@ export default function ProductsPage() {
               High-density 90 mm cylindrical briquettes, engineered for sustained industrial steam load. Used by vegetable &amp; food processing plants, brick manufacturers, distilleries and chemical processing units.
             </p>
             <p style={{ fontSize: 15, lineHeight: 1.7, color: 'var(--k2-text-2)', margin: '0 0 36px' }}>
-              At 3,800–3,900 kcal/kg GCV with ash content under 10% and moisture at 6–8%, briquettes outperform pellets in long-burn applications — and dramatically outperform coal on emissions.
+              At 3,200–3,600 kcal/kg GCV with ash content under 10% and moisture at 6–8%, briquettes outperform pellets in long-burn applications — and dramatically outperform coal on emissions.
             </p>
 
             <div className="k2-table-scroll-mobile" style={{ borderTop: '2px solid var(--k2-ink)' }}>
@@ -293,7 +293,7 @@ export default function ProductsPage() {
             <div style={{ marginTop: 32, background: 'var(--k2-surface)', padding: 20, border: '1px solid var(--k2-border-med)' }}>
               <Eyebrow style={{ marginBottom: 8 }}>Closest coal substitute</Eyebrow>
               <p style={{ fontSize: 15, lineHeight: 1.6, color: 'var(--k2-text-2)', margin: 0 }}>
-                At 3,800–3,900 kcal/kg, our briquettes deliver thermal output within range of typical Indian coal — at materially lower emissions and ash-handling cost.
+                At 3,200–3,600 kcal/kg, our briquettes deliver thermal output within range of typical Indian coal — at materially lower emissions and ash-handling cost.
               </p>
             </div>
 

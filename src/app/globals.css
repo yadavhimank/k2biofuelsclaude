@@ -150,11 +150,13 @@ html { scroll-behavior: smooth; }
     display: block;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(0, 0, 0, 0.5);
     z-index: 49;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.28s ease;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
   }
   .k2-mobile-overlay-open {
     opacity: 1;
@@ -168,16 +170,17 @@ html { scroll-behavior: smooth; }
     top: 0;
     right: 0;
     bottom: 0;
-    width: 280px;
-    max-width: 85vw;
-    background: var(--k2-canvas);
+    width: 300px;
+    max-width: 88vw;
+    background: var(--k2-surface);
     color: var(--k2-ink);
     z-index: 51;
-    padding: 24px 28px 32px;
+    padding: 20px 24px 32px;
     overflow-y: auto;
-    transform: translateX(100%);
+    transform: translateX(105%);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: -4px 0 32px rgba(0, 0, 0, 0.15);
+    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.18);
+    border-left: 1px solid var(--k2-border-med);
   }
   .k2-mobile-panel-open {
     transform: translateX(0);
@@ -188,8 +191,9 @@ html { scroll-behavior: smooth; }
 .k2-mobile-nav-link {
   display: flex;
   align-items: center;
-  min-height: 44px;
-  padding: 0 0 0 2px;
+  justify-content: space-between;
+  min-height: 52px;
+  padding: 0 4px;
 }
 
 /* ─── Footer responsive utilities ───────────────────────────────────────────
@@ -606,15 +610,14 @@ html { scroll-behavior: smooth; }
   }
 }
 
-/* ─── Certification table — horizontal scroll on mobile ──────────────────── */
+/* ─── Certification table — stack vertically on mobile ───────────────────── */
 @media (max-width: 639px) {
-  .k2-cert-table-scroll {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  .k2-cert-table-scroll::-webkit-scrollbar { display: none; }
-  .k2-cert-table-scroll > div { min-width: 480px; }
+  /* !important needed to beat the inline display:'grid' on these elements */
+  .k2-cert-header-row { display: none !important; }
+  .k2-cert-data-row   { display: block !important; padding: 12px 0; }
+  /* Category name stacks above status badge */
+  .k2-cert-data-row > div:first-child { margin-bottom: 4px; }
+  .k2-cert-data-row > div:last-child  { font-size: 12px; }
 }
 
 /* ─── Hero kicker strip — stack vertically on mobile ─────────────────────── */
@@ -692,14 +695,21 @@ html { scroll-behavior: smooth; }
 @media (max-width: 639px) {
   .k2-newsroom-tab-bar { top: 53px; }
 }
+/* Desktop: wrap provides the 32px padding; tabs are a plain flex row */
+.k2-newsroom-tab-wrap { padding: 0 32px; }
 .k2-newsroom-tabs {
   display: flex;
-  gap: 28px;
+  gap: 0;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
 .k2-newsroom-tabs::-webkit-scrollbar { display: none; }
+.k2-newsroom-tab-btn {
+  padding: 12px 20px;
+  font-size: 13px;
+  flex-shrink: 0;
+}
 
 /* ─── Newsroom: card hover ───────────────────────────────────────────────── */
 .k2-newsroom-card { transition: opacity 0.15s ease; }
@@ -751,7 +761,12 @@ html { scroll-behavior: smooth; }
   .k2-nm-pr1,
   .k2-nm-pr2,
   .k2-nm-pr3 { grid-column: 1 !important; grid-row: auto !important; }
-  .k2-newsroom-tabs { gap: 16px; padding: 0 20px; }
+
+  /* Mobile: wrap has no padding — tabs scroll full-width */
+  .k2-newsroom-tab-wrap { padding: 0; }
+  .k2-newsroom-tabs     { padding: 0 20px; }
+  /* Slightly compact buttons — fits ~3.5 tabs in view so scroll is obvious */
+  .k2-newsroom-tab-btn  { padding: 12px 14px; font-size: 13px; }
 }
 
 /* ─── Global mobile padding normalization ─────────────────────────────────────

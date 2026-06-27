@@ -147,7 +147,7 @@ export default function SustainabilityPage() {
 
           <div className="k2-cert-box" style={{ background: 'var(--k2-surface)', border: '1px solid var(--k2-border-med)', padding: 32 }}>
             <div className="k2-cert-table-scroll" style={{ borderTop: '2px solid var(--k2-ink)' }}>
-              <div style={{
+              <div className="k2-cert-header-row" style={{
                 display: 'grid', gridTemplateColumns: '1.6fr 1fr',
                 padding: '14px 0', borderBottom: '1px solid var(--k2-border-med)',
                 fontSize: 12, letterSpacing: '0.06em', textTransform: 'uppercase',
@@ -167,7 +167,7 @@ export default function SustainabilityPage() {
               ].map(([k, v]) => {
                 const live = ['Active', 'Compliant'].includes(v);
                 return (
-                  <div key={k} style={{
+                  <div key={k} className="k2-cert-data-row" style={{
                     display: 'grid', gridTemplateColumns: '1.6fr 1fr',
                     padding: '14px 0', borderBottom: '1px solid var(--k2-border)',
                     fontSize: 14, alignItems: 'center',

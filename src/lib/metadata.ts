@@ -39,7 +39,7 @@ export const PAGE_METADATA = {
   products: page(
     '/products',
     'Biofuel & Biomass Products | K2BioFuels Pvt. Ltd.',
-    'Premium biomass pellets (6–8 mm, GCV 3,400–3,850 kcal/kg) and briquettes (90 mm, GCV 3,800–3,900 kcal/kg) from paddy straw & mustard straw. Lab-tested on every dispatch.',
+    'Premium biomass pellets (6–8 mm, GCV 3,400–3,850 kcal/kg) and briquettes (90 mm, GCV 3,200–3,600 kcal/kg) from paddy straw & mustard straw. Lab-tested on every dispatch.',
   ),
   sustainability: page(
     '/sustainability',

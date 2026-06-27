@@ -9,7 +9,7 @@ const faqs: [string, string][] = [
   ],
   [
     'Are biomass pellets a drop-in replacement for coal?',
-    'Our briquettes at 3,800–3,900 kcal/kg land within range of typical Indian coal GCV, and serve as a drop-in for thermal applications below 850°C. Co-firing trials of up to 10% biomass blend are widely supported across Indian thermal plants.',
+    'Our briquettes at 3,200–3,600 kcal/kg land within range of typical Indian coal GCV, and serve as a drop-in for thermal applications below 850°C. Co-firing trials of up to 10% biomass blend are widely supported across Indian thermal plants.',
   ],
   [
     'What is the CAQM pellet mandate?',

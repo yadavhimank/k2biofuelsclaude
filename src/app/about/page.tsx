@@ -11,7 +11,7 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero — full-bleed about banner */}
-      <section data-screen-label="About · Hero" style={{ position: 'relative', height: 'calc(100vh - 96px)', minHeight: 420, display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
+      <section data-screen-label="About · Hero" style={{ position: 'relative', height: 'calc(100vh - 96px)', minHeight: 520, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', overflow: 'hidden' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/aboutbanner.png"
@@ -19,23 +19,27 @@ export default function AboutPage() {
           aria-hidden="true"
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
         />
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.52)' }} />
-        <div className="k2-section-pad" style={{ position: 'relative', zIndex: 1, width: '100%', color: 'var(--k2-on-ink)' }}>
-          <div className="k2-grid-2" style={{ maxWidth: 1320, margin: '0 auto', gap: 80, alignItems: 'start' }}>
-            <div>
-              <Eyebrow accent="#FFB37A" style={{ marginBottom: 22 }}>— A subsidiary of K2 Group of Industries</Eyebrow>
-              <h1 style={{ fontSize: 64, lineHeight: 1.04, letterSpacing: '-0.03em', fontWeight: 500, margin: 0 }}>
-                We turned <Em color="#FFB37A">a problem on fire</Em><br />
-                into a product on demand.
-              </h1>
-            </div>
-            <div style={{ paddingTop: 60 }}>
-              <p style={{ fontSize: 18, lineHeight: 1.65, color: 'rgba(250,250,247,0.85)', margin: '0 0 24px' }}>
-                Every winter, millions of tonnes of paddy straw burn across north India. We built a pellet plant 70 kilometres from Delhi to do something useful with it.
-              </p>
-              <p style={{ fontSize: 15, lineHeight: 1.7, color: 'rgba(250,250,247,0.65)', margin: 0 }}>
-                K2 Biofuels Pvt. Ltd. is a renewable energy company focused on the development and production of biofuels derived from biomass and organic resources — reducing dependence on fossil fuels by transforming agricultural waste into valuable energy products.
-              </p>
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.10) 70%, rgba(0,0,0,0.65) 100%)' }} />
+
+        {/* Top — eyebrow, title, body */}
+        <div className="k2-section-pad" style={{ position: 'relative', zIndex: 1, width: '100%', color: 'var(--k2-on-ink)', paddingTop: 96 }}>
+          <div style={{ maxWidth: 1320, margin: '0 auto' }}>
+            <Eyebrow accent="#FFB37A" style={{ marginBottom: 22 }}>— A subsidiary of K2 Group of Industries</Eyebrow>
+            <h1 className="k2-h1" style={{ lineHeight: 1.04, letterSpacing: '-0.03em', fontWeight: 500, margin: '0 0 28px', maxWidth: 980 }}>
+              We turned <Em color="#FFB37A">a problem on fire</Em><br />
+              into a product on demand.
+            </h1>
+            <p className="k2-body-lg" style={{ lineHeight: 1.6, maxWidth: 720, color: 'rgba(250,250,247,0.92)', margin: 0, textShadow: '0 1px 12px rgba(0,0,0,0.8)' }}>
+              Every winter, millions of tonnes of paddy straw burn across north India. We built a pellet plant 70 kilometres from Delhi to do something useful with it.
+            </p>
+          </div>
+        </div>
+
+        {/* Bottom — kicker strip */}
+        <div className="k2-section-pad" style={{ position: 'relative', zIndex: 1, width: '100%', color: 'var(--k2-on-ink)', paddingBottom: 48 }}>
+          <div style={{ maxWidth: 1320, margin: '0 auto' }}>
+            <div className="k2-hero-kicker" style={{ paddingTop: 24, borderTop: '1px solid rgba(250,250,247,0.15)', color: 'rgba(250,250,247,0.6)' }}>
+              {['Founded 2021', 'Rewari · Haryana', '252 TPD capacity', 'K2 Group of Industries'].map((k, i) => <span key={i}>● {k}</span>)}
             </div>
           </div>
         </div>

@@ -615,21 +615,22 @@ export function NewsroomClient({
     <>
       {/* Tab bar */}
       <div className="k2-newsroom-tab-bar">
-        <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 32px' }}>
+        {/* k2-newsroom-tab-wrap: centres + pads on desktop; becomes the
+            full-width scroll container on mobile (padding moves to tabs) */}
+        <div className="k2-newsroom-tab-wrap" style={{ maxWidth: 1320, margin: '0 auto' }}>
           <div className="k2-newsroom-tabs">
             {TABS.map((t) => {
               const isActive = tab === t.id;
               return (
                 <button
                   key={t.id}
+                  className="k2-newsroom-tab-btn"
                   onClick={() => setTab(t.id)}
                   style={{
                     background: 'none',
                     border: 'none',
                     borderBottom: `2px solid ${isActive ? 'var(--k2-ink)' : 'transparent'}`,
-                    padding: '12px 20px 12px',
                     fontFamily: 'var(--k2-mono)',
-                    fontSize: 13,
                     letterSpacing: '0.05em',
                     textTransform: 'uppercase',
                     color: isActive ? 'var(--k2-ink)' : 'var(--k2-text-2)',

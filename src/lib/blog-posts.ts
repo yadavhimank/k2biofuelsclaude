@@ -280,7 +280,7 @@ export const BLOG_POSTS: BlogPost[] = [
     body: [
       {
         type: 'p',
-        text: 'The most common misconception we encounter in a first conversation with a new customer is that the pellet vs briquette decision is a GCV comparison. It is not. Our mustard-blend pellets deliver approximately 3,900 kcal/kg. Our 90 mm briquettes also deliver 3,900 kcal/kg. The calorific values are essentially equivalent. The difference lies in what happens when those fuels meet your specific combustion system.',
+        text: 'The most common misconception we encounter in a first conversation with a new customer is that the pellet vs briquette decision is a GCV comparison. It is not. Our mustard-blend pellets deliver approximately 3,900 kcal/kg. Our 90 mm briquettes also deliver 3,200–3,600 kcal/kg. The calorific values are essentially equivalent. The difference lies in what happens when those fuels meet your specific combustion system.',
       },
       { type: 'h2', text: 'What pellets do well' },
       {

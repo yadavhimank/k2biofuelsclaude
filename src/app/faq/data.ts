@@ -27,13 +27,13 @@ export const FAQ_ITEMS: FAQItem[] = [
     id: 'faq-products-gcv-briquettes',
     category: 'Products',
     q: 'What is the GCV of your biomass briquettes?',
-    a: 'Our 90 mm cylindrical briquettes deliver a GCV of 3,800–3,900 kcal/kg — within range of typical Indian coal — with moisture 6–8%, ash content <10%, and sulphur 0%. Base feedstock is paddy straw and mustard straw. Lab reports accompany every dispatch.',
+    a: 'Our 90 mm cylindrical briquettes deliver a GCV of 3,200–3,600 kcal/kg — within range of typical Indian coal — with moisture 6–8%, ash content <10%, and sulphur 0%. Base feedstock is paddy straw and mustard straw. Lab reports accompany every dispatch.',
   },
   {
     id: 'faq-products-specs',
     category: 'Products',
     q: 'What are the moisture, ash, and fines specifications?',
-    a: 'Pellets (Non-Torrefied): moisture <14%, fines ≤4% on dispatch, diameter 6–8 mm, GCV 3,400–3,850 kcal/kg, sulphur 0%. Briquettes: moisture 6–8%, ash <10%, fines <2% on dispatch, diameter 90 mm, GCV 3,800–3,900 kcal/kg, sulphur 0%. Both are tested at intake (feedstock) and at output (finished product) before dispatch. Lab reports accompany every load.',
+    a: 'Pellets (Non-Torrefied): moisture <14%, fines ≤4% on dispatch, diameter 6–8 mm, GCV 3,400–3,850 kcal/kg, sulphur 0%. Briquettes: moisture 6–8%, ash <10%, fines <2% on dispatch, diameter 90 mm, GCV 3,200–3,600 kcal/kg, sulphur 0%. Both are tested at intake (feedstock) and at output (finished product) before dispatch. Lab reports accompany every load.',
   },
   {
     id: 'faq-products-binders',
@@ -45,7 +45,7 @@ export const FAQ_ITEMS: FAQItem[] = [
     id: 'faq-products-coal-replacement',
     category: 'Products',
     q: 'Can biomass pellets or briquettes replace coal directly in my boiler?',
-    a: "Briquettes at 3,800–3,900 kcal/kg land within the GCV range of typical Indian coal and serve as a drop-in for thermal applications below 850°C. Co-firing trials of up to 10% biomass blend are widely supported across Indian thermal plants under CAQM guidelines. For full substitution, send us your boiler model and throughput — we'll assess feasibility and recommend the right blend.",
+    a: "Briquettes at 3,200–3,600 kcal/kg land within the GCV range of typical Indian coal and serve as a drop-in for thermal applications below 850°C. Co-firing trials of up to 10% biomass blend are widely supported across Indian thermal plants under CAQM guidelines. For full substitution, send us your boiler model and throughput — we'll assess feasibility and recommend the right blend.",
   },
   {
     id: 'faq-products-custom-blends',
