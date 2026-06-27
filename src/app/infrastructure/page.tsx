@@ -4,20 +4,44 @@ import { Eyebrow } from '@/components/ui/eyebrow';
 import { Em } from '@/components/ui/em';
 import { ImgSlot } from '@/components/ui/img-slot';
 import { CTAStrip } from '@/components/layout/cta-strip';
-import { PageHero } from '@/components/layout/page-hero';
-
 export const metadata: Metadata = PAGE_METADATA.infrastructure;
 
 export default function InfrastructurePage() {
   return (
     <>
-      <PageHero
-        eyebrow="— Plant & technology"
-        title="A 252-tonne-a-day plant,"
-        italic="engineered for throughput."
-        body="Our Rewari facility runs modern pellet mills, in-line drying, automated bagging and an on-site quality lab — designed for 24/7 operation and consistent batch output."
-        kicker={['Rewari · Haryana', 'In-house QC', 'Sealed weighbridge']}
-      />
+      {/* Hero — full-bleed infrastructure banner */}
+      <section style={{ position: 'relative', height: 'calc(100vh - 96px)', minHeight: 420, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', overflow: 'hidden' }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/infrabanner.png"
+          alt=""
+          aria-hidden="true"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+        />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.10) 70%, rgba(0,0,0,0.65) 100%)' }} />
+
+        {/* Top — eyebrow, title, body */}
+        <div className="k2-section-pad" style={{ position: 'relative', zIndex: 1, width: '100%', color: 'var(--k2-on-ink)', paddingTop: 96 }}>
+          <div style={{ maxWidth: 1320, margin: '0 auto' }}>
+            <Eyebrow accent="#FFB37A" style={{ marginBottom: 22 }}>— Plant &amp; technology</Eyebrow>
+            <h1 className="k2-h1" style={{ lineHeight: 1.04, letterSpacing: '-0.03em', fontWeight: 500, margin: '0 0 28px', maxWidth: 980 }}>
+              A 252-tonne-a-day plant, <Em color="#FFB37A">engineered for throughput.</Em>
+            </h1>
+            <p className="k2-body-lg" style={{ lineHeight: 1.6, maxWidth: 720, color: 'rgba(250,250,247,0.92)', margin: 0, textShadow: '0 1px 12px rgba(0,0,0,0.8)' }}>
+              Our Rewari facility runs modern pellet mills, in-line drying, automated bagging and an on-site quality lab — designed for 24/7 operation and consistent batch output.
+            </p>
+          </div>
+        </div>
+
+        {/* Bottom — location / QC kicker */}
+        <div className="k2-section-pad" style={{ position: 'relative', zIndex: 1, width: '100%', color: 'var(--k2-on-ink)', paddingBottom: 48 }}>
+          <div style={{ maxWidth: 1320, margin: '0 auto' }}>
+            <div className="k2-hero-kicker" style={{ paddingTop: 24, borderTop: '1px solid rgba(250,250,247,0.15)', color: 'rgba(250,250,247,0.6)' }}>
+              {['Rewari · Haryana', 'In-house QC', 'Sealed weighbridge'].map((k, i) => <span key={i}>● {k}</span>)}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Plant overview spec card */}
       <section style={{ padding: '80px 32px', borderBottom: '1px solid var(--k2-border)' }}>

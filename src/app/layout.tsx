@@ -107,6 +107,7 @@ export default function RootLayout({
     >
       <body suppressHydrationWarning>
         <K2Header />
+        <div style={{ height: 96 }} aria-hidden="true" />
         {children}
         <K2Footer />
         <script

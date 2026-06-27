@@ -10,22 +10,33 @@ export const metadata: Metadata = PAGE_METADATA.about;
 export default function AboutPage() {
   return (
     <>
-      <section data-screen-label="About · Hero" style={{ padding: '96px 32px 80px', borderBottom: '1px solid var(--k2-border)' }}>
-        <div className="k2-grid-2" style={{ maxWidth: 1320, margin: '0 auto', gap: 80, alignItems: 'start' }}>
-          <div>
-            <Eyebrow style={{ marginBottom: 22 }}>— A subsidiary of K2 Group of Industries</Eyebrow>
-            <h1 style={{ fontSize: 64, lineHeight: 1.04, letterSpacing: '-0.03em', fontWeight: 500, margin: 0 }}>
-              We turned <Em color="var(--k2-cta)">a problem on fire</Em><br />
-              into a product on demand.
-            </h1>
-          </div>
-          <div style={{ paddingTop: 60 }}>
-            <p style={{ fontSize: 18, lineHeight: 1.65, color: 'var(--k2-text-2)', margin: '0 0 24px' }}>
-              Every winter, millions of tonnes of paddy straw burn across north India. We built a pellet plant 70 kilometres from Delhi to do something useful with it.
-            </p>
-            <p style={{ fontSize: 15, lineHeight: 1.7, color: 'var(--k2-text-2)', margin: 0 }}>
-              K2 Biofuels Pvt. Ltd. is a renewable energy company focused on the development and production of biofuels derived from biomass and organic resources — reducing dependence on fossil fuels by transforming agricultural waste into valuable energy products.
-            </p>
+      {/* Hero — full-bleed about banner */}
+      <section data-screen-label="About · Hero" style={{ position: 'relative', height: 'calc(100vh - 96px)', minHeight: 420, display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/aboutbanner.png"
+          alt=""
+          aria-hidden="true"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+        />
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.52)' }} />
+        <div className="k2-section-pad" style={{ position: 'relative', zIndex: 1, width: '100%', color: 'var(--k2-on-ink)' }}>
+          <div className="k2-grid-2" style={{ maxWidth: 1320, margin: '0 auto', gap: 80, alignItems: 'start' }}>
+            <div>
+              <Eyebrow accent="#FFB37A" style={{ marginBottom: 22 }}>— A subsidiary of K2 Group of Industries</Eyebrow>
+              <h1 style={{ fontSize: 64, lineHeight: 1.04, letterSpacing: '-0.03em', fontWeight: 500, margin: 0 }}>
+                We turned <Em color="#FFB37A">a problem on fire</Em><br />
+                into a product on demand.
+              </h1>
+            </div>
+            <div style={{ paddingTop: 60 }}>
+              <p style={{ fontSize: 18, lineHeight: 1.65, color: 'rgba(250,250,247,0.85)', margin: '0 0 24px' }}>
+                Every winter, millions of tonnes of paddy straw burn across north India. We built a pellet plant 70 kilometres from Delhi to do something useful with it.
+              </p>
+              <p style={{ fontSize: 15, lineHeight: 1.7, color: 'rgba(250,250,247,0.65)', margin: 0 }}>
+                K2 Biofuels Pvt. Ltd. is a renewable energy company focused on the development and production of biofuels derived from biomass and organic resources — reducing dependence on fossil fuels by transforming agricultural waste into valuable energy products.
+              </p>
+            </div>
           </div>
         </div>
       </section>

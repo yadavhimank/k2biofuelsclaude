@@ -121,7 +121,7 @@ html { scroll-behavior: smooth; }
    The quote button and wordmark use !important-free display:none because no
    competing inline display is set on them. */
 
-.k2-header-inner { padding: 4px 32px; }
+.k2-header-inner { padding: 14px 32px; }
 
 /* Logo responsive sizing: 120px desktop → 64px mobile */
 .k2-logo-wrap { width: 120px; }
@@ -636,15 +636,49 @@ html { scroll-behavior: smooth; }
   }
 }
 
-/* ─── Home hero section — taller on mobile so content doesn't overflow ───── */
+/* ─── Home hero — full height on mobile so content isn't clipped ─────────── */
 @media (max-width: 639px) {
-  .k2-home-hero-section { height: clamp(540px, 88vh, 700px) !important; }
+  .k2-home-hero { height: calc(100vh - 96px) !important; min-height: 500px !important; }
 }
 
 /* ─── Home hero overlay — bottom padding scales on mobile ────────────────── */
 .k2-home-hero-overlay { padding: 64px 32px 80px; }
 @media (max-width: 639px) {
-  .k2-home-hero-overlay { padding: 20px 20px 36px; }
+  .k2-home-hero-overlay { padding: 32px 20px 40px; }
+}
+
+/* ─── Home intro section — padding and gap, desktop → mobile ────────────── */
+.k2-home-intro-section { padding: 112px 32px 80px; }
+.k2-home-intro-grid    { gap: 80px; }
+@media (max-width: 639px) {
+  .k2-home-intro-section { padding: 44px 20px 36px; }
+  .k2-home-intro-grid    { gap: 24px; }
+}
+
+/* ─── Home sustainability section — padding and gap, desktop → mobile ─────── */
+.k2-home-sustain-section { padding: 112px 32px; }
+.k2-home-sustain-grid    { gap: 80px; }
+@media (max-width: 639px) {
+  .k2-home-sustain-section { padding: 44px 20px 36px; }
+  .k2-home-sustain-grid    { gap: 24px; }
+}
+
+/* ─── Home products section — mobile layout fixes ───────────────────────── */
+@media (max-width: 639px) {
+  .k2-home-products-section { padding: 48px 16px !important; }
+  .k2-home-products-header { flex-direction: column !important; align-items: flex-start !important; gap: 16px; margin-bottom: 32px !important; }
+  .k2-home-products-desc { text-align: left !important; max-width: 100% !important; font-size: 15px !important; }
+  .k2-home-products-h2 { font-size: 26px !important; }
+  .k2-home-products-br { display: none; }
+}
+
+/* ─── Metrics strip — 2-col on mobile, smaller numbers ──────────────────── */
+@media (max-width: 639px) {
+  .k2-numbers-strip { grid-template-columns: repeat(2, 1fr) !important; gap: 0 !important; }
+  .k2-numbers-strip > div { padding: 20px 16px !important; border-left: none !important; border-top: 1px solid rgba(250,250,247,0.12) !important; }
+  .k2-numbers-strip > div:nth-child(-n+2) { border-top: none !important; }
+  .k2-numbers-strip > div:nth-child(odd) { border-right: 1px solid rgba(250,250,247,0.12) !important; }
+  .k2-numbers-strip .k2-metric-num { font-size: 34px !important; }
 }
 
 /* ─── Newsroom: sticky tab bar ───────────────────────────────────────────── */
@@ -675,12 +709,11 @@ html { scroll-behavior: smooth; }
 .k2-newsroom-mosaic {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 1px;
-  background: var(--k2-border-med);
-  border: 1px solid var(--k2-border-med);
+  gap: 20px;
 }
 .k2-newsroom-mosaic > * {
   background: var(--k2-canvas);
+  border: 1px solid var(--k2-border-med);
   min-height: 0;
 }
 

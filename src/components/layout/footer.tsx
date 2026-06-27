@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { K2_ROUTES } from '@/lib/navigation';
 import { Eyebrow } from '@/components/ui/eyebrow';

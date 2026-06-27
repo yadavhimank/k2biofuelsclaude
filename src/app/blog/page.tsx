@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import Link from 'next/link';
 import { PAGE_METADATA } from '@/lib/metadata';
 import { BLOG_POSTS, type BlogPostCard } from '@/lib/blog-posts';
-import { PageHero } from '@/components/layout/page-hero';
+import { Em } from '@/components/ui/em';
 import { ImgSlot } from '@/components/ui/img-slot';
 import { Eyebrow } from '@/components/ui/eyebrow';
 import { BlogFilter } from './blog-filter';
@@ -31,13 +31,39 @@ export default function BlogPage() {
 
   return (
     <>
-      <PageHero
-        eyebrow="— Field notes & analysis"
-        title="Writing from"
-        italic="the plant floor."
-        body="Our technical team, policy analysts, and operations managers write about what they actually work on — combustion chemistry, feedstock sourcing, regulatory compliance, and the economics of switching from coal."
-        kicker={['Industry', 'Policy', 'Sustainability', 'Operations']}
-      />
+      {/* Hero — full-bleed blog banner */}
+      <section style={{ position: 'relative', height: 'calc(100vh - 96px)', minHeight: 520, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', overflow: 'hidden' }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/blogbanner.png"
+          alt=""
+          aria-hidden="true"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+        />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.10) 70%, rgba(0,0,0,0.65) 100%)' }} />
+
+        {/* Top — eyebrow, title, body */}
+        <div className="k2-section-pad" style={{ position: 'relative', zIndex: 1, width: '100%', color: 'var(--k2-on-ink)', paddingTop: 96 }}>
+          <div style={{ maxWidth: 1320, margin: '0 auto' }}>
+            <Eyebrow accent="#FFB37A" style={{ marginBottom: 22 }}>— Field notes &amp; analysis</Eyebrow>
+            <h1 className="k2-h1" style={{ lineHeight: 1.04, letterSpacing: '-0.03em', fontWeight: 500, margin: '0 0 28px', maxWidth: 980 }}>
+              Writing from <Em color="#FFB37A">the plant floor.</Em>
+            </h1>
+            <p className="k2-body-lg" style={{ lineHeight: 1.6, maxWidth: 720, color: 'rgba(250,250,247,0.92)', margin: 0, textShadow: '0 1px 12px rgba(0,0,0,0.8)' }}>
+              Our technical team, policy analysts, and operations managers write about what they actually work on — combustion chemistry, feedstock sourcing, regulatory compliance, and the economics of switching from coal.
+            </p>
+          </div>
+        </div>
+
+        {/* Bottom — kicker */}
+        <div className="k2-section-pad" style={{ position: 'relative', zIndex: 1, width: '100%', color: 'var(--k2-on-ink)', paddingBottom: 48 }}>
+          <div style={{ maxWidth: 1320, margin: '0 auto' }}>
+            <div className="k2-hero-kicker" style={{ paddingTop: 24, borderTop: '1px solid rgba(250,250,247,0.15)', color: 'rgba(250,250,247,0.6)' }}>
+              {['Industry', 'Policy', 'Sustainability', 'Operations'].map((k, i) => <span key={i}>● {k}</span>)}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ── Featured post ─────────────────────────────────────────────────── */}
       <section style={{ padding: '48px 32px 0', borderBottom: '1px solid var(--k2-border)' }}>

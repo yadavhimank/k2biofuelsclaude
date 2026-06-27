@@ -8,7 +8,7 @@ import { MonoCap } from '@/components/ui/mono-cap';
 import { Button } from '@/components/ui/btn';
 import { FAQList } from '@/components/ui/faq-list';
 import { CTAStrip } from '@/components/layout/cta-strip';
-import { PageHero } from '@/components/layout/page-hero';
+
 
 export const metadata: Metadata = PAGE_METADATA.products;
 
@@ -44,13 +44,39 @@ const jumpLinks: [string, string][] = [
 export default function ProductsPage() {
   return (
     <>
-      <PageHero
-        eyebrow="— Product catalogue · 2026"
-        title="Pellets and briquettes,"
-        italic="one spec sheet you can actually trust."
-        body="Every batch is lab-tested at intake and at output. We publish the spec sheet, not a marketing brochure. Send us your boiler model and we'll tell you which blend runs cleanest in your kiln."
-        kicker={['Lab report on every dispatch', 'Sample in 48 hours', 'Rolling monthly off-take']}
-      />
+      {/* Hero — full-bleed products banner */}
+      <section style={{ position: 'relative', height: 'calc(100vh - 144px)', minHeight: 420, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', overflow: 'hidden' }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/productsbanner.png"
+          alt=""
+          aria-hidden="true"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+        />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.10) 70%, rgba(0,0,0,0.65) 100%)' }} />
+
+        {/* Top — eyebrow, title, body */}
+        <div className="k2-section-pad" style={{ position: 'relative', zIndex: 1, width: '100%', color: 'var(--k2-on-ink)', paddingTop: 96 }}>
+          <div style={{ maxWidth: 1320, margin: '0 auto' }}>
+            <Eyebrow accent="#FFB37A" style={{ marginBottom: 22 }}>— Product catalogue · 2026</Eyebrow>
+            <h1 className="k2-h1" style={{ lineHeight: 1.04, letterSpacing: '-0.03em', fontWeight: 500, margin: '0 0 28px', maxWidth: 980 }}>
+              Pellets and briquettes, <Em color="#FFB37A">one spec sheet you can actually trust.</Em>
+            </h1>
+            <p className="k2-body-lg" style={{ lineHeight: 1.6, maxWidth: 720, color: 'rgba(250,250,247,0.92)', margin: 0, textShadow: '0 1px 12px rgba(0,0,0,0.8)' }}>
+              Every batch is lab-tested at intake and at output. We publish the spec sheet, not a marketing brochure. Send us your boiler model and we&apos;ll tell you which blend runs cleanest in your kiln.
+            </p>
+          </div>
+        </div>
+
+        {/* Bottom — kicker */}
+        <div className="k2-section-pad" style={{ position: 'relative', zIndex: 1, width: '100%', color: 'var(--k2-on-ink)', paddingBottom: 48 }}>
+          <div style={{ maxWidth: 1320, margin: '0 auto' }}>
+            <div className="k2-hero-kicker" style={{ paddingTop: 24, borderTop: '1px solid rgba(250,250,247,0.15)', color: 'rgba(250,250,247,0.6)' }}>
+              {['Lab report on every dispatch', 'Sample in 48 hours', 'Rolling monthly off-take'].map((k, i) => <span key={i}>● {k}</span>)}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Sticky dark index bar */}
       <div className="k2-products-nav-bar" style={{

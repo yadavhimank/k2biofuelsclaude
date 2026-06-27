@@ -5,7 +5,6 @@ import { Eyebrow } from '@/components/ui/eyebrow';
 import { Em } from '@/components/ui/em';
 import { MonoCap } from '@/components/ui/mono-cap';
 import { CTAStrip } from '@/components/layout/cta-strip';
-import { PageHero } from '@/components/layout/page-hero';
 
 export const metadata: Metadata = PAGE_METADATA.careers;
 
@@ -21,13 +20,39 @@ const openRoles: [string, string, string, string, string][] = [
 export default function CareersPage() {
   return (
     <>
-      <PageHero
-        eyebrow="— Careers at K2"
-        title="Build the energy"
-        italic="transition, in person."
-        body="We're a small team running a 252 TPD industrial plant in Rewari and a corporate operation in Gurgaon. If you live within commute of either, and you want to build something durable in renewable energy, we want to talk."
-        kicker={['Rewari plant', 'Gurgaon HQ', 'Group hiring across 3 companies']}
-      />
+      {/* Hero — full-bleed career banner */}
+      <section style={{ position: 'relative', height: 'calc(100vh - 96px)', minHeight: 520, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', overflow: 'hidden' }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/careerbanner.png"
+          alt=""
+          aria-hidden="true"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+        />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.10) 70%, rgba(0,0,0,0.65) 100%)' }} />
+
+        {/* Top — eyebrow, title, body */}
+        <div className="k2-section-pad" style={{ position: 'relative', zIndex: 1, width: '100%', color: 'var(--k2-on-ink)', paddingTop: 96 }}>
+          <div style={{ maxWidth: 1320, margin: '0 auto' }}>
+            <Eyebrow accent="#FFB37A" style={{ marginBottom: 22 }}>— Careers at K2</Eyebrow>
+            <h1 className="k2-h1" style={{ lineHeight: 1.04, letterSpacing: '-0.03em', fontWeight: 500, margin: '0 0 28px', maxWidth: 980 }}>
+              Build the energy <Em color="#FFB37A">transition, in person.</Em>
+            </h1>
+            <p className="k2-body-lg" style={{ lineHeight: 1.6, maxWidth: 720, color: 'rgba(250,250,247,0.92)', margin: 0, textShadow: '0 1px 12px rgba(0,0,0,0.8)' }}>
+              {"We're a small team running a 252 TPD industrial plant in Rewari and a corporate operation in Gurgaon. If you live within commute of either, and you want to build something durable in renewable energy, we want to talk."}
+            </p>
+          </div>
+        </div>
+
+        {/* Bottom — kicker */}
+        <div className="k2-section-pad" style={{ position: 'relative', zIndex: 1, width: '100%', color: 'var(--k2-on-ink)', paddingBottom: 48 }}>
+          <div style={{ maxWidth: 1320, margin: '0 auto' }}>
+            <div className="k2-hero-kicker" style={{ paddingTop: 24, borderTop: '1px solid rgba(250,250,247,0.15)', color: 'rgba(250,250,247,0.6)' }}>
+              {['Rewari plant', 'Gurgaon HQ', 'Group hiring across 3 companies'].map((k, i) => <span key={i}>● {k}</span>)}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Open roles */}
       <section style={{ padding: '80px 32px' }}>

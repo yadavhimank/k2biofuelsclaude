@@ -5,13 +5,12 @@ export const K2_ROUTES = [
   { path: '/',               label: 'Home' },
   { path: '/about',          label: 'About' },
   { path: '/products',       label: 'Products' },
-  { path: '/sustainability',  label: 'Sustainability' },
   { path: '/infrastructure',  label: 'Infrastructure' },
+  { path: '/sustainability',  label: 'Sustainability' },
   { path: '/clients',        label: 'Clients' },
-  { path: '/careers',        label: 'Careers' },
-  { path: '/faq',            label: 'FAQ' },
-  { path: '/blog',           label: 'Blog' },
   { path: '/newsroom',       label: 'Newsroom' },
+  { path: '/blog',           label: 'Blog' },
+  { path: '/careers',        label: 'Careers' },
   { path: '/contact',        label: 'Contact' },
 ] as const;
 

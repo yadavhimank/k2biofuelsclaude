@@ -447,9 +447,9 @@ function FeaturedMosaic({
 function PressGrid({ articles }: { articles: PressArticle[] }) {
   return (
     <div style={{ marginTop: 32 }}>
-      <div className="k2-grid-3" style={{ gap: 1, background: 'var(--k2-border-med)' }}>
+      <div className="k2-grid-3" style={{ gap: 24 }}>
         {articles.map((article) => (
-          <div key={article.id} style={{ background: 'var(--k2-canvas)' }}>
+          <div key={article.id} style={{ background: 'var(--k2-canvas)', border: '1px solid var(--k2-border-med)' }}>
             <PressCard article={article} />
           </div>
         ))}
@@ -461,9 +461,9 @@ function PressGrid({ articles }: { articles: PressArticle[] }) {
 function VideoGrid({ videos }: { videos: NewsVideo[] }) {
   return (
     <div style={{ marginTop: 32 }}>
-      <div className="k2-grid-3" style={{ gap: 1, background: 'var(--k2-border-med)' }}>
+      <div className="k2-grid-3" style={{ gap: 24 }}>
         {videos.map((video) => (
-          <div key={video.id} style={{ background: 'var(--k2-canvas)' }}>
+          <div key={video.id} style={{ background: 'var(--k2-canvas)', border: '1px solid var(--k2-border-med)' }}>
             <VideoCard video={video} />
           </div>
         ))}
@@ -475,9 +475,9 @@ function VideoGrid({ videos }: { videos: NewsVideo[] }) {
 function TweetsGrid({ tweets }: { tweets: OfficialTweet[] }) {
   return (
     <div style={{ marginTop: 32 }}>
-      <div className="k2-grid-3" style={{ gap: 1, background: 'var(--k2-border-med)' }}>
+      <div className="k2-grid-3" style={{ gap: 24 }}>
         {tweets.map((tweet) => (
-          <div key={tweet.id} style={{ background: 'var(--k2-canvas)' }}>
+          <div key={tweet.id} style={{ background: 'var(--k2-canvas)', border: '1px solid var(--k2-border-med)' }}>
             <TweetCard tweet={tweet} />
           </div>
         ))}
@@ -627,7 +627,7 @@ export function NewsroomClient({
                     background: 'none',
                     border: 'none',
                     borderBottom: `2px solid ${isActive ? 'var(--k2-ink)' : 'transparent'}`,
-                    padding: '12px 0 12px',
+                    padding: '12px 20px 12px',
                     fontFamily: 'var(--k2-mono)',
                     fontSize: 13,
                     letterSpacing: '0.05em',

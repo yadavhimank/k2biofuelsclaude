@@ -5,7 +5,6 @@ import { Em } from '@/components/ui/em';
 import { ImgSlot } from '@/components/ui/img-slot';
 import { MonoCap } from '@/components/ui/mono-cap';
 import { CTAStrip } from '@/components/layout/cta-strip';
-import { PageHero } from '@/components/layout/page-hero';
 import { ImageRotator } from '@/components/ui/image-rotator';
 
 export const metadata: Metadata = PAGE_METADATA.sustainability;
@@ -13,13 +12,39 @@ export const metadata: Metadata = PAGE_METADATA.sustainability;
 export default function SustainabilityPage() {
   return (
     <>
-      <PageHero
-        eyebrow="— Sustainability & impact"
-        title="Carbon-neutral fuel,"
-        italic="verified at the gate and at the gauge."
-        body="Sustainability is the entire business — not a side commitment. Every tonne of pellets we ship is a tonne of imported coal not burnt, and a tonne of crop residue not set on fire in the open."
-        kicker={['VCS / Gold Standard eligible', 'CAQM aligned', 'ISO 14001 in progress']}
-      />
+      {/* Hero — full-bleed sustainability banner */}
+      <section style={{ position: 'relative', height: 'calc(100vh - 96px)', minHeight: 520, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', overflow: 'hidden' }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/sustainablitybanner.png"
+          alt=""
+          aria-hidden="true"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+        />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.10) 70%, rgba(0,0,0,0.65) 100%)' }} />
+
+        {/* Top — eyebrow, title, body */}
+        <div className="k2-section-pad" style={{ position: 'relative', zIndex: 1, width: '100%', color: 'var(--k2-on-ink)', paddingTop: 96 }}>
+          <div style={{ maxWidth: 1320, margin: '0 auto' }}>
+            <Eyebrow accent="#FFB37A" style={{ marginBottom: 22 }}>— Sustainability &amp; impact</Eyebrow>
+            <h1 className="k2-h1" style={{ lineHeight: 1.04, letterSpacing: '-0.03em', fontWeight: 500, margin: '0 0 28px', maxWidth: 980 }}>
+              Carbon-neutral fuel, <Em color="#FFB37A">verified at the gate and at the gauge.</Em>
+            </h1>
+            <p className="k2-body-lg" style={{ lineHeight: 1.6, maxWidth: 720, color: 'rgba(250,250,247,0.92)', margin: 0, textShadow: '0 1px 12px rgba(0,0,0,0.8)' }}>
+              Sustainability is the entire business — not a side commitment. Every tonne of pellets we ship is a tonne of imported coal not burnt, and a tonne of crop residue not set on fire in the open.
+            </p>
+          </div>
+        </div>
+
+        {/* Bottom — kicker */}
+        <div className="k2-section-pad" style={{ position: 'relative', zIndex: 1, width: '100%', color: 'var(--k2-on-ink)', paddingBottom: 48 }}>
+          <div style={{ maxWidth: 1320, margin: '0 auto' }}>
+            <div className="k2-hero-kicker" style={{ paddingTop: 24, borderTop: '1px solid rgba(250,250,247,0.15)', color: 'rgba(250,250,247,0.6)' }}>
+              {['VCS / Gold Standard eligible', 'CAQM aligned', 'ISO 14001 in progress'].map((k, i) => <span key={i}>● {k}</span>)}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Field image + impact statement */}
       <section style={{ padding: '96px 32px' }}>

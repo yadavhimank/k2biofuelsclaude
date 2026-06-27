@@ -77,10 +77,10 @@ export default function HomePage() {
   return (
     <>
       {/* =========== HERO — image-led =========== */}
-      <section data-screen-label="01 Home — Hero" className="k2-home-hero-section" style={{
+      <section data-screen-label="01 Home — Hero" className="k2-home-hero" style={{
         position: 'relative',
-        height: 'clamp(360px, 50vw, 620px)',
         overflow: 'hidden',
+        height: 'clamp(320px, 44vw, 540px)',
       }}>
         <Image
           src="/heroimage.png"
@@ -140,7 +140,7 @@ export default function HomePage() {
               paddingLeft: i === 0 ? 0 : 24,
               borderLeft: i === 0 ? 'none' : '1px solid rgba(250,250,247,0.12)',
             }}>
-              <div style={{ fontSize: 48, fontWeight: 300, letterSpacing: '-0.03em', lineHeight: 1 }}>
+              <div className="k2-metric-num" style={{ fontSize: 48, fontWeight: 300, letterSpacing: '-0.03em', lineHeight: 1 }}>
                 {num}
                 <span style={{ fontSize: 14, color: i === 3 ? 'var(--k2-cta)' : 'rgba(250,250,247,0.55)', marginLeft: 6 }}>
                   {unit}
@@ -155,8 +155,8 @@ export default function HomePage() {
       </section>
 
       {/* =========== INTRO PARAGRAPH (under metrics, anchors home story) =========== */}
-      <section style={{ padding: '112px 32px 80px' }}>
-        <div className="k2-grid-split-narrow" style={{ maxWidth: 1320, margin: '0 auto', gap: 80 }}>
+      <section className="k2-home-intro-section">
+        <div className="k2-grid-split-narrow k2-home-intro-grid" style={{ maxWidth: 1320, margin: '0 auto' }}>
           <div>
             <Eyebrow style={{ marginBottom: 14 }}>— 01 / Who we are</Eyebrow>
             <h2 style={{
@@ -186,17 +186,17 @@ export default function HomePage() {
       </section>
 
       {/* =========== PRODUCT MATRIX =========== */}
-      <section style={{ padding: '80px 32px', background: 'var(--k2-stone)' }}>
+      <section className="k2-home-products-section" style={{ padding: '80px 32px', background: 'var(--k2-stone)' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
-          <div className="k2-section-header" style={{ marginBottom: 56 }}>
+          <div className="k2-home-products-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 56 }}>
             <div>
               <Eyebrow style={{ marginBottom: 12 }}>— 02 / Products</Eyebrow>
-              <h2 style={{ fontSize: 42, margin: 0, maxWidth: 720, lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
-                Pellets and briquettes,<br />
+              <h2 className="k2-home-products-h2" style={{ fontSize: 42, margin: 0, maxWidth: 720, lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
+                Pellets and briquettes,<br className="k2-home-products-br" />
                 <Em>lab-tested at every batch.</Em>
               </h2>
             </div>
-            <div style={{ fontSize: 14, color: 'var(--k2-text-2)', maxWidth: 320, textAlign: 'right', lineHeight: 1.6 }}>
+            <div className="k2-home-products-desc" style={{ fontSize: 14, color: 'var(--k2-text-2)', maxWidth: 320, textAlign: 'right', lineHeight: 1.6 }}>
               Two product lines, multiple agro-residue blends. GCV, moisture and fines tested on every dispatch.
             </div>
           </div>
@@ -266,8 +266,8 @@ export default function HomePage() {
       </section>
 
       {/* =========== SUSTAINABILITY =========== */}
-      <section style={{ padding: '112px 32px' }}>
-        <div className="k2-grid-stack-mobile" style={{ maxWidth: 1320, margin: '0 auto', gridTemplateColumns: '1fr 1.3fr', gap: 80, alignItems: 'start' }}>
+      <section className="k2-home-sustain-section">
+        <div className="k2-grid-stack-mobile k2-home-sustain-grid" style={{ maxWidth: 1320, margin: '0 auto', gridTemplateColumns: '1fr 1.3fr', alignItems: 'start' }}>
           <div>
             <Eyebrow style={{ marginBottom: 14 }}>— 03 / Sustainability</Eyebrow>
             <h2 style={{ fontSize: 42, margin: '0 0 24px', lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
