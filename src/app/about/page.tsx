@@ -11,7 +11,7 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero — full-bleed about banner */}
-      <section data-screen-label="About · Hero" style={{ position: 'relative', height: 'calc(100vh - 96px)', minHeight: 520, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', overflow: 'hidden' }}>
+      <section data-screen-label="About · Hero" style={{ position: 'relative', height: '100vh', minHeight: 600, marginTop: '-120px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', overflow: 'hidden' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/aboutbanner.png"
@@ -22,7 +22,7 @@ export default function AboutPage() {
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.10) 70%, rgba(0,0,0,0.65) 100%)' }} />
 
         {/* Top — eyebrow, title, body */}
-        <div className="k2-section-pad" style={{ position: 'relative', zIndex: 1, width: '100%', color: 'var(--k2-on-ink)', paddingTop: 96 }}>
+        <div className="k2-section-pad" style={{ position: 'relative', zIndex: 1, width: '100%', color: 'var(--k2-on-ink)', paddingTop: 160 }}>
           <div style={{ maxWidth: 1320, margin: '0 auto' }}>
             <Eyebrow accent="#FFB37A" style={{ marginBottom: 22 }}>— A subsidiary of K2 Group of Industries</Eyebrow>
             <h1 className="k2-h1" style={{ lineHeight: 1.04, letterSpacing: '-0.03em', fontWeight: 500, margin: '0 0 28px', maxWidth: 980 }}>

@@ -10,228 +10,258 @@ interface K2HeaderProps {
   dark?: boolean;
 }
 
-function HamburgerIcon() {
+function ArrowRightIcon() {
   return (
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-      <rect y="4"  width="22" height="2" rx="1" fill="currentColor" />
-      <rect y="10" width="22" height="2" rx="1" fill="currentColor" />
-      <rect y="16" width="22" height="2" rx="1" fill="currentColor" />
+    <svg
+      className="shrink-0 transition-transform duration-300 group-hover:translate-x-1"
+      width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"
+    >
+      <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
     </svg>
   );
 }
 
-function CloseIcon() {
+function MenuIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+      <rect y="4"  width="22" height="2" rx="1" fill="currentColor"/>
+      <rect y="10" width="22" height="2" rx="1" fill="currentColor"/>
+      <rect y="16" width="22" height="2" rx="1" fill="currentColor"/>
+    </svg>
+  );
+}
+
+function CloseMenuIcon() {
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <line x1="2" y1="2" x2="18" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <line x1="18" y1="2" x2="2" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <line x1="2"  y1="2"  x2="18" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+      <line x1="18" y1="2"  x2="2"  y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
     </svg>
   );
 }
 
 export function K2Header({ dark = false }: K2HeaderProps) {
-  const pathname = usePathname();
+  const pathname   = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const onDark = dark;
+  const [scrolled,   setScrolled]   = useState(false);
   const items = K2_ROUTES.filter((r) => r.path !== '/');
 
-  const linkColor       = onDark ? 'rgba(250,250,247,0.72)' : 'var(--k2-text-2)';
-  const linkActiveColor = onDark ? 'var(--k2-on-ink)' : 'var(--k2-ink)';
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [mobileOpen]);
 
-  // Close panel on route change
   useEffect(() => { setMobileOpen(false); }, [pathname]);
 
+  /* ── Derived styles ─────────────────────────────────────────────────────── */
+  const pillBg     = scrolled ? 'rgba(42,43,36,0.97)' : 'rgba(58,59,50,0.90)';
+  const pillShadow = scrolled
+    ? '0 24px 80px rgba(0,0,0,.32)'
+    : '0 20px 60px rgba(0,0,0,.22)';
+
   return (
-    <header style={{
-      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
-      padding: '12px 20px',
-      pointerEvents: 'none',
-    }}>
-      {/* ── Floating pill ── */}
-      <div style={{
-        maxWidth: 1320, margin: '0 auto',
-        background: onDark ? 'rgba(18,18,18,0.88)' : 'rgba(250,250,247,0.88)',
-        backdropFilter: 'blur(14px)',
-        WebkitBackdropFilter: 'blur(14px)',
-        border: `1px solid ${onDark ? 'rgba(250,250,247,0.10)' : 'rgba(0,0,0,0.08)'}`,
-        borderRadius: 16,
-        boxShadow: '0 4px 24px rgba(0,0,0,0.10)',
-        color: onDark ? 'var(--k2-on-ink)' : 'var(--k2-ink)',
-        pointerEvents: 'auto',
-        overflow: 'hidden',
-      }}>
-        <div className="k2-header-inner" style={{
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          gap: 24,
-        }}>
-          {/* Logo */}
-          <Link href="/" style={{
-            display: 'flex', alignItems: 'center',
-            color: 'inherit', textDecoration: 'none',
-          }}>
-            <K2Logo size={40} />
-          </Link>
+    <header className="fixed inset-x-0 top-6 z-50">
 
-          {/* Desktop nav */}
-          <nav style={{
-            display: 'flex', gap: 28, fontSize: 17, fontWeight: 500, alignItems: 'center',
-          }} className="k2-nav-desktop">
-            {items.map((r) => {
-              const active = pathname === r.path;
-              return (
-                <Link key={r.path} href={r.path} style={{
-                  color: active ? linkActiveColor : linkColor,
-                  paddingBottom: 2,
-                  borderBottom: active ? `1px solid ${linkActiveColor}` : '1px solid transparent',
-                  transition: 'color .15s ease, border-color .15s ease',
-                  textDecoration: 'none',
-                }}>
-                  {r.label}
-                </Link>
-              );
-            })}
-          </nav>
+      {/* ════════════════════════════════════════════════════════════════════
+          DESKTOP  xl+
+      ════════════════════════════════════════════════════════════════════ */}
+      <div className="hidden xl:block px-8">
+        <div className="max-w-[1600px] mx-auto">
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            {/* Desktop CTA — hidden on mobile via CSS */}
-            <Link href="/contact"
-              className="k2-header-quote"
-              style={{
-                fontSize: 16, fontWeight: 500, padding: '8px 16px',
-                border: `1px solid ${onDark ? 'rgba(250,250,247,0.3)' : 'var(--k2-ink)'}`,
-                borderRadius: 8,
-                letterSpacing: 0.2, transition: 'all .15s ease',
-                color: 'inherit', textDecoration: 'none',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = onDark ? 'rgba(250,250,247,0.06)' : 'var(--k2-ink)';
-                e.currentTarget.style.color = 'var(--k2-on-ink)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'transparent';
-                e.currentTarget.style.color = 'inherit';
-              }}
+          {/* Pill */}
+          <div
+            className="relative h-24 rounded-[36px] overflow-hidden border border-white/[0.08] transition-shadow duration-500"
+            style={{
+              background:           pillBg,
+              boxShadow:            pillShadow,
+              backdropFilter:       'blur(24px) saturate(180%)',
+              WebkitBackdropFilter: 'blur(24px) saturate(180%)',
+              transition:           'background 0.5s, box-shadow 0.5s',
+            }}
+          >
+
+            {/* ── White logo section ──────────────────────────────────────────
+                Outer wrapper carries drop-shadow so it follows the clipped edge.
+                Inner div uses clip-path: path() with a concave cubic bezier on
+                the right side — both control points pulled LEFT to x=192,
+                creating a ~17px inward dip (≈ 75px equivalent radius).
+
+                Geometry (height 96px):
+                  flat top/bottom at x=215
+                  concave midpoint at x=197.75  (dip = 17.25px)
+                  R ≈ 75px  (within the 70–90px spec)
+
+                The pill's overflow:hidden clips the left rounded corners to
+                match border-radius:36px — no extra work needed on the left side.
+            ─────────────────────────────────────────────────────────────── */}
+            <div
+              className="absolute left-0 inset-y-0 z-10 pointer-events-none"
+              style={{ width: '260px', filter: 'drop-shadow(4px 0 12px rgba(0,0,0,0.14))' }}
+              aria-hidden="true"
             >
-              Request quote →
+              <div
+                className="absolute inset-0 bg-white"
+                style={{ clipPath: 'path("M 0,0 H 215 C 192,0 192,96 215,96 H 0 Z")' }}
+              />
+            </div>
+
+            {/* Logo — pointer-events on, sits above white area */}
+            <Link href="/" className="absolute left-10 top-1/2 -translate-y-1/2 z-20">
+              <K2Logo size={74} />
             </Link>
 
-            {/* Hamburger — shown on mobile via CSS */}
-            <button
-              className="k2-nav-burger"
-              onClick={() => setMobileOpen(true)}
-              aria-label="Open menu"
-              aria-expanded={mobileOpen}
-              style={{
-                display: 'none', background: 'transparent', border: 'none',
-                padding: 8, cursor: 'pointer', color: 'inherit',
-                minHeight: 44, minWidth: 44,
-              }}
+            {/* ── CSS Grid: [logo-spacer | nav | cta] ─────────────────────────
+                220px spacer clears the white area's max extent (215px) plus
+                the 4px shadow spread, so nav never overlaps white.
+                Nav gets 1fr — always perfectly centered.
+            ─────────────────────────────────────────────────────────────── */}
+            <div
+              className="h-full items-center relative z-10"
+              style={{ display: 'grid', gridTemplateColumns: '220px 1fr 256px' }}
             >
-              <HamburgerIcon />
-            </button>
+              {/* spacer */}
+              <div />
+
+              {/* Navigation */}
+              <nav className="flex items-center justify-center gap-6 2xl:gap-[40px]">
+                {items.map((r) => {
+                  const active = pathname === r.path || pathname.startsWith(r.path + '/');
+                  return (
+                    <Link
+                      key={r.path}
+                      href={r.path}
+                      className="group relative text-[15px] 2xl:text-[18px] font-semibold tracking-[-0.02em] whitespace-nowrap transition-all duration-350 hover:-translate-y-0.5"
+                      style={{ color: active ? '#FF8A2B' : 'rgba(255,255,255,0.92)' }}
+                    >
+                      {r.label}
+                      {/* Underline — expands from center on hover, 75% on active */}
+                      <span
+                        className={`absolute left-1/2 -translate-x-1/2 -bottom-[5px] h-[2px] rounded-full bg-[#FF8A2B] transition-all duration-[350ms] ${
+                          active ? 'w-[75%]' : 'w-0 group-hover:w-full'
+                        }`}
+                      />
+                    </Link>
+                  );
+                })}
+              </nav>
+
+              {/* CTA — 16px inset from right edge */}
+              <div className="flex items-center justify-end pr-4">
+                <Link
+                  href="/contact"
+                  className="group flex h-[58px] items-center gap-3 rounded-full border border-[#FF8C2A] bg-[#F06518] px-6 2xl:px-8 text-[15px] 2xl:text-[17px] font-semibold text-white whitespace-nowrap transition-all duration-300 hover:-translate-y-[2px] hover:bg-[#FF7422]"
+                  style={{ boxShadow: '0 12px 32px rgba(240,101,24,.40)' }}
+                >
+                  Request quote
+                  <ArrowRightIcon />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* ── Backdrop overlay ── */}
-      <div
-        className={`k2-mobile-overlay${mobileOpen ? ' k2-mobile-overlay-open' : ''}`}
-        onClick={() => setMobileOpen(false)}
-        aria-hidden="true"
-        style={{ pointerEvents: mobileOpen ? 'auto' : 'none' }}
-      />
 
-      {/* ── Slide-in panel ── */}
+      {/* ════════════════════════════════════════════════════════════════════
+          MOBILE  < xl
+      ════════════════════════════════════════════════════════════════════ */}
+      {/* ── Mobile top bar ── */}
       <div
-        className={`k2-mobile-panel${mobileOpen ? ' k2-mobile-panel-open' : ''}`}
-        aria-label="Site navigation"
-        role="dialog"
-        aria-modal="true"
-        style={{ pointerEvents: 'auto' }}
+        className="xl:hidden flex items-center justify-between px-5 h-[60px] mx-4 rounded-full border border-white/[0.08]"
+        style={{
+          background:           'rgba(58,59,50,0.94)',
+          boxShadow:            '0 8px 32px rgba(0,0,0,.22)',
+          backdropFilter:       'blur(20px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+        }}
       >
-        {/* Panel header row */}
-        <div style={{
-          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-          paddingBottom: 20, marginBottom: 8,
-          borderBottom: '1px solid var(--k2-border)',
-        }}>
-          <Link href="/" onClick={() => setMobileOpen(false)} style={{ color: 'inherit', textDecoration: 'none' }}>
-            <K2Logo size={32} />
-          </Link>
-          <button
-            onClick={() => setMobileOpen(false)}
-            aria-label="Close menu"
-            style={{
-              background: 'transparent', border: 'none', cursor: 'pointer',
-              padding: 8, color: 'var(--k2-ink)',
-              minHeight: 44, minWidth: 44,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-            }}
-          >
-            <CloseIcon />
-          </button>
-        </div>
-
-        {/* Nav links */}
-        <nav style={{ flex: 1 }}>
-          {items.map((r) => {
-            const active = pathname === r.path;
-            return (
-              <Link
-                key={r.path}
-                href={r.path}
-                onClick={() => setMobileOpen(false)}
-                className="k2-mobile-nav-link"
-                style={{
-                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                  fontSize: 17, fontWeight: active ? 600 : 500,
-                  color: active ? 'var(--k2-ink)' : 'var(--k2-text-2)',
-                  borderBottom: '1px solid var(--k2-border)',
-                  textDecoration: 'none',
-                  letterSpacing: '-0.01em',
-                }}
-              >
-                <span>{r.label}</span>
-                <span style={{
-                  fontSize: 12, color: active ? 'var(--k2-cta)' : 'var(--k2-text-3)',
-                  opacity: active ? 1 : 0,
-                  transition: 'opacity .15s ease',
-                }}>●</span>
-              </Link>
-            );
-          })}
-        </nav>
-
-        {/* Bottom CTA */}
-        <div style={{ marginTop: 28 }}>
-          <Link
-            href="/contact"
-            onClick={() => setMobileOpen(false)}
-            style={{
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              gap: 8,
-              background: 'var(--k2-ink)', color: 'var(--k2-on-ink)',
-              padding: '14px 20px', borderRadius: 10,
-              fontSize: 15, fontWeight: 600, letterSpacing: 0.2,
-              textDecoration: 'none',
-            }}
-          >
-            Request a quote →
-          </Link>
-          <p style={{
-            marginTop: 12, textAlign: 'center',
-            fontSize: 12, color: 'var(--k2-text-3)',
-            fontFamily: 'var(--k2-mono)', letterSpacing: '0.04em',
-          }}>
-            Sample dispatched in 48 h
-          </p>
-        </div>
+        <Link href="/" className="shrink-0">
+          <K2Logo size={40} />
+        </Link>
+        <button
+          onClick={() => setMobileOpen((v) => !v)}
+          className="flex items-center justify-center w-10 h-10 rounded-full text-white hover:bg-white/10 transition-colors duration-150"
+          aria-label="Toggle navigation"
+          aria-expanded={mobileOpen}
+        >
+          <MenuIcon />
+        </button>
       </div>
+
+      {/* ── Mobile slide-in panel ── */}
+      {mobileOpen && (
+        <div className="xl:hidden fixed inset-0 z-60">
+
+          {/* Dim backdrop — click to close */}
+          <div
+            className="absolute inset-0 bg-black/40"
+            onClick={() => setMobileOpen(false)}
+            aria-hidden="true"
+          />
+
+          {/* White panel sliding in from right */}
+          <div
+            className="absolute right-0 top-0 bottom-0 w-[78%] sm:w-100 bg-white flex flex-col"
+            style={{ boxShadow: '-8px 0 48px rgba(0,0,0,0.18)', animation: 'k2PanelIn 0.28s cubic-bezier(0.32,0.72,0,1) both' }}
+          >
+
+            {/* Panel header */}
+            <div className="flex items-center justify-between px-7 py-5 border-b border-gray-100">
+              <Link href="/" onClick={() => setMobileOpen(false)}>
+                <K2Logo size={44} />
+              </Link>
+              <button
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center justify-center w-10 h-10 rounded-full text-gray-700 hover:bg-gray-100 transition-colors duration-150"
+                aria-label="Close menu"
+              >
+                <CloseMenuIcon />
+              </button>
+            </div>
+
+            {/* Nav links */}
+            <nav className="flex-1 overflow-y-auto">
+              {items.map((r) => {
+                const active = pathname === r.path || pathname.startsWith(r.path + '/');
+                return (
+                  <Link
+                    key={r.path}
+                    href={r.path}
+                    onClick={() => setMobileOpen(false)}
+                    className="block px-7 py-4.5 text-[19px] font-medium border-b border-gray-100 transition-colors duration-150"
+                    style={{ color: active ? '#FF8A2B' : '#111111' }}
+                  >
+                    {r.label}
+                  </Link>
+                );
+              })}
+            </nav>
+
+            {/* Bottom CTA */}
+            <div className="px-7 py-7">
+              <Link
+                href="/contact"
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center justify-center gap-2 w-full rounded-xl bg-[#0A1F0E] hover:bg-[#142B18] font-semibold py-4.25 text-[17px] transition-colors duration-200"
+                style={{ color: '#ffffff' }}
+              >
+                Request a quote
+                <ArrowRightIcon />
+              </Link>
+              <p className="text-center text-[12px] text-gray-400 mt-3" style={{ fontFamily: 'var(--k2-mono)' }}>
+                Sample dispatched in 48 h
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

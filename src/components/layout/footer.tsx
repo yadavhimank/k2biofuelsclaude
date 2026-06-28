@@ -101,7 +101,7 @@ export function K2Footer() {
             <span>·</span>
             <Link href="/terms"   style={{ color: 'inherit', textDecoration: 'none' }}>Terms</Link>
             <span>·</span>
-            <Link href="/contact" style={{ color: 'inherit', textDecoration: 'none' }}>Sitemap</Link>
+            <Link href="/sitemap" style={{ color: 'inherit', textDecoration: 'none' }}>Sitemap</Link>
           </span>
         </div>
       </div>

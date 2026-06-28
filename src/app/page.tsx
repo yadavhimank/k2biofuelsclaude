@@ -80,7 +80,8 @@ export default function HomePage() {
       <section data-screen-label="01 Home — Hero" className="k2-home-hero" style={{
         position: 'relative',
         overflow: 'hidden',
-        height: 'clamp(320px, 44vw, 540px)',
+        height: '100vh',
+        marginTop: '-120px',
       }}>
         <Image
           src="/heroimage.png"
@@ -92,10 +93,12 @@ export default function HomePage() {
         />
         <div style={{
           position: 'absolute', inset: 0,
-          background: 'linear-gradient(90deg, rgba(10,31,14,0.78) 0%, rgba(10,31,14,0.45) 50%, rgba(10,31,14,0.15) 100%)',
+          background: 'linear-gradient(90deg, rgba(10,31,14,0.82) 0%, rgba(10,31,14,0.52) 55%, rgba(10,31,14,0.18) 100%)',
         }} />
+
+        {/* Text content */}
         <div className="k2-home-hero-overlay" style={{
-          position: 'absolute', inset: 0,
+          position: 'absolute', inset: 0, zIndex: 1,
           display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
           color: '#FAFAF7',
         }}>
@@ -105,15 +108,17 @@ export default function HomePage() {
             </Eyebrow>
             <h1 className="k2-h1" style={{
               lineHeight: 1.03, letterSpacing: '-0.035em',
-              fontWeight: 500, margin: '0 0 28px', maxWidth: 980,
+              fontWeight: 700, margin: '0 0 28px', maxWidth: 980,
               textShadow: '0 1px 24px rgba(0,0,0,0.2)',
             }}>
               Industrial-grade biomass fuel,<br />
-              <Em color="#FFB37A">engineered for thermal plants.</Em>
+              <Em color="#7DC87E">engineered for thermal plants.</Em>
             </h1>
             <p className="k2-body-lg" style={{
               lineHeight: 1.55, color: 'rgba(250,250,247,0.85)',
-              maxWidth: 580, margin: '0 0 36px',
+              maxWidth: 520, margin: '0 0 36px',
+              borderLeft: '3px solid rgba(250,250,247,0.35)',
+              paddingLeft: 18,
             }}>
               Pellets and briquettes from agricultural residue, supplied to NCR thermal plants, sugar mills, paper plants and brick kilns across north India.
             </p>
@@ -122,37 +127,93 @@ export default function HomePage() {
                 <Button variant="accent">View product catalogue →</Button>
               </Link>
               <Link href="/contact" style={{ textDecoration: 'none' }}>
-                <Button variant="outline" light={false}>Talk to sales</Button>
+                <Button variant="outline" light={false}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                  </svg>
+                  Talk to sales
+                </Button>
               </Link>
             </div>
           </div>
         </div>
+
       </section>
 
-      {/* =========== METRICS STRIP =========== */}
-      <section style={{
-        background: 'var(--k2-ink)', color: 'var(--k2-on-ink)',
-        padding: '48px 32px',
-      }}>
-        <div className="k2-grid-4 k2-numbers-strip" style={{ maxWidth: 1320, margin: '0 auto', gap: 32 }}>
-          {metrics.map(([num, unit, label], i) => (
-            <div key={i} style={{
-              paddingLeft: i === 0 ? 0 : 24,
-              borderLeft: i === 0 ? 'none' : '1px solid rgba(250,250,247,0.12)',
-            }}>
-              <div className="k2-metric-num" style={{ fontSize: 48, fontWeight: 300, letterSpacing: '-0.03em', lineHeight: 1 }}>
-                {num}
-                <span style={{ fontSize: 14, color: i === 3 ? 'var(--k2-cta)' : 'rgba(250,250,247,0.55)', marginLeft: 6 }}>
-                  {unit}
-                </span>
+      {/* Metrics bar — below hero */}
+      <div className="k2-metrics-outer" style={{ background: 'var(--k2-ink)' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto' }}>
+          <div className="k2-hero-metrics" style={{
+            padding: '28px 0',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gap: 8,
+            borderTop: '1px solid rgba(250,250,247,0.08)',
+          }}>
+            {metrics.map(([num, unit, label], i) => (
+              <div key={i} style={{
+                display: 'flex', alignItems: 'center', gap: 14,
+                paddingLeft: i > 0 ? 24 : 0,
+                borderLeft: i > 0 ? '1px solid rgba(250,250,247,0.12)' : 'none',
+              }}>
+                <div style={{
+                  width: 42, height: 42, borderRadius: '50%', flexShrink: 0,
+                  background: 'rgba(45,122,61,0.35)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}>
+                  {i === 0 && (
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                      <circle cx="4" cy="4" r="1.8" fill="rgba(250,250,247,0.85)"/>
+                      <circle cx="9" cy="4" r="1.8" fill="rgba(250,250,247,0.85)"/>
+                      <circle cx="14" cy="4" r="1.8" fill="rgba(250,250,247,0.85)"/>
+                      <circle cx="4" cy="9" r="1.8" fill="rgba(250,250,247,0.85)"/>
+                      <circle cx="9" cy="9" r="1.8" fill="rgba(250,250,247,0.85)"/>
+                      <circle cx="14" cy="9" r="1.8" fill="rgba(250,250,247,0.85)"/>
+                      <circle cx="4" cy="14" r="1.8" fill="rgba(250,250,247,0.85)"/>
+                      <circle cx="9" cy="14" r="1.8" fill="rgba(250,250,247,0.85)"/>
+                      <circle cx="14" cy="14" r="1.8" fill="rgba(250,250,247,0.85)"/>
+                    </svg>
+                  )}
+                  {i === 1 && (
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                      <rect x="1" y="11" width="4" height="6" rx="1" fill="rgba(250,250,247,0.85)"/>
+                      <rect x="7" y="7" width="4" height="10" rx="1" fill="rgba(250,250,247,0.85)"/>
+                      <rect x="13" y="3" width="4" height="14" rx="1" fill="rgba(250,250,247,0.85)"/>
+                    </svg>
+                  )}
+                  {i === 2 && (
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                      <path d="M9 1L16 5V13L9 17L2 13V5L9 1Z" stroke="rgba(250,250,247,0.85)" strokeWidth="1.5"/>
+                      <line x1="9" y1="1" x2="9" y2="17" stroke="rgba(250,250,247,0.85)" strokeWidth="1.5"/>
+                      <line x1="2" y1="5" x2="16" y2="5" stroke="rgba(250,250,247,0.85)" strokeWidth="1.5"/>
+                    </svg>
+                  )}
+                  {i === 3 && (
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                      <path d="M9 1.5C6.51 1.5 4.5 3.51 4.5 6C4.5 9.75 9 16.5 9 16.5C9 16.5 13.5 9.75 13.5 6C13.5 3.51 11.49 1.5 9 1.5Z" stroke="rgba(250,250,247,0.85)" strokeWidth="1.5"/>
+                      <circle cx="9" cy="6" r="1.8" fill="rgba(250,250,247,0.85)"/>
+                    </svg>
+                  )}
+                </div>
+                <div>
+                  <div style={{
+                    fontSize: 28, fontWeight: 300, letterSpacing: '-0.03em',
+                    lineHeight: 1, color: '#FAFAF7',
+                  }}>
+                    {num}
+                    <span style={{ fontSize: 11, color: 'var(--k2-cta)', marginLeft: 5, fontWeight: 500 }}>
+                      {unit}
+                    </span>
+                  </div>
+                  <div style={{ fontSize: 12, color: 'rgba(250,250,247,0.58)', marginTop: 5 }}>
+                    {label}
+                  </div>
+                </div>
               </div>
-              <div style={{ fontSize: 14, color: 'rgba(250,250,247,0.65)', marginTop: 10 }}>
-                {label}
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </section>
+      </div>
 
       {/* =========== INTRO PARAGRAPH (under metrics, anchors home story) =========== */}
       <section className="k2-home-intro-section">

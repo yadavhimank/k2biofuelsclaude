@@ -82,6 +82,12 @@ input, textarea, select { font-family: inherit; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ─── Mobile nav panel slide-in from right ───────────────────────────────── */
+@keyframes k2PanelIn {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
 /* ─── Smooth in-page scrolling (for legal page TOC anchors) ─────────────── */
 html { scroll-behavior: smooth; }
 
@@ -113,6 +119,25 @@ html { scroll-behavior: smooth; }
 /* ─── Job row hover (careers page) ──────────────────────────────────────── */
 .k2-job-row:hover { background: var(--k2-stone); }
 
+/* ─── Sitemap row hover ──────────────────────────────────────────────────── */
+.k2-sitemap-row:hover { background: var(--k2-stone); }
+
+/* ─── Sitemap blog rows — responsive ────────────────────────────────────── */
+.k2-sitemap-blog-row  { grid-template-columns: minmax(0,1.1fr) minmax(0,2fr) 120px; }
+.k2-sitemap-blog-date-mob { display: none; }
+
+@media (max-width: 1023px) {
+  .k2-sitemap-blog-row  { grid-template-columns: minmax(0,1fr) 110px; }
+  .k2-sitemap-blog-excerpt { display: none; }
+}
+@media (max-width: 639px) {
+  .k2-sitemap-blog-row        { grid-template-columns: 1fr; gap: 6px 0 !important; }
+  .k2-sitemap-blog-date-desk  { display: none; }
+  .k2-sitemap-blog-date-mob   { display: block; }
+  .k2-sitemap-blog-excerpt    { display: none; }
+}
+
+
 /* ─── Products sticky nav link hover ────────────────────────────────────── */
 .k2-products-nav-link:hover { border-bottom-color: var(--k2-cta) !important; }
 
@@ -139,6 +164,118 @@ html { scroll-behavior: smooth; }
 /* Hide the "K2 Biofuels" wordmark on very small phones; logo mark stays */
 @media (max-width: 399px) {
   .k2-header-wordmark { display: none; }
+}
+
+/* ─── Dark Header: nav link — orange underline grows from center on hover ── */
+.k2-nav-dark-link {
+  position: relative;
+}
+.k2-nav-dark-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  right: 50%;
+  height: 1.5px;
+  background: #FF6A13;
+  border-radius: 2px;
+  transition: left 240ms cubic-bezier(0.4, 0, 0.2, 1),
+              right 240ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.k2-nav-dark-link:hover::after,
+.k2-nav-dark-link.active::after {
+  left: 0;
+  right: 0;
+}
+
+/* ─── V2 Header: logo — subtle spring rotation on hover ─────────────────── */
+.k2-header-logo-v2 {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 280ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.k2-header-logo-v2:hover {
+  transform: rotate(2deg) scale(1.04);
+}
+
+/* ─── V2 Header: nav links — center-grow orange underline ───────────────── */
+.k2-nav-v2-link {
+  position: relative;
+  font-size: 17px;
+  font-weight: 600;
+  color: #253126;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  padding-bottom: 4px;
+  transition: color 200ms ease, transform 220ms ease;
+  white-space: nowrap;
+}
+.k2-nav-v2-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  right: 50%;
+  height: 2px;
+  background: #FF6A13;
+  border-radius: 2px;
+  transition: left 260ms cubic-bezier(0.4, 0, 0.2, 1),
+              right 260ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.k2-nav-v2-link:hover {
+  color: #163B26;
+  transform: translateY(-2px);
+}
+.k2-nav-v2-link:hover::after,
+.k2-nav-v2-link.active::after {
+  left: 0;
+  right: 0;
+}
+.k2-nav-v2-link.active {
+  color: #163B26;
+}
+
+/* ─── V2 Header: thin vertical separator ─────────────────────────────────── */
+.k2-nav-v2-sep {
+  width: 1px;
+  height: 26px;
+  background: rgba(0, 0, 0, 0.10);
+  flex-shrink: 0;
+  border-radius: 2px;
+}
+
+/* ─── V2 Header: CTA — deep green, lifts to orange gradient on hover ──────── */
+.k2-cta-v2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 54px;
+  padding: 0 28px;
+  background: #163B26;
+  color: #FFFFFF;
+  border-radius: 18px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 260ms ease, transform 200ms ease, box-shadow 260ms ease;
+  box-shadow: 0 2px 12px rgba(22,59,38,0.22), 0 0 0 1px rgba(22,59,38,0.06);
+  white-space: nowrap;
+}
+.k2-cta-v2:hover {
+  background: linear-gradient(135deg, #FF6A13 0%, #D95208 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(255,106,19,0.30), 0 0 0 1px rgba(255,106,19,0.10);
+  color: #FFFFFF;
+}
+
+/* Hide separator + CTA on mobile (burger handles it) */
+@media (max-width: 900px) {
+  .k2-nav-v2-sep { display: none !important; }
+  .k2-cta-v2     { display: none !important; }
 }
 
 /* Mobile slide-in panel + backdrop overlay */
@@ -276,6 +413,47 @@ html { scroll-behavior: smooth; }
   .k2-section-pad { padding: 40px 20px 36px; }
 }
 
+/* ─── Legal pages (privacy / terms) ─────────────────────────────────────────
+   k2-legal-hero-pad is standalone (not combined with k2-section-pad) so it
+   fully controls all padding without cascade conflicts. */
+.k2-legal-hero-pad { padding: 160px 32px 64px; }
+.k2-legal-body     { padding: 64px 32px 96px; }
+.k2-legal-grid     { display: grid; grid-template-columns: 1fr 2.4fr; gap: 80px; align-items: start; }
+.k2-legal-nav      { position: sticky; top: 100px; align-self: start; }
+
+@media (max-width: 1023px) {
+  .k2-legal-hero-pad { padding: 140px 24px 56px; }
+  .k2-legal-body     { padding: 56px 24px 80px; }
+  .k2-legal-grid     { grid-template-columns: 1fr 2fr; gap: 48px; }
+}
+@media (max-width: 639px) {
+  .k2-legal-hero-pad { padding: 112px 20px 40px; }
+  .k2-legal-body     { padding: 40px 20px 64px; }
+  .k2-legal-grid     { grid-template-columns: 1fr; gap: 32px; }
+  .k2-legal-nav      { position: static; }
+}
+
+/* ─── Privacy + Terms pages ─────────────────────────────────────────────────*/
+.k2-privacy-principles      { display: grid; grid-template-columns: repeat(3, 1fr); }
+.k2-privacy-row             { grid-template-columns: 80px 1fr; }
+.k2-privacy-contact-grid    { display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: start; }
+.k2-privacy-contact-cards   { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.k2-terms-note-grid         { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start; }
+
+@media (max-width: 1023px) {
+  .k2-privacy-contact-grid  { grid-template-columns: 1fr; gap: 40px; }
+  .k2-terms-note-grid       { grid-template-columns: 1fr; gap: 40px; }
+}
+@media (max-width: 767px) {
+  .k2-privacy-principles    { grid-template-columns: 1fr; }
+  .k2-privacy-principle-item { border-right: none !important; border-bottom: 1px solid var(--k2-border-med); padding: 28px 20px !important; }
+  .k2-privacy-principle-item:last-child { border-bottom: none; }
+}
+@media (max-width: 639px) {
+  .k2-privacy-row           { grid-template-columns: 1fr; gap: 8px !important; }
+  .k2-privacy-meta          { gap: 8px !important; }
+}
+
 /* ─── Fluid typography ───────────────────────────────────────────────────────
    clamp(min, preferred-vw, max) keeps sizes readable at every width without
    hard breakpoint jumps. The preferred value uses vw so it scales smoothly
@@ -307,11 +485,10 @@ html { scroll-behavior: smooth; }
 }
 
 /* ─── Products sticky nav: responsive top offset + padding ──────────────────
-   Header is 57px on desktop, ~53px on mobile (less padding).
-   Padding reduced on small screens to give the scroll track more room. */
-.k2-products-nav-bar { top: 57px; padding: 14px 32px; }
+   Header pill bottom: 20px top-offset + 94px height = 114px from viewport top. */
+.k2-products-nav-bar { top: 120px; padding: 14px 32px; }
 @media (max-width: 639px) {
-  .k2-products-nav-bar { top: 53px; padding: 12px 20px; }
+  .k2-products-nav-bar { top: 120px; padding: 12px 20px; }
 }
 
 /* ─── Horizontal scroll for table-style grids ────────────────────────────────
@@ -546,14 +723,14 @@ html { scroll-behavior: smooth; }
 /* FAQ page: sticky filter bar */
 .k2-faq-filter-bar {
   position: sticky;
-  top: 57px;
+  top: 120px;
   z-index: 30;
   background: var(--k2-canvas);
   border-bottom: 1px solid var(--k2-border);
   padding: 14px 32px;
 }
 @media (max-width: 639px) {
-  .k2-faq-filter-bar { top: 53px; padding: 12px 20px; }
+  .k2-faq-filter-bar { top: 120px; padding: 12px 20px; }
 }
 .k2-faq-filter-inner {
   max-width: 1320px;
@@ -639,15 +816,42 @@ html { scroll-behavior: smooth; }
   }
 }
 
-/* ─── Home hero — full height on mobile so content isn't clipped ─────────── */
+/* ─── Home hero — full height; pull up by full header footprint ──────────── */
 @media (max-width: 639px) {
-  .k2-home-hero { height: calc(100vh - 96px) !important; min-height: 500px !important; }
+  .k2-home-hero { height: 100vh !important; min-height: 600px !important; }
 }
 
-/* ─── Home hero overlay — bottom padding scales on mobile ────────────────── */
-.k2-home-hero-overlay { padding: 64px 32px 80px; }
+/* ─── Home hero overlay — bottom padding clears the metrics bar ──────────── */
+.k2-home-hero-overlay { padding: 0 32px 168px; }
 @media (max-width: 639px) {
-  .k2-home-hero-overlay { padding: 32px 20px 40px; }
+  .k2-home-hero-overlay {
+    padding: 140px 20px 48px;
+    justify-content: flex-start !important;
+  }
+}
+
+/* ─── Home metrics bar — responsive ─────────────────────────────────────── */
+.k2-metrics-outer { padding: 0 32px; }
+
+@media (max-width: 1023px) {
+  .k2-hero-metrics {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0 !important;
+  }
+  .k2-hero-metrics > div {
+    padding: 20px 0 !important;
+    border-left: none !important;
+    border-bottom: 1px solid rgba(250,250,247,0.08);
+  }
+  .k2-hero-metrics > div:nth-child(odd)  { padding-right: 16px !important; border-right: 1px solid rgba(250,250,247,0.08); }
+  .k2-hero-metrics > div:nth-child(even) { padding-left: 16px !important; }
+  .k2-hero-metrics > div:nth-child(3),
+  .k2-hero-metrics > div:nth-child(4)    { border-bottom: none; }
+}
+
+@media (max-width: 639px) {
+  .k2-metrics-outer { padding: 0 20px; }
+  .k2-hero-metrics  { padding: 4px 0 !important; }
 }
 
 /* ─── Home intro section — padding and gap, desktop → mobile ────────────── */
@@ -687,13 +891,13 @@ html { scroll-behavior: smooth; }
 /* ─── Newsroom: sticky tab bar ───────────────────────────────────────────── */
 .k2-newsroom-tab-bar {
   position: sticky;
-  top: 57px;
+  top: 120px;
   z-index: 30;
   background: var(--k2-canvas);
   border-bottom: 1px solid var(--k2-border);
 }
 @media (max-width: 639px) {
-  .k2-newsroom-tab-bar { top: 53px; }
+  .k2-newsroom-tab-bar { top: 120px; }
 }
 /* Desktop: wrap provides the 32px padding; tabs are a plain flex row */
 .k2-newsroom-tab-wrap { padding: 0 32px; }
