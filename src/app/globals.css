@@ -484,11 +484,11 @@ html { scroll-behavior: smooth; }
   .k2-footer-contact { grid-column: 1 / -1; }
 }
 
-/* ─── Products sticky nav: responsive top offset + padding ──────────────────
-   Header pill bottom: 20px top-offset + 94px height = 114px from viewport top. */
-.k2-products-nav-bar { top: 120px; padding: 14px 32px; }
+/* ─── Products jump-to nav: static bar below banner ─────────────────────── */
+.k2-products-nav-bar { padding: 14px 32px; }
 @media (max-width: 639px) {
-  .k2-products-nav-bar { top: 120px; padding: 12px 20px; }
+  .k2-products-nav-bar { padding: 12px 16px; }
+  .k2-products-nav-scroll { gap: 20px; font-size: 13px; }
 }
 
 /* ─── Horizontal scroll for table-style grids ────────────────────────────────
@@ -524,7 +524,7 @@ html { scroll-behavior: smooth; }
    Uses !important to reset inline borderLeft on first-in-row items. */
 .k2-about-facts {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
 }
 @media (max-width: 1023px) {
   .k2-about-facts { grid-template-columns: repeat(3, 1fr); }
@@ -1002,4 +1002,117 @@ html { scroll-behavior: smooth; }
 /* ─── Certification table container — reduce padding on mobile ─────────────── */
 @media (max-width: 639px) {
   .k2-cert-box { padding: 16px !important; }
+}
+
+/* ─── Gallery page ──────────────────────────────────────────────────────────
+   3-column masonry-style grid. Wide items span 2 cols.
+   Hover overlay fades in with caption. Lightbox handled via JS. */
+.k2-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.k2-gallery-item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--k2-stone);
+  aspect-ratio: 4/3;
+  display: block;
+  border: none;
+  padding: 0;
+}
+.k2-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s ease;
+}
+.k2-gallery-item:hover img,
+.k2-gallery-item:focus-visible img { transform: scale(1.05); }
+.k2-gallery-item:focus-visible { outline: 2px solid var(--k2-cta); outline-offset: 2px; }
+.k2-gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.08) 52%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.22s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 18px;
+  pointer-events: none;
+}
+.k2-gallery-item:hover .k2-gallery-overlay,
+.k2-gallery-item:focus-visible .k2-gallery-overlay { opacity: 1; }
+.k2-gallery-wide { grid-column: span 2; }
+
+/* Gallery filter strip */
+.k2-gallery-filter {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  overflow-x: auto;
+  scrollbar-width: none;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+.k2-gallery-filter::-webkit-scrollbar { display: none; }
+.k2-gallery-filter-btn {
+  background: none;
+  border: 1px solid rgba(250,250,247,0.18);
+  color: rgba(250,250,247,0.70);
+  padding: 8px 16px;
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  white-space: nowrap;
+  border-radius: 2px;
+  font-family: var(--k2-sans);
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.k2-gallery-filter-btn:hover {
+  border-color: rgba(250,250,247,0.42);
+  color: var(--k2-on-ink);
+}
+.k2-gallery-active {
+  background: var(--k2-on-ink) !important;
+  color: var(--k2-ink) !important;
+  border-color: var(--k2-on-ink) !important;
+}
+
+/* Responsive breakpoints — full gallery page */
+@media (max-width: 1023px) {
+  .k2-gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+}
+@media (max-width: 639px) {
+  .k2-gallery-grid { grid-template-columns: 1fr; gap: 6px; }
+  .k2-gallery-wide { grid-column: span 1; }
+  .k2-gallery-filter { gap: 6px; }
+  .k2-gallery-filter-btn { padding: 7px 12px; font-size: 12px; min-height: 36px; }
+}
+
+/* Home page gallery preview — compact 3-col grid, hides last 2 on mobile */
+.k2-home-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.k2-home-gallery-grid .k2-gallery-item {
+  aspect-ratio: unset;
+  height: 200px;
+}
+@media (max-width: 1023px) {
+  .k2-home-gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .k2-home-gallery-grid .k2-gallery-item { height: 180px; }
+}
+@media (max-width: 639px) {
+  .k2-home-gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .k2-home-gallery-grid .k2-gallery-item { height: 140px; }
+  .k2-home-gallery-extra { display: none !important; }
 }

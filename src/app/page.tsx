@@ -53,6 +53,7 @@ const infraSpecs: [string, string][] = [
   ['Installed capacity', '252 TPD'],
   ['Annual output',      '~80,000 MT'],
   ['Storage capacity',   '5,500 MT covered'],
+  ['On-site solar',      '3.5 MW captive · ~52 lakh kWh/yr'],
   ['Workforce',          '800+ across the K2 Group'],
 ];
 
@@ -461,6 +462,73 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* =========== GALLERY TEASER =========== */}
+      <section style={{ padding: '80px 32px', background: 'var(--k2-ink)' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto' }}>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-end',
+            marginBottom: 36,
+            flexWrap: 'wrap',
+            gap: 16,
+          }}>
+            <div>
+              <Eyebrow accent="var(--k2-cta)" style={{ marginBottom: 12 }}>— 06 / Gallery</Eyebrow>
+              <h2 style={{
+                fontSize: 'clamp(28px, 3.5vw, 40px)',
+                margin: 0, lineHeight: 1.1,
+                letterSpacing: '-0.025em', fontWeight: 500,
+                color: 'var(--k2-on-ink)',
+              }}>
+                The plant, the product,<br />
+                <Em color="#7DC87E">in pictures.</Em>
+              </h2>
+            </div>
+            <Link href="/gallery" style={{
+              fontFamily: 'var(--k2-mono)', fontSize: 14,
+              letterSpacing: '0.05em', color: 'var(--k2-cta)',
+              textDecoration: 'none', borderBottom: '1px solid var(--k2-cta)',
+              paddingBottom: 2, whiteSpace: 'nowrap',
+            }}>
+              View full gallery →
+            </Link>
+          </div>
+
+          <div className="k2-home-gallery-grid">
+            {(
+              [
+                { src: '/Plantaerialoverview.png',           alt: 'Aerial overview of K2 Biofuels plant, Rewari',              caption: 'Aerial overview · Rewari plant',   wide: true  },
+                { src: '/news/nitin-gadkari-speech.jpg',     alt: 'Union Minister Nitin Gadkari at K2 inauguration',           caption: 'Inauguration · 2024',               wide: false },
+                { src: '/MillAPaddyline.png',                alt: 'Mill A — paddy straw processing line',                      caption: 'Mill A — Paddy straw line',         wide: false },
+                { src: '/productpellet1.png',                alt: 'Biomass pellets 6–8mm',                                     caption: 'Biomass pellets · 6–8 mm',          wide: false },
+                { src: '/Unburntpaddyfield.png',             alt: 'Unburnt paddy field, Haryana',                              caption: 'Sustainability · Haryana',          wide: false, extra: true },
+                { src: '/Qualitylab.png',                    alt: 'Quality control laboratory at K2 Biofuels',                 caption: 'Quality control lab',               wide: false, extra: true },
+              ] as { src: string; alt: string; caption: string; wide: boolean; extra?: boolean }[]
+            ).map((img, i) => (
+              <Link
+                key={i}
+                href="/gallery"
+                className={[
+                  'k2-gallery-item',
+                  img.wide  ? 'k2-gallery-wide' : '',
+                  img.extra ? 'k2-home-gallery-extra' : '',
+                ].filter(Boolean).join(' ')}
+                style={{ textDecoration: 'none' }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={img.src} alt={img.alt} loading="lazy" />
+                <div className="k2-gallery-overlay">
+                  <div style={{ fontSize: 13, fontWeight: 500, color: '#fff', lineHeight: 1.3 }}>
+                    {img.caption}
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* =========== LATEST FROM NEWSROOM + BLOG =========== */}
       <section style={{ padding: '80px 32px', background: 'var(--k2-stone)' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
@@ -470,7 +538,7 @@ export default function HomePage() {
             flexWrap: 'wrap', gap: 16,
           }}>
             <div>
-              <Eyebrow style={{ marginBottom: 12 }}>— 06 / Latest</Eyebrow>
+              <Eyebrow style={{ marginBottom: 12 }}>— 07 / Latest</Eyebrow>
               <h2 style={{
                 fontSize: 'clamp(28px, 3.5vw, 42px)',
                 margin: 0, lineHeight: 1.1,

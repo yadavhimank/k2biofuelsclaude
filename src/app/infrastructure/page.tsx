@@ -64,6 +64,8 @@ export default function InfrastructurePage() {
                 ['Bagging capacity', '180 TPD automated'],
                 ['Weighbridge capacity', '60 MT load-cell, sealed'],
                 ['Power load', '1.6 MW peak'],
+                ['On-site solar', '3.5 MW captive · 100% self-consumed'],
+                ['Solar generation', '~52 lakh kWh / year (est.)'],
                 ['Operating shifts', '3 × 8 hrs · 24/7'],
               ].map(([k, v]) => (
                 <div key={k} style={{
@@ -198,6 +200,55 @@ export default function InfrastructurePage() {
                 <p style={{ fontSize: 14, lineHeight: 1.6, color: 'rgba(250,250,247,0.65)', margin: 0 }}>{b}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* On-site solar */}
+      <section style={{ padding: '96px 32px', background: 'var(--k2-stone)' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto' }}>
+          <div className="k2-grid-stack-mobile" style={{ gridTemplateColumns: '1fr 1.4fr', gap: 64, alignItems: 'start' }}>
+            <div>
+              <Eyebrow style={{ marginBottom: 14 }}>— 05 / On-site solar</Eyebrow>
+              <h2 style={{ fontSize: 38, margin: '0 0 22px', lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
+                3.5 MW captive solar,<br />
+                <Em>every unit stays in-plant.</Em>
+              </h2>
+              <p style={{ fontSize: 15, lineHeight: 1.7, color: 'var(--k2-text-2)', margin: '0 0 20px' }}>
+                Our Rewari facility runs a 3.5 MW captive solar installation. Every unit of solar power generated is consumed within the plant — pellet mills, rotary dryers, bagging lines, quality lab and support systems all draw from it. Zero export to grid.
+              </p>
+              <p style={{ fontSize: 15, lineHeight: 1.7, color: 'var(--k2-text-2)', margin: '0 0 20px' }}>
+                Haryana receives 5.0–5.5 peak sun hours per day. At that yield, our 3.5 MW array generates an estimated 52 lakh kWh per year — offsetting ~4,300 tonnes of CO₂ annually versus drawing the same energy from the Haryana DISCOM grid.
+              </p>
+              <p style={{ fontSize: 15, lineHeight: 1.7, color: 'var(--k2-text-2)', margin: 0 }}>
+                The result: a biomass fuel plant powered substantially by the sun. The combination of zero-sulphur feedstock, solar-powered production, and agricultural residue utilisation makes K2 one of the lowest Scope 1 + Scope 2 producers in its category.
+              </p>
+            </div>
+
+            <div>
+              <div className="k2-grid-2" style={{ gap: 12, marginBottom: 12 }}>
+                {[
+                  ['3.5 MW',          'Installed solar capacity'],
+                  ['~52 lakh kWh',    'Estimated annual generation'],
+                  ['~4,300 t CO₂',    'Offset per year vs. grid power'],
+                  ['100%',            'Self-consumed — captive use only'],
+                ].map(([v, l]) => (
+                  <div key={l} style={{ background: 'var(--k2-surface)', border: '1px solid var(--k2-border-med)', padding: '28px 24px' }}>
+                    <div style={{ fontSize: 34, fontWeight: 300, letterSpacing: '-0.025em', color: 'var(--k2-ink)', lineHeight: 1, marginBottom: 10 }}>
+                      {v}
+                    </div>
+                    <div style={{ fontSize: 13, color: 'var(--k2-text-2)', lineHeight: 1.45 }}>{l}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div style={{ padding: '20px 24px', background: 'var(--k2-ink)', color: 'var(--k2-on-ink)', borderLeft: '3px solid var(--k2-cta)' }}>
+                <Eyebrow accent="var(--k2-cta)" style={{ marginBottom: 8 }}>Why captive matters</Eyebrow>
+                <p style={{ fontSize: 14, lineHeight: 1.65, color: 'rgba(250,250,247,0.78)', margin: 0 }}>
+                  Industrial electricity in Haryana costs ~₹6.95 per unit (HERC 2025–26 tariff). At 52 lakh units per year, solar captive use saves an estimated ₹3.5 crore annually — reducing both operating cost and Scope 2 carbon footprint.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

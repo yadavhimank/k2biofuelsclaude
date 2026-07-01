@@ -76,12 +76,13 @@ export default function SustainabilityPage() {
       <section style={{ padding: '64px 32px', background: 'var(--k2-ink)', color: 'var(--k2-on-ink)' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
           <Eyebrow accent="var(--k2-cta)" style={{ marginBottom: 24 }}>— 02 / By the numbers</Eyebrow>
-          <div className="k2-grid-4 k2-numbers-strip" style={{ gap: 24 }}>
+          <div className="k2-numbers-strip" style={{ gap: 24, display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)' }}>
             {[
-              ['~80K', 'MT/yr', 'Pellets produced annually'],
-              ['~80K', 'MT/yr', 'Agro residue diverted from burning'],
-              ['~1:1', 'ratio', 'Tonne pelletised vs. coal displaced'],
-              ['~6K', 'acres', 'Fields kept unburnt (est. last season)'],
+              ['~80K', 'MT/yr',  'Pellets produced annually'],
+              ['~80K', 'MT/yr',  'Agro residue diverted from burning'],
+              ['~1:1', 'ratio',  'Tonne pelletised vs. coal displaced'],
+              ['~6K',  'acres',  'Fields kept unburnt (est. last season)'],
+              ['3.5',  'MW',     'On-site captive solar · 100% self-consumed'],
             ].map(([n, u, l], i) => (
               <div key={i} style={{ paddingLeft: i === 0 ? 0 : 24, borderLeft: i === 0 ? 'none' : '1px solid rgba(250,250,247,0.12)' }}>
                 <div style={{ fontSize: 56, fontWeight: 300, letterSpacing: '-0.035em', lineHeight: 1 }}>
@@ -113,7 +114,7 @@ export default function SustainabilityPage() {
               ['Reduced GHG emissions', 'Biomass combustion is broadly carbon-neutral over its lifecycle when sourced from agricultural residue. We measure and report displacement.'],
               ['Lower carbon footprint', 'Industries co-firing our pellets reduce Scope 1 emissions and de-risk against carbon-pricing exposure.'],
               ['Agricultural waste utilisation', 'Crop residue that would otherwise be burnt in the open becomes a saleable commodity for farmers and a fuel for industry.'],
-              ['Renewable energy generation', 'Pellets and briquettes power thermal plants, sugar mills, paper plants and cogen units — replacing imported coal at point of use.'],
+              ['Renewable energy generation', 'Pellets and briquettes power thermal plants, sugar mills, paper plants and cogen units — displacing coal at point of use. Our 3.5 MW on-site solar plant generates ~52 lakh kWh per year, powering production itself on renewable electricity.'],
             ].map(([h, b], i) => (
               <div key={h} style={{
                 padding: '32px 28px',
@@ -157,6 +158,7 @@ export default function SustainabilityPage() {
                 <div>Status</div>
               </div>
               {[
+                ['On-site solar · 3.5 MW captive (100% self-consumed)', 'Active'],
                 ['VCS / Gold Standard carbon project', 'In progress'],
                 ['SBP certification', 'Target FY26'],
                 ['ISO 14001 — Environmental management', 'In progress'],

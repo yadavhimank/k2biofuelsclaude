@@ -76,6 +76,11 @@ export const PAGE_METADATA = {
     'Blog | K2BioFuels Pvt. Ltd.',
     'Insights on biomass energy, agricultural residue management, CAQM regulations, and the economics of switching from coal to biomass fuel in industrial applications.',
   ),
+  gallery: page(
+    '/gallery',
+    'Gallery | K2BioFuels Pvt. Ltd.',
+    'Photos and videos from K2 Biofuels — plant infrastructure, inauguration milestones, biomass products, and sustainability work across Haryana and Punjab.',
+  ),
   newsroom: page(
     '/newsroom',
     'Newsroom | K2BioFuels Pvt. Ltd.',
