@@ -82,7 +82,11 @@ export default function HomePage() {
         position: 'relative',
         overflow: 'hidden',
         height: '100vh',
+        minHeight: 600,
         marginTop: '-120px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
       }}>
         <Image
           src="/heroimage.png"
@@ -94,16 +98,16 @@ export default function HomePage() {
         />
         <div style={{
           position: 'absolute', inset: 0,
-          background: 'linear-gradient(90deg, rgba(10,31,14,0.82) 0%, rgba(10,31,14,0.52) 55%, rgba(10,31,14,0.18) 100%)',
+          background: 'linear-gradient(to bottom, rgba(10,31,14,0.78) 0%, rgba(10,31,14,0.42) 55%, rgba(10,31,14,0.12) 72%, rgba(10,31,14,0.72) 100%)',
         }} />
 
-        {/* Text content */}
-        <div className="k2-home-hero-overlay" style={{
-          position: 'absolute', inset: 0, zIndex: 1,
-          display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
-          color: '#FAFAF7',
+        {/* Top — eyebrow, h1, body, buttons */}
+        <div className="k2-section-pad" style={{
+          position: 'relative', zIndex: 1,
+          width: '100%', color: '#FAFAF7',
+          paddingTop: 160,
         }}>
-          <div className="k2-hero-content" style={{ maxWidth: 1320, margin: '0 auto', width: '100%' }}>
+          <div style={{ maxWidth: 1320, margin: '0 auto' }}>
             <Eyebrow bullet accent="#FFB37A" style={{ marginBottom: 22 }}>
               Biomass pellet manufacturing · Rewari, Haryana
             </Eyebrow>
@@ -123,7 +127,7 @@ export default function HomePage() {
             }}>
               Pellets and briquettes from agricultural residue, supplied to NCR thermal plants, sugar mills, paper plants and brick kilns across north India.
             </p>
-            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <div className="k2-hero-btns" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
               <Link href="/products" style={{ textDecoration: 'none' }}>
                 <Button variant="accent">View product catalogue →</Button>
               </Link>
@@ -135,6 +139,25 @@ export default function HomePage() {
                   Talk to sales
                 </Button>
               </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom — kicker strip */}
+        <div className="k2-section-pad" style={{
+          position: 'relative', zIndex: 1,
+          width: '100%', color: '#FAFAF7',
+          paddingBottom: 48,
+        }}>
+          <div style={{ maxWidth: 1320, margin: '0 auto' }}>
+            <div className="k2-hero-kicker" style={{
+              paddingTop: 24,
+              borderTop: '1px solid rgba(250,250,247,0.15)',
+              color: 'rgba(250,250,247,0.6)',
+            }}>
+              {['252 TPD capacity', 'Rewari · Haryana', 'Pellets · Briquettes', '3.5 MW on-site solar'].map((k, i) => (
+                <span key={i}>● {k}</span>
+              ))}
             </div>
           </div>
         </div>

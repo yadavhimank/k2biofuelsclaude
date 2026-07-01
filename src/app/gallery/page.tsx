@@ -15,8 +15,8 @@ export default function GalleryPage() {
       <section
         style={{
           position: 'relative',
-          height: '70vh',
-          minHeight: 520,
+          height: '100vh',
+          minHeight: 600,
           marginTop: '-120px',
           display: 'flex',
           flexDirection: 'column',

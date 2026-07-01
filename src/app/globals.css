@@ -821,15 +821,6 @@ html { scroll-behavior: smooth; }
   .k2-home-hero { height: 100vh !important; min-height: 600px !important; }
 }
 
-/* ─── Home hero overlay — bottom padding clears the metrics bar ──────────── */
-.k2-home-hero-overlay { padding: 0 32px 168px; }
-@media (max-width: 639px) {
-  .k2-home-hero-overlay {
-    padding: 140px 20px 48px;
-    justify-content: flex-start !important;
-  }
-}
-
 /* ─── Home metrics bar — responsive ─────────────────────────────────────── */
 .k2-metrics-outer { padding: 0 32px; }
 
@@ -888,16 +879,10 @@ html { scroll-behavior: smooth; }
   .k2-numbers-strip .k2-metric-num { font-size: 34px !important; }
 }
 
-/* ─── Newsroom: sticky tab bar ───────────────────────────────────────────── */
+/* ─── Newsroom: tab bar — static below banner ───────────────────────────── */
 .k2-newsroom-tab-bar {
-  position: sticky;
-  top: 120px;
-  z-index: 30;
   background: var(--k2-canvas);
   border-bottom: 1px solid var(--k2-border);
-}
-@media (max-width: 639px) {
-  .k2-newsroom-tab-bar { top: 120px; }
 }
 /* Desktop: wrap provides the 32px padding; tabs are a plain flex row */
 .k2-newsroom-tab-wrap { padding: 0 32px; }
@@ -907,12 +892,17 @@ html { scroll-behavior: smooth; }
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  white-space: nowrap;
 }
 .k2-newsroom-tabs::-webkit-scrollbar { display: none; }
 .k2-newsroom-tab-btn {
   padding: 12px 20px;
   font-size: 13px;
   flex-shrink: 0;
+}
+@media (max-width: 639px) {
+  .k2-newsroom-tab-wrap { padding: 0 16px; }
+  .k2-newsroom-tab-btn  { padding: 11px 14px; font-size: 12px; }
 }
 
 /* ─── Newsroom: card hover ───────────────────────────────────────────────── */
@@ -1115,4 +1105,12 @@ html { scroll-behavior: smooth; }
   .k2-home-gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
   .k2-home-gallery-grid .k2-gallery-item { height: 140px; }
   .k2-home-gallery-extra { display: none !important; }
+}
+
+/* Hero CTA buttons — stack vertically on mobile (below iPad) */
+.k2-hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+@media (max-width: 767px) {
+  .k2-hero-btns { flex-direction: column; }
+  .k2-hero-btns > * { display: block !important; width: 100%; }
+  .k2-hero-btns > * > button { display: flex !important; width: 100%; justify-content: center; }
 }
