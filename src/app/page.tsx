@@ -552,7 +552,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* =========== LATEST FROM NEWSROOM + BLOG =========== */}
+      {/* =========== LATEST FROM NEWSROOM =========== */}
       <section style={{ padding: '80px 32px', background: 'var(--k2-stone)' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
           <div style={{
@@ -567,7 +567,7 @@ export default function HomePage() {
                 margin: 0, lineHeight: 1.1,
                 letterSpacing: '-0.025em', fontWeight: 500,
               }}>
-                From the newsroom<br /><Em>and the blog.</Em>
+                From the <Em>newsroom.</Em>
               </h2>
             </div>
             <div style={{
@@ -576,9 +576,6 @@ export default function HomePage() {
             }}>
               <Link href="/newsroom" style={{ color: 'var(--k2-ink)', textDecoration: 'none', borderBottom: '1px solid var(--k2-ink)', paddingBottom: 2 }}>
                 Newsroom →
-              </Link>
-              <Link href="/blog" style={{ color: 'var(--k2-ink)', textDecoration: 'none', borderBottom: '1px solid var(--k2-ink)', paddingBottom: 2 }}>
-                Blog →
               </Link>
             </div>
           </div>
@@ -685,9 +682,9 @@ export default function HomePage() {
               </div>
             </Link>
 
-            {/* Most recent blog post */}
+            {/* Most recent editorial article */}
             <Link
-              href={`/blog/${recentBlog.slug}`}
+              href="/newsroom"
               className="k2-blog-card"
               style={{
                 background: 'var(--k2-canvas)',
@@ -703,7 +700,7 @@ export default function HomePage() {
                   letterSpacing: '0.08em', textTransform: 'uppercase',
                   color: 'var(--k2-eyebrow)', display: 'block', marginBottom: 8,
                 }}>
-                  Blog · {recentBlog.category}
+                  {recentBlog.category}
                 </span>
                 <h3 style={{
                   fontSize: 13, fontWeight: 500, lineHeight: 1.35,

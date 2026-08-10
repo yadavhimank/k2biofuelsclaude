@@ -35,19 +35,9 @@ const MAIN_PAGES = [
     desc: "GHG accounting, certifications, and environmental impact.",
   },
   {
-    path: "/clients",
-    label: "Clients",
-    desc: "Industry segments, how we work, and our client philosophy.",
-  },
-  {
     path: "/newsroom",
     label: "Newsroom",
     desc: "Press coverage, policy updates, and official statements.",
-  },
-  {
-    path: "/blog",
-    label: "Blog",
-    desc: "Technical writing from our plant floor and policy team.",
   },
   {
     path: "/careers",

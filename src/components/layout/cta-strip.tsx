@@ -27,11 +27,7 @@ export function CTAStrip({
       background: 'var(--k2-ink)', color: 'var(--k2-on-ink)',
       padding: '96px 32px', position: 'relative', overflow: 'hidden',
     }}>
-      <div style={{
-        position: 'absolute', right: -20, bottom: -60,
-        fontSize: 'clamp(160px, 40vw, 320px)', fontWeight: 300, letterSpacing: '-0.05em',
-        color: 'rgba(232,101,26,0.07)', pointerEvents: 'none', lineHeight: 1,
-      }}>
+      <div className="k2-cta-watermark" aria-hidden="true">
         K2
       </div>
       <div style={{ maxWidth: 1320, margin: '0 auto', position: 'relative' }}>

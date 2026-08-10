@@ -1,3 +1,5 @@
+import { BLOG_POSTS } from './blog-posts';
+
 // TODO: Replace placeholder url, headline, body fields with real content as available. Structure is final.
 
 export type PressArticle = {
@@ -298,4 +300,44 @@ export const OFFICIAL_TWEETS: OfficialTweet[] = [
     likes: 560,
     retweets: 220,
   },
+];
+
+export type NewsroomCategory = 'press' | 'company' | 'industry-policy' | 'sustainability' | 'operations' | 'videos' | 'officials';
+export type NewsroomItem = {
+  id: string;
+  category: NewsroomCategory;
+  title: string;
+  excerpt: string;
+  publishedAt: string;
+  href: string;
+  image?: string;
+  source?: string;
+  author?: string;
+  readTime?: string;
+  featured?: boolean;
+};
+
+const blogCategory: Record<(typeof BLOG_POSTS)[number]['category'], NewsroomCategory> = {
+  Industry: 'industry-policy', Policy: 'industry-policy', Sustainability: 'sustainability', Operations: 'operations', Company: 'company',
+};
+
+export const NEWSROOM_ITEMS: NewsroomItem[] = [
+  ...PRESS_ARTICLES.map((article) => ({
+    id: article.id, category: (article.category === 'Press' ? 'press' : 'industry-policy') as NewsroomCategory, title: article.headline,
+    excerpt: article.excerpt, publishedAt: article.publishedAt, href: article.url, image: article.coverImage,
+    source: article.outlet, featured: article.featured,
+  })),
+  ...NEWS_VIDEOS.map((video) => ({
+    id: video.id, category: 'videos' as const, title: video.title, excerpt: video.description, publishedAt: video.publishedAt,
+    href: video.url, image: video.thumbnailImage, source: video.source, readTime: `${Math.floor(video.durationSeconds / 60)}:${String(video.durationSeconds % 60).padStart(2, '0')}`,
+  })),
+  ...OFFICIAL_TWEETS.map((tweet) => ({
+    id: tweet.id, category: 'officials' as const, title: tweet.displayName, excerpt: tweet.body, publishedAt: tweet.publishedAt,
+    href: tweet.url, image: tweet.coverImage, source: tweet.role,
+  })),
+  ...BLOG_POSTS.map((post) => ({
+    id: `blog-${post.slug}`, category: blogCategory[post.category], title: post.title, excerpt: post.excerpt,
+    publishedAt: post.publishedAt, href: `/blog/${post.slug}`, image: post.coverImage,
+    source: 'K2 Biofuels', author: post.author.name, readTime: `${post.readingMinutes} min read`,
+  })),
 ];

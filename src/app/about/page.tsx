@@ -4,6 +4,8 @@ import { PAGE_METADATA } from "@/lib/metadata";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Em } from "@/components/ui/em";
 import { CTAStrip } from "@/components/layout/cta-strip";
+import { ImageRotator } from "@/components/ui/image-rotator";
+import { TrustedClients } from "@/components/ui/trusted-clients";
 
 export const metadata: Metadata = PAGE_METADATA.about;
 
@@ -24,27 +26,23 @@ export default function AboutPage() {
           overflow: "hidden",
         }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/aboutbanner.png"
-          alt=""
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "center",
-            display: "block",
-          }}
+        <ImageRotator
+          fill
+          height="100%"
+          intervalMs={5000}
+          objectPosition="center"
+          images={[
+            { src: "/aboutpic1.JPG", alt: "" },
+            { src: "/aboutpic2.JPG", alt: "" },
+            { src: "/aboutpic3.JPG", alt: "" },
+          ]}
         />
         <div
           style={{
             position: "absolute",
             inset: 0,
             background:
-              "linear-gradient(to bottom, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.10) 70%, rgba(0,0,0,0.65) 100%)",
+              "linear-gradient(to bottom, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.25) 68%, rgba(0,0,0,0.72) 100%)",
           }}
         />
 
@@ -71,11 +69,12 @@ export default function AboutPage() {
                 fontWeight: 500,
                 margin: "0 0 28px",
                 maxWidth: 980,
+                textShadow: "0 2px 24px rgba(0,0,0,0.7), 0 1px 4px rgba(0,0,0,0.9)",
               }}
             >
-              <Em color="#2D7A3D">Turning problem into products.</Em>
+              Turning problem into products.
               <br />
-              <Em color="#E8651A">Powering the future with biofuels.</Em>
+              <Em color="#FFB37A">Powering the future with biofuels.</Em>
             </h1>
             <p
               className="k2-body-lg"
@@ -308,6 +307,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <TrustedClients />
 
       {/* Leadership */}
       <section style={{ padding: "112px 32px" }}>
@@ -552,6 +553,7 @@ export default function AboutPage() {
                 live: "Live",
                 bar: "var(--k2-eyebrow)",
                 highlight: false,
+                href: "https://k2group.in/k2power.php",
               },
               {
                 name: "K2 Biofuels",
@@ -561,6 +563,7 @@ export default function AboutPage() {
                 live: "Live",
                 bar: "var(--k2-cta)",
                 highlight: true,
+                href: undefined,
               },
               {
                 name: "K2 Ethanol",
@@ -570,11 +573,20 @@ export default function AboutPage() {
                 live: "Commissioning",
                 bar: "var(--k2-ink)",
                 highlight: false,
+                href: "https://k2ethanol.com",
               },
-            ].map((c) => (
-              <div
+            ].map((c) => {
+              const Wrapper = c.href ? "a" : "div";
+              return (
+              <Wrapper
                 key={c.name}
+                {...(c.href
+                  ? { href: c.href, target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
                 style={{
+                  display: "block",
+                  textDecoration: "none",
+                  color: "inherit",
                   background: c.highlight
                     ? "var(--k2-canvas)"
                     : "var(--k2-surface)",
@@ -582,6 +594,7 @@ export default function AboutPage() {
                     ? "2px solid var(--k2-ink)"
                     : "1px solid var(--k2-border-med)",
                   padding: 32,
+                  cursor: c.href ? "pointer" : "default",
                 }}
               >
                 <div
@@ -641,8 +654,9 @@ export default function AboutPage() {
                     </span>
                   </div>
                 </div>
-              </div>
-            ))}
+              </Wrapper>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -737,7 +751,7 @@ export default function AboutPage() {
         >
           <div>
             <Eyebrow style={{ marginBottom: 10 }}>
-              — From the company blog
+              — From the newsroom
             </Eyebrow>
             <p
               style={{
@@ -752,7 +766,7 @@ export default function AboutPage() {
             </p>
           </div>
           <Link
-            href="/blog?category=Company"
+            href="/newsroom"
             style={{
               textDecoration: "none",
               color: "var(--k2-ink)",
