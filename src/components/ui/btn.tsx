@@ -35,7 +35,8 @@ export function Button({
       color: light ? 'var(--k2-ink)' : 'var(--k2-on-ink)',
       border: `1px solid ${light ? 'var(--k2-ink)' : 'rgba(250,250,247,0.3)'}`,
     },
-    accent: { background: 'var(--k2-cta)', color: '#FFFFFF' },
+    // ponytail: darker than --k2-cta specifically for white-on-orange contrast (WCAG AA needs 4.5:1)
+    accent: { background: '#B04A0D', color: '#FFFFFF' },
   };
   return (
     <button

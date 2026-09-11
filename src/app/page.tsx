@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Eyebrow } from '@/components/ui/eyebrow';
 import { Button } from '@/components/ui/btn';
@@ -297,11 +298,9 @@ export default function HomePage() {
                 >
                   <div style={{ position: 'relative', height: 220, overflow: 'hidden' }}>
                     {p.tag === 'Pellets' ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src="/pelletsimage.png" alt="Biomass pellets" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                      <Image src="/pelletsimage.png" alt="Biomass pellets" fill sizes="(max-width: 640px) 100vw, 360px" style={{ objectFit: 'cover' }} />
                     ) : p.tag === 'Briquettes' ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src="/briquettes.png" alt="Biomass briquettes" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                      <Image src="/briquettes.png" alt="Biomass briquettes" fill sizes="(max-width: 640px) 100vw, 360px" style={{ objectFit: 'cover' }} />
                     ) : (
                       <ImgSlot tone={p.tone} height={220} />
                     )}
@@ -428,8 +427,9 @@ export default function HomePage() {
       {/* =========== INFRASTRUCTURE TEASER =========== */}
       <section style={{ padding: '80px 32px', background: 'var(--k2-stone)' }}>
         <div className="k2-grid-stack-mobile" style={{ maxWidth: 1320, margin: '0 auto', gridTemplateColumns: '1.3fr 1fr', gap: 64, alignItems: 'center' }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/infrastructure.png" alt="K2 Biofuels Rewari plant" style={{ width: '100%', height: 420, objectFit: 'cover', display: 'block' }} />
+          <div style={{ position: 'relative', height: 420 }}>
+            <Image src="/infrastructure.png" alt="K2 Biofuels Rewari plant" fill sizes="(max-width: 900px) 100vw, 760px" style={{ objectFit: 'cover' }} />
+          </div>
           <div>
             <Eyebrow style={{ marginBottom: 14 }}>— 04 / Infrastructure</Eyebrow>
             <h2 style={{ fontSize: 38, margin: '0 0 22px', lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
