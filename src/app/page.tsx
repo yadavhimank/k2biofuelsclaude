@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import { Eyebrow } from '@/components/ui/eyebrow';
 import { Button } from '@/components/ui/btn';
+import { HeroVideo } from '@/components/ui/hero-video';
 import { ImgSlot } from '@/components/ui/img-slot';
 import { MonoCap } from '@/components/ui/mono-cap';
 import { Em } from '@/components/ui/em';
@@ -88,13 +88,10 @@ export default function HomePage() {
         flexDirection: 'column',
         justifyContent: 'space-between',
       }}>
-        <Image
-          src="/heroimage.png"
-          alt="K2 Biofuels pellet plant, Rewari, Haryana"
-          fill
-          priority
-          style={{ objectFit: 'cover', objectPosition: 'center' }}
-          sizes="100vw"
+        <HeroVideo
+          imageSrc="/heroimage.png"
+          imageAlt="K2 Biofuels pellet plant, Rewari, Haryana"
+          videoSrc="/hero-video.mp4"
         />
         <div style={{
           position: 'absolute', inset: 0,

@@ -670,10 +670,27 @@ html { scroll-behavior: smooth; }
 }
 
 /* ─── Products jump-to nav: static bar below banner ─────────────────────── */
-.k2-products-nav-bar { padding: 14px 32px; }
+.k2-products-nav-bar { padding: 14px 32px; position: relative; }
 @media (max-width: 639px) {
   .k2-products-nav-bar { padding: 12px 16px; }
   .k2-products-nav-scroll { gap: 20px; font-size: 13px; }
+}
+
+/* Edge-fade cue: on narrow screens the jump-to links overflow and scroll
+   horizontally — this hints there's more beyond the visible edge, since the
+   last link (e.g. "Dispatch & logistics") would otherwise look abruptly
+   cut off with no affordance that it's scrollable. */
+@media (max-width: 767px) {
+  .k2-products-nav-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 36px;
+    background: linear-gradient(to right, transparent, var(--k2-ink));
+    pointer-events: none;
+  }
 }
 
 /* ─── Horizontal scroll for table-style grids ────────────────────────────────
@@ -1307,6 +1324,21 @@ html { scroll-behavior: smooth; }
   position: sticky;
   top: 0;
   z-index: 40;
+}
+/* Edge-fade cue: category pills overflow and scroll horizontally on
+   narrow screens (the last pill, e.g. "Culture", gets clipped by the
+   viewport) — the fade signals there's more to scroll to. */
+@media (max-width: 767px) {
+  .k2-gallery-filter-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 36px;
+    background: linear-gradient(to right, transparent, var(--k2-ink));
+    pointer-events: none;
+  }
 }
 .k2-gallery-filter {
   display: flex;

@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import { PAGE_METADATA } from '@/lib/metadata';
+import { PLANT_TOUR_YOUTUBE_ID } from '@/lib/media';
 import { Eyebrow } from '@/components/ui/eyebrow';
 import { Em } from '@/components/ui/em';
 import { ImgSlot } from '@/components/ui/img-slot';
+import { YouTubeEmbed } from '@/components/ui/youtube-embed';
 import { CTAStrip } from '@/components/layout/cta-strip';
 export const metadata: Metadata = PAGE_METADATA.infrastructure;
 
@@ -83,12 +85,33 @@ export default function InfrastructurePage() {
         </div>
       </section>
 
-      {/* Pellet mill cards */}
+      {/* Plant tour video */}
       <section style={{ padding: '96px 32px', background: 'var(--k2-stone)' }}>
+        <div className="k2-grid-stack-mobile" style={{ maxWidth: 1320, margin: '0 auto', gridTemplateColumns: '1fr 1.3fr', gap: 64, alignItems: 'center' }}>
+          <div>
+            <Eyebrow style={{ marginBottom: 14 }}>— 02 / Plant tour</Eyebrow>
+            <h2 style={{ fontSize: 38, margin: '0 0 22px', lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
+              Walk the floor,<br />
+              <Em>without leaving your desk.</Em>
+            </h2>
+            <p style={{ fontSize: 15, lineHeight: 1.7, color: 'var(--k2-text-2)', margin: 0 }}>
+              A full walkthrough of the Rewari facility — feedstock intake and weighbridge, rotary drum dryers, pellet mills, the on-site quality lab and covered storage — shot floor to floor.
+            </p>
+          </div>
+          <YouTubeEmbed
+            videoId={PLANT_TOUR_YOUTUBE_ID}
+            title="Inside K2 Biofuels | 252 TPD Biomass Pellet Plant Tour | Rewari, Haryana"
+            thumbnailSrc="/k2planttour.png"
+          />
+        </div>
+      </section>
+
+      {/* Pellet mill cards */}
+      <section style={{ padding: '96px 32px' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
           <div className="k2-section-header" style={{ marginBottom: 48 }}>
             <div>
-              <Eyebrow style={{ marginBottom: 14 }}>— 02 / Pellet mills</Eyebrow>
+              <Eyebrow style={{ marginBottom: 14 }}>— 03 / Pellet mills</Eyebrow>
               <h2 style={{ fontSize: 38, margin: 0, lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
                 Three mills,<br />
                 <Em>tuned per feedstock.</Em>
@@ -130,7 +153,7 @@ export default function InfrastructurePage() {
       {/* Process flow */}
       <section style={{ padding: '96px 32px' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
-          <Eyebrow style={{ marginBottom: 14 }}>— 03 / Process flow</Eyebrow>
+          <Eyebrow style={{ marginBottom: 14 }}>— 04 / Process flow</Eyebrow>
           <h2 style={{ fontSize: 38, margin: '0 0 48px', lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
             Eight stages,<br />
             <Em>field to firebox.</Em>
@@ -168,7 +191,7 @@ export default function InfrastructurePage() {
       <section style={{ padding: '96px 32px', background: 'var(--k2-ink)', color: 'var(--k2-on-ink)' }}>
         <div className="k2-grid-stack-mobile" style={{ maxWidth: 1320, margin: '0 auto', gridTemplateColumns: '1fr 1.4fr', gap: 80 }}>
           <div>
-            <Eyebrow accent="var(--k2-cta)" style={{ marginBottom: 14 }}>— 04 / On-site quality lab</Eyebrow>
+            <Eyebrow accent="var(--k2-cta)" style={{ marginBottom: 14 }}>— 05 / On-site quality lab</Eyebrow>
             <h2 style={{ fontSize: 38, margin: '0 0 24px', lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
               Every batch,<br />
               <Em color="#FFB37A">tested before it ships.</Em>
@@ -209,7 +232,7 @@ export default function InfrastructurePage() {
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
           <div className="k2-grid-stack-mobile" style={{ gridTemplateColumns: '1fr 1.4fr', gap: 64, alignItems: 'start' }}>
             <div>
-              <Eyebrow style={{ marginBottom: 14 }}>— 05 / On-site solar</Eyebrow>
+              <Eyebrow style={{ marginBottom: 14 }}>— 06 / On-site solar</Eyebrow>
               <h2 style={{ fontSize: 38, margin: '0 0 22px', lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 500 }}>
                 3.5 MW captive solar,<br />
                 <Em>every unit stays in-plant.</Em>
